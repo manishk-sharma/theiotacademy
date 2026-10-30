@@ -1,0 +1,507 @@
+/*
+List Common Styles
+*/
+
+#tia-events-list-content,
+.tia-list-wrapper {
+  display: inline-block;
+  width: 100%;
+  margin: 5px auto;
+  padding: 0;
+}
+
+#tia-events-list-content h2.tia-events-page-title {
+  margin: 0 auto 20px;
+  width:100%;
+}
+
+.tia-list-post {
+  width: 100%;
+  height: 100%;
+  min-height:180px;
+  box-sizing: border-box;
+  word-break: break-word;
+  display: table;
+  margin: 15px auto;
+}
+
+.tia-list-post-left {
+  width: 30%;
+  height: 100%;
+  background-size: cover;
+  display: table-cell;
+  position: relative;
+  min-height: 180px;
+  z-index: 9;
+}
+
+.tia-list-post-right {
+  width: 70%;
+  display: table-cell;
+  background: #edf3f9;
+  vertical-align: top;
+  height: 100%;
+}
+
+.tab-pane .h3{
+	color: #f4511e;
+}
+
+.tia-list-post-left:hover{
+  -webkit-filter: brightness(95%) hue-rotate(2deg);
+  filter: brightness(95%) hue-rotate(2deg);
+}
+.tia-list-post-right .tia-list-venue:hover{
+  -webkit-filter: brightness(95%) hue-rotate(2deg);
+  filter: brightness(95%) hue-rotate(2deg);
+}
+
+.tia-list-img {
+  float: none;
+  height: 100%;
+  width: 100%;
+  background-color:#ebf0f7;
+}
+
+.tia-list-post a {
+  box-shadow: none;
+  text-decoration: none;
+}
+
+.tia-list-post-left .tia-list-date {
+  -webkit-transition: width linear 0.5s; /* Safari */
+  transition: width linear 0.5s;
+  width: 35%;
+  min-width: 100px;
+  display: table;
+  text-align: center;
+  background: rgb(244, 81, 30,0.8);
+  height: 100%;
+  color: #fff;
+  vertical-align: middle;
+  padding: 8px;
+  box-sizing: border-box;
+  position: relative;
+  top: 0;
+  z-index:2;
+}
+
+.tia-list-post:hover .tia-list-post-left .tia-list-date {
+  width:100%;
+  border: 1px solid #f4511e;
+  box-shadow: 10px 10px 10px grey;
+}
+
+.tia-list-post:hover .tia-list-post-right {
+  border: 1px solid #f4511e;
+  box-shadow: 10px 10px 10px grey;
+}
+
+.nav-tabs:hover .nav-justified {
+  border: 1px solid #f4511e;
+  box-shadow: 10px 10px 10px grey;
+}
+
+.tia-featured-event .tia-list-post-left .tia-list-date {
+  background: rgb(244, 81, 30,0.8);
+}
+
+.tia-list-date .tia-date-area {
+ display: table-cell;
+  text-align: center;
+  vertical-align: middle;
+  line-height: 92%;
+  font-size: 38px;
+  font-family: inherit;
+  padding-top:14px;
+}
+
+.tia-list-date .tia-date-area .ev-day {
+  font-size: 1em;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+}
+
+.tia-list-date .tia-date-area .ev-mo {
+  font-size: 0.45em;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+}
+
+.tia-list-date .tia-date-area .ev-yr  {
+  font-size: 0.4em;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  position: relative;
+  top: -14px;
+}
+
+.tia-list-date .tia-date-area .ev-time {
+  font-size: 0.32em;
+  clear: both;
+  display: inline-block;
+  width: 100%;
+  line-height: 1.35em;
+}
+
+#tia-events-list-content .tia-share-wrapper {
+  position: absolute;
+  right: 7px;
+  bottom: 7px;
+  z-index: 11;
+}
+
+/*right side*/
+.tia-list-post-right-table {
+  display: table;
+  vertical-align: top;
+  height:100%;
+  width:100%;
+}
+
+.tia-list-post-right .tia-list-description {
+  width: 70%;
+  height: 100%;
+  display: table-cell;
+  padding: 10px;
+  box-sizing: border-box;
+  vertical-align: top;
+  border-right: 1px solid;
+  position: relative;
+}
+
+.tia-list-post a.tia-events-read-more {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.tia-list-post-right .tia-list-venue {
+  width: 30%;
+  height: 100%;
+  display: table-cell;
+  vertical-align: top;
+  text-align: center;
+  background: #f4511e;
+  color: #fff;
+  padding: 10px;
+}
+
+.tia-list-post h2.tia-list-title {
+  font-size: 18px;
+  font-family: inherit;
+  margin-bottom: 10px;
+  padding: 0;
+}
+
+.tia-list-post h2.tia-list-title a {
+  color: #f4511e;
+  text-decoration: none;
+  box-shadow: none;
+}
+
+.tia-list-post h2.tia-list-title a:hover {
+  filter: opacity(0.75);
+  -webkit-filter: opacity(0.75);
+}
+
+.tia-list-description .tia-event-content {
+  font-size: 13px;
+  font-family: inherit;
+  padding: 0;
+  margin: 0;
+  display:inline-block;
+  width:100%;
+  line-height:1.6em;
+}
+
+.tia-list-description .tia-event-content p {
+  padding: 0;
+  margin: 0;
+  display:inline-block;
+  width:100%;
+}
+
+a.tia-event-read-more {
+  color: #f4511e;
+  text-decoration: none;
+  margin-top:10px;
+  display: inline-block;
+}
+
+#tia-events-list-content .tia-rate-area {
+  float: right;
+  display: inline-block;
+  margin-top: -22px;
+  font-size: 22px;
+}
+
+#tia-events-list-content .tia-rate-area .tia-rate{
+  color: #f4511e;
+}
+
+.tia-list-venue .tia-icon {
+  display: inline-block;
+  width: 100%;
+}
+
+.tia-list-venue .tia-venue-details {
+  font-size: 14px;
+  line-height: inherit;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.tia-list-venue .tia-venue-details .tribe-address {
+  font-size:85%;
+  width: 100%;
+  display: inline-block;
+}
+
+.tia-venue-details .tribe-address span {
+  display: inline-block;
+}
+
+.tia-venue-details .tribe-address .tribe-delimiter { margin-right:3px; }
+.tia-venue-details .tribe-address .tribe-postal-code { margin:0 3px; }
+.tia-list-venue .tia-google {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 5px;
+}
+
+.tia-list-venue .tia-google a {
+  font-size: 12px;
+  color:rgba(0, 0, 0, 0.5);
+  box-shadow: 0 1px 0 0 currentColor;
+}
+
+.tia-list-post .tia-list-venue .tia-rate-area {
+  display: inline-block;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 22px;
+}
+
+/*
+  Style-2 / Modern List
+*/
+
+.modern-list-right-side {
+  width: 30%;
+  height: 100%;
+  display: table-cell;
+  padding: 10px;
+  box-sizing: border-box;
+  vertical-align: middle;
+}
+
+.modern-list-right-side .tia-list-date,
+.modern-list-right-side .tia-list-date .tia-date-area {
+  display: inline-block;
+  width: 100%;
+}
+
+.tia-list-post-right .modern-list-venue {
+  width: 100%;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+.modern-list-venue .tia-icon {
+  font-size: 24px;
+  display: inline-block;
+  vertical-align: top;
+  width: 34px;
+}
+.modern-list-venue span.tia-venue-details,
+.modern-list-venue span.tia-google {
+  display: inline-block;
+  width: calc(100% - 48px);
+  vertical-align: top;
+}
+
+#tia-events-list-content .style-2 .tia-rate-area {
+  float: left;
+  width: 100%;
+  margin: 0 0 10px;
+  display: inline-block;
+  font-weight:bold;
+}
+
+.tia-modern-time {
+  text-align: center;
+  font-size: 0.65em !Important;
+  line-height:1.25em;
+}
+
+/*** 
+     CSS for Classic List Style
+  ***/
+
+
+.tia-clslist-event-date {
+  display: table-cell;
+  width: 160px;
+  text-align: center;
+  vertical-align: middle;
+  padding: 10px;
+  background: rgb(244, 81, 30,0.8);
+  font-size: 28px;
+  position: relative;
+}
+
+.tia-clslist-time {
+  display: inline-block;
+  margin-bottom: 10px;
+  font-size: 14px;
+  width: 100%;
+}
+
+.tia-clslist-event-info {
+  background: #f3fbf1;
+  display: table-cell;
+  width: calc(100% - 340px);
+  vertical-align: middle;
+  padding: 10px 25px;
+  text-align: left;
+}
+
+.tia-clslist-event-details {
+  background: #f3fbf1;
+  display: table-cell;
+  width: 180px;
+  text-align: center;
+  position: relative;
+}
+
+.tia-clslist-event-details a.tribe-events-read-more {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  text-align: center;
+  vertical-align: middle;
+  align-items: center;
+  justify-content: center;
+  text-transform: uppercase;
+  font-size: 14px;
+  box-shadow: none;
+  font-weight:bold;
+}
+
+.tia-clslist-inner-container .tia-list-venue .tia-icon {
+  width: auto;
+  vertical-align: top;
+}
+
+.tia-clslist-inner-container i.tia-icon-bell-alt,
+.tia-clslist-inner-container i.tia-icon-clock,
+.tia-clslist-inner-container i.tia-icon-location {
+  min-width: 30px;
+  display: inline-block;
+  text-align: center;
+  min-height: 20px;
+  vertical-align: middle;
+}
+
+.tia-clslist-inner-container .tia-venue-details {
+  width:calc(100% - 35px);
+}
+
+#tia-events-list-content .style-3 .tia-rate-area {
+  margin-top:-30px;
+}
+
+
+/*
+  Media Query 
+*/
+
+@media only screen and (max-width: 790px) {
+  .tia-list-post {
+    margin-bottom: 35px;
+  }
+  .tia-list-post-left .tia-list-date {
+    width:100%;
+    position: absolute;
+    top: inherit;
+    bottom: 0;
+  }
+  .tia-list-date .tia-date-area .ev-day,
+  .tia-list-date .tia-date-area .ev-mo,
+  .tia-list-date .tia-date-area .ev-yr {
+    clear: none;
+    width: auto;
+    height: auto;
+    float: left;
+    top:0;
+    margin-left:5px;
+  }
+  .tia-list-date .tia-date-area .ev-time {
+    text-align: left;
+    margin-left: 5px;
+  }
+  #tia-events-list-content .tia-share-wrapper .tia-social-share-list {
+    left:inherit;
+    right:0;
+  }
+  #tia-events-list-content .tia-share-wrapper .tia-social-share-list:before {
+    left:inherit;
+    right: 6px;
+  }
+  #tia-events-list-content .style-3 .tia-share-wrapper .tia-social-share-list {
+    top:42px;
+  }
+  #tia-events-list-content .style-3 .tia-share-wrapper .tia-social-share-list:before {
+    bottom:inherit;
+    border-bottom-color: #fff;
+    border-top-color: transparent;
+    top: -20px;
+  }
+  .tia-list-post .tia-list-post-right .tia-list-description {
+    border-right : 0;
+  }
+  .tia-list-img {
+    min-height:210px;
+  }
+  .tia-list-post-left,.tia-list-post-right,
+  .tia-list-post-right-table, .tia-list-venue { 
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+  }
+  .tia-list-post-right .tia-list-venue {
+    display: block;
+    width: 100%;
+    overflow: hidden;
+    height: auto;
+  }
+  .tia-list-post {
+    padding: 30px auto;
+  }
+
+  .tia-list-post-right .tia-list-description,
+  .modern-list-right-side {
+    display:inline-block;
+    width:100%;
+  }
+  .tia-modern-time {
+    display: inline-block;
+  }
+
+  .tia-clslist-event-date,
+  .tia-clslist-event-info,
+  .tia-clslist-event-details,
+  .tia-clslist-event-details a.tribe-events-read-more {
+    display: inline-block;
+    width:100%;
+    position: relative;
+    padding:10px;
+  }
+  
+}

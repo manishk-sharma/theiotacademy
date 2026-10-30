@@ -1,0 +1,4410 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ParikshaSetu</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Sora:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
+  <script defer crossorigin="anonymous"
+    src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@4.22.0/dist/tf.min.js"></script>
+  <script defer crossorigin="anonymous"
+    src="https://cdn.jsdelivr.net/npm/@vladmandic/face-api/dist/face-api.js"></script>
+  <style>
+    :root {
+      --bg: #f5f7fa;
+      --bg2: #ffffff;
+      --bg3: #eef1f6;
+      --bg4: #e2e8f0;
+      --border: rgba(0, 0, 0, 0.08);
+      --border2: rgba(0, 0, 0, 0.13);
+      --accent: #2563eb;
+      --accent2: #1d4ed8;
+      --accent-glow: rgba(37, 99, 235, 0.18);
+      --success: #16a34a;
+      --success-bg: rgba(22, 163, 74, 0.10);
+      --warn: #b45309;
+      --warn-bg: rgba(180, 83, 9, 0.10);
+      --danger: #dc2626;
+      --danger-bg: rgba(220, 38, 38, 0.10);
+      --text: #0f172a;
+      --text2: #475569;
+      --text3: #94a3b8;
+      --mono: 'DM Mono', monospace;
+      --sans: 'Sora', sans-serif;
+      --head: 'Space Grotesk', sans-serif;
+      --radius: 10px;
+      --radius-lg: 16px;
+      --transition: 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: var(--sans);
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 0;
+      background-image: none;
+      pointer-events: none;
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 3px
+    }
+
+    /* HEADER */
+    .header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      border-bottom: 1px solid var(--border);
+      box-shadow: 0 1px 12px rgba(0, 0, 0, 0.06);
+      padding: 0 24px;
+      height: 92px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-family: var(--head);
+      font-size: 34px;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .logo img:nth-child(1) {
+      height: 60px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      mix-blend-mode: multiply
+    }
+    .logo img:nth-child(2) {
+      height: 70px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      mix-blend-mode: multiply
+    }
+
+    @media(max-width:576px){
+        .header {
+
+      padding: 0 15px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+       .logo {
+      font-family: var(--head);
+      display: flex;
+      align-items: center;
+      gap: 0px;
+    }
+
+        .logo img:nth-child(1) {
+      height: 43px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      mix-blend-mode: multiply
+    }
+    .logo img:nth-child(2) {
+      height: 54px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+      background: transparent;
+      mix-blend-mode: multiply
+    }
+    }
+    .header-trust {
+      position: absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      font-family: var(--mono);
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: .06em;
+      color: var(--text2);
+      white-space: nowrap;
+      background: rgba(37, 99, 235, .05);
+      border: 1px solid rgba(37, 99, 235, .12);
+      border-radius: 999px;
+      padding: 7px 14px
+    }
+
+    .logo-dot {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 14px var(--accent), 0 0 28px var(--accent-glow);
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+
+      0%,
+      100% {
+        opacity: 1;
+        transform: scale(1)
+      }
+
+      50% {
+        opacity: .6;
+        transform: scale(.85)
+      }
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .chip {
+      font-family: var(--mono);
+      font-size: 11px;
+      padding: 4px 10px;
+      border-radius: 20px;
+      border: 1px solid;
+      letter-spacing: .04em
+    }
+
+    .chip-ok {
+      background: var(--success-bg);
+      color: var(--success);
+      border-color: rgba(34, 197, 94, .25)
+    }
+
+    .chip-warn {
+      background: var(--warn-bg);
+      color: var(--warn);
+      border-color: rgba(245, 158, 11, .25)
+    }
+
+    .chip-blue {
+      background: rgba(59, 130, 246, .12);
+      color: var(--accent2);
+      border-color: rgba(59, 130, 246, .25)
+    }
+
+    .timer-display {
+      font-family: var(--mono);
+      font-size: 16px;
+      font-weight: 500;
+      color: var(--text);
+      padding: 6px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      letter-spacing: .08em
+    }
+
+    .timer-display.urgent {
+      color: var(--danger);
+      border-color: rgba(239, 68, 68, .3);
+      animation: blink 1s infinite
+    }
+
+    @keyframes blink {
+
+      0%,
+      100% {
+        opacity: 1
+      }
+
+      50% {
+        opacity: .6
+      }
+    }
+
+    .app {
+      position: relative;
+      z-index: 1
+    }
+
+    /* LOGIN */
+    #login-view {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px
+    }
+
+    .login-card {
+      width: 100%;
+      max-width: 480px;
+      background: var(--bg2);
+      border: 1px solid var(--border2);
+      border-radius: 20px;
+      padding: 36px 32px;
+      box-shadow: 0 4px 32px rgba(37, 99, 235, .08), 0 1px 4px rgba(0, 0, 0, .04);
+      animation: fadeUp .4s ease
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(16px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    .login-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent2);
+      background: rgba(59, 130, 246, .1);
+      border: 1px solid rgba(59, 130, 246, .2);
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 20px;
+      letter-spacing: .08em
+    }
+
+    .login-badge-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent)
+    }
+
+    .login-title {
+      font-family: var(--head);
+      font-size: 26px;
+      font-weight: 700;
+      letter-spacing: -.03em;
+      margin-bottom: 6px
+    }
+
+    .login-sub {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.6;
+      margin-bottom: 28px
+    }
+
+    .field-group {
+      margin-bottom: 16px
+    }
+
+    .field-label {
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--text2);
+      margin-bottom: 6px;
+      display: block;
+      letter-spacing: .02em
+    }
+
+    .field-wrap {
+      position: relative
+    }
+
+    .field-icon {
+      position: absolute;
+      left: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 15px;
+      pointer-events: none;
+      opacity: .5
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 11px 14px 11px 38px;
+      background: var(--bg3);
+      border: 1px solid var(--border2);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-family: var(--sans);
+      font-size: 14px;
+      outline: none;
+      transition: var(--transition)
+    }
+
+    .field-input:focus {
+      border-color: rgba(59, 130, 246, .5);
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, .1)
+    }
+
+    .field-input::placeholder {
+      color: var(--text3)
+    }
+
+    .field-input.error {
+      border-color: rgba(239, 68, 68, .5)
+    }
+
+    .field-error {
+      font-size: 11px;
+      color: var(--danger);
+      margin-top: 5px;
+      font-family: var(--mono);
+      display: none
+    }
+
+    .login-divider {
+      height: 1px;
+      background: var(--border);
+      margin: 20px 0
+    }
+
+    .login-notice {
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      padding: 12px 14px;
+      background: rgba(37, 99, 235, .05);
+      border: 1px solid rgba(37, 99, 235, .14);
+      border-radius: var(--radius);
+      margin-bottom: 20px
+    }
+
+    .login-notice p {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6
+    }
+
+    .login-notice strong {
+      color: var(--accent);
+      font-weight: 500
+    }
+
+    .gs-config {
+      background: var(--bg3);
+      border: 1px solid rgba(37, 99, 235, .18);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      margin-top: 0
+    }
+
+    .gs-config-title {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--accent);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      margin-bottom: 10px;
+      display: flex;
+      align-items: center;
+      gap: 6px
+    }
+
+    .gs-config-title::before {
+      content: '';
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--accent);
+      flex-shrink: 0
+    }
+
+    .gs-hint {
+      font-size: 11px;
+      color: var(--text3);
+      line-height: 1.6;
+      margin-top: 8px
+    }
+
+    .gs-hint a {
+      color: var(--accent2);
+      text-decoration: underline;
+      cursor: pointer
+    }
+
+    /* BUTTONS */
+    .btn {
+      padding: 11px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--border2);
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      background: var(--bg3);
+      color: var(--text)
+    }
+
+    .btn:hover {
+      background: var(--bg4);
+      border-color: rgba(0, 0, 0, .18)
+    }
+
+    .btn:active {
+      transform: scale(.98)
+    }
+
+    .btn:disabled {
+      opacity: .5;
+      cursor: not-allowed
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(37, 99, 235, .25)
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      border-color: #1d4ed8
+    }
+
+    .btn-block {
+      width: 100%;
+      display: block;
+      text-align: center
+    }
+
+    .btn-row {
+      display: flex;
+      gap: 10px
+    }
+
+    .btn-submit-full {
+      background: var(--danger);
+      border-color: var(--danger);
+      color: #fff;
+      box-shadow: 0 2px 12px rgba(220, 38, 38, .25)
+    }
+
+    .btn-submit-full:hover {
+      background: #dc2626
+    }
+
+    /* SETUP */
+    #setup-view {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 40px 20px
+    }
+
+    .setup-inner {
+      width: 100%;
+      max-width: 620px
+    }
+
+    .setup-hero {
+      margin-bottom: 32px;
+      padding: 28px 32px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, .06), rgba(37, 99, 235, .02));
+      border: 1px solid rgba(37, 99, 235, .18);
+      box-shadow: 0 2px 12px rgba(37, 99, 235, .06);
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden
+    }
+
+    .setup-hero::before {
+      content: '';
+      position: absolute;
+      top: -40px;
+      right: -40px;
+      width: 160px;
+      height: 160px;
+      background: radial-gradient(circle, rgba(37, 99, 235, .08), transparent 70%);
+      pointer-events: none
+    }
+
+    .setup-ready {
+      font-family: var(--head);
+      font-size: 20px;
+      font-weight: 700;
+      margin-top: 14px;
+      color: var(--text)
+    }
+
+    .setup-benefits {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+      margin-top: 18px
+    }
+
+    .setup-benefit {
+      background: rgba(255, 255, 255, .72);
+      border: 1px solid rgba(37, 99, 235, .12);
+      border-radius: 10px;
+      padding: 10px 8px;
+      text-align: center
+    }
+
+    .setup-benefit strong {
+      display: block;
+      font-size: 13px;
+      color: var(--text);
+      margin-bottom: 2px
+    }
+
+    .setup-benefit span {
+      font-size: 10px;
+      color: var(--text2);
+      font-family: var(--mono)
+    }
+
+    .setup-note {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6;
+      margin: -6px 0 14px
+    }
+
+    .setup-visual {
+      margin: 0 0 24px;
+      border: 1px solid rgba(37, 99, 235, .14);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg2);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, .08);
+      aspect-ratio: 16/10
+    }
+
+    .setup-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center
+    }
+
+    .user-greeting {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px
+    }
+
+    .user-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, var(--accent), #8b5cf6);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--head);
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      flex-shrink: 0
+    }
+
+    .user-name-label {
+      font-family: var(--head);
+      font-size: 17px;
+      font-weight: 600
+    }
+
+    .user-meta {
+      font-size: 11px;
+      color: var(--text2);
+      font-family: var(--mono);
+      margin-top: 2px
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .section-label::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border)
+    }
+
+    .topic-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      margin-bottom: 28px
+    }
+
+    .topic-card {
+      padding: 18px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden
+    }
+
+    .topic-card::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, transparent, rgba(59, 130, 246, .04));
+      opacity: 0;
+      transition: opacity var(--transition)
+    }
+
+    .topic-card:hover {
+      border-color: var(--border2);
+      transform: translateY(-1px)
+    }
+
+    .topic-card:hover::before {
+      opacity: 1
+    }
+
+    .topic-card.selected {
+      border-color: rgba(37, 99, 235, .45);
+      background: rgba(37, 99, 235, .06);
+      box-shadow: 0 0 0 1px rgba(37, 99, 235, .18)
+    }
+
+    .topic-icon {
+      font-size: 26px;
+      margin-bottom: 10px;
+      display: block
+    }
+
+    .topic-name {
+      font-family: var(--head);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 4px
+    }
+
+    .topic-meta {
+      font-size: 11px;
+      color: var(--text2);
+      font-family: var(--mono)
+    }
+
+    .perm-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 24px
+    }
+
+    .perm-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      transition: var(--transition)
+    }
+
+    .perm-row.granted {
+      border-color: rgba(34, 197, 94, .2);
+      background: rgba(34, 197, 94, .04)
+    }
+
+    .perm-icon-wrap {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius);
+      background: var(--bg4);
+      border: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 17px;
+      flex-shrink: 0
+    }
+
+    .perm-info {
+      flex: 1
+    }
+
+    .perm-info strong {
+      font-size: 13px;
+      font-weight: 500;
+      display: block;
+      margin-bottom: 2px
+    }
+
+    .perm-info span {
+      font-size: 11px;
+      color: var(--text2)
+    }
+
+    .perm-badge {
+      font-family: var(--mono);
+      font-size: 10px;
+      padding: 3px 9px;
+      border-radius: 20px;
+      border: 1px solid;
+      white-space: nowrap
+    }
+
+    .perm-badge.pending {
+      background: var(--warn-bg);
+      color: var(--warn);
+      border-color: rgba(245, 158, 11, .25)
+    }
+
+    .perm-badge.ok {
+      background: var(--success-bg);
+      color: var(--success);
+      border-color: rgba(34, 197, 94, .25)
+    }
+
+    .perm-msg {
+      font-size: 12px;
+      color: var(--text2);
+      text-align: center;
+      margin-top: 12px;
+      min-height: 18px;
+      font-family: var(--mono);
+      line-height: 1.5
+    }
+
+    .permission-guide {
+      margin: 16px 0 18px;
+      border: 1px solid rgba(37, 99, 235, .16);
+      background: #fff;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: 0 6px 18px rgba(15, 23, 42, .06)
+    }
+
+    .guide-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      border-bottom: 1px solid var(--border);
+      background: #f8fafc
+    }
+
+    .guide-title {
+      font-family: var(--head);
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--text);
+      letter-spacing: -.01em
+    }
+
+    .guide-sub {
+      font-size: 11px;
+      color: var(--text2);
+      line-height: 1.5;
+      margin-top: 2px
+    }
+
+    .guide-pill {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--accent2);
+      background: rgba(37, 99, 235, .08);
+      border: 1px solid rgba(37, 99, 235, .18);
+      border-radius: 20px;
+      padding: 4px 8px;
+      white-space: nowrap
+    }
+
+    .guide-stage {
+      padding: 16px;
+      background: linear-gradient(180deg, #fff, #f8fafc)
+    }
+
+    .guide-browser {
+      border: 1px solid var(--border2);
+      border-radius: 12px;
+      background: #fff;
+      overflow: hidden;
+      position: relative
+    }
+
+    .guide-bar {
+      height: 28px;
+      background: #eef2f7;
+      border-bottom: 1px solid var(--border);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 0 10px
+    }
+
+    .guide-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #cbd5e1
+    }
+
+    .guide-url {
+      margin-left: 4px;
+      height: 14px;
+      flex: 1;
+      border-radius: 20px;
+      background: #fff;
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 8px;
+      color: var(--text3);
+      display: flex;
+      align-items: center;
+      padding-left: 10px;
+      overflow: hidden
+    }
+
+    .guide-content {
+      min-height: 164px;
+      padding: 18px;
+      display: grid;
+      grid-template-columns: 1fr 150px;
+      gap: 16px;
+      align-items: center
+    }
+
+    .guide-prompt {
+      border: 1px solid rgba(15, 23, 42, .14);
+      border-radius: 10px;
+      background: #fff;
+      box-shadow: 0 14px 34px rgba(15, 23, 42, .14);
+      padding: 13px;
+      position: relative
+    }
+
+    .guide-prompt-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--text);
+      line-height: 1.35;
+      margin-bottom: 8px
+    }
+
+    .guide-prompt-copy {
+      font-size: 10px;
+      color: var(--text2);
+      line-height: 1.5;
+      margin-bottom: 12px
+    }
+
+    .guide-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 8px
+    }
+
+    .guide-action {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text2);
+      font-size: 10px;
+      padding: 6px 10px
+    }
+
+    .guide-action.allow {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff
+    }
+
+    .share-demo {
+      margin-top: 12px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #f8fafc;
+      padding: 9px;
+      position: relative
+    }
+
+    .share-demo-title {
+      font-size: 10px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 7px
+    }
+
+    .share-thumb {
+      height: 54px;
+      border: 1px solid rgba(37, 99, 235, .35);
+      border-radius: 7px;
+      background: linear-gradient(180deg, #dbeafe, #fff);
+      position: relative;
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, .14)
+    }
+
+    .share-thumb::before {
+      content: 'Click this preview first';
+      position: absolute;
+      left: 8px;
+      bottom: 6px;
+      font-family: var(--mono);
+      font-size: 8px;
+      color: var(--accent2)
+    }
+
+    .share-action-row {
+      display: flex;
+      justify-content: flex-end;
+      gap: 7px;
+      margin-top: 8px
+    }
+
+    .share-action {
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      background: #fff;
+      color: var(--text2);
+      font-size: 9px;
+      padding: 5px 9px
+    }
+
+    .share-action.disabled {
+      background: #e5e7eb;
+      color: #94a3b8
+    }
+
+    .share-action.enabled {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+      animation: shareEnable 4.8s infinite
+    }
+
+    .guide-cursor {
+      position: absolute;
+      width: 18px;
+      height: 24px;
+      right: 30px;
+      bottom: 12px;
+      filter: drop-shadow(0 4px 6px rgba(15, 23, 42, .22));
+      animation: cursorTap 4.8s infinite
+    }
+
+    .guide-cursor::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      border-top: 18px solid #0f172a;
+      border-right: 12px solid transparent
+    }
+
+    .guide-cursor::after {
+      content: '';
+      position: absolute;
+      left: 9px;
+      top: 13px;
+      width: 8px;
+      height: 10px;
+      background: #0f172a;
+      transform: rotate(-28deg);
+      border-radius: 2px
+    }
+
+    .guide-steps {
+      display: flex;
+      flex-direction: column;
+      gap: 8px
+    }
+
+    .guide-step {
+      display: flex;
+      gap: 8px;
+      align-items: flex-start;
+      padding: 9px;
+      border: 1px solid var(--border);
+      border-radius: 9px;
+      background: #fff
+    }
+
+    .guide-step-num {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      color: #fff !important;
+      font-family: var(--mono);
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      flex-shrink: 0
+    }
+
+    .guide-step strong {
+      font-size: 11px;
+      color: var(--text);
+      display: block;
+      margin-bottom: 2px
+    }
+
+    .guide-step span {
+      font-size: 10px;
+      color: var(--text2);
+      line-height: 1.45;
+      display: block
+    }
+
+    .guide-foot {
+      border-top: 1px solid var(--border);
+      padding: 10px 16px;
+      font-size: 10px;
+      color: var(--text2);
+      line-height: 1.5;
+      background: #fff
+    }
+
+    @keyframes cursorTap {
+
+      0%,
+      14% {
+        right: 128px;
+        bottom: 86px;
+        transform: scale(1)
+      }
+
+      18% {
+        right: 128px;
+        bottom: 86px;
+        transform: scale(.88)
+      }
+
+      28%,
+      45% {
+        right: 42px;
+        bottom: 22px;
+        transform: scale(1)
+      }
+
+      50% {
+        right: 42px;
+        bottom: 22px;
+        transform: scale(.88)
+      }
+
+      58%,
+      100% {
+        right: 42px;
+        bottom: 22px;
+        transform: scale(1)
+      }
+    }
+
+    @keyframes shareEnable {
+
+      0%,
+      28% {
+        background: #e5e7eb;
+        border-color: var(--border);
+        color: #94a3b8
+      }
+
+      35%,
+      100% {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fff
+      }
+    }
+
+    /* EXAM */
+    .exam-layout {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      height: calc(100vh - 56px);
+      overflow: hidden
+    }
+
+    .exam-main {
+      overflow-y: auto;
+      padding: 28px 28px 40px
+    }
+
+    .proctor-sidebar {
+      border-left: 1px solid var(--border);
+      background: #f8fafc;
+      overflow-y: auto;
+      padding: 20px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px
+    }
+
+    .q-progress-bar {
+      height: 2px;
+      background: var(--bg4);
+      border-radius: 2px;
+      margin-bottom: 24px;
+      overflow: hidden
+    }
+
+    .q-progress-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 2px;
+      transition: width .4s ease;
+      box-shadow: 0 0 8px var(--accent-glow)
+    }
+
+    .q-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 20px
+    }
+
+    .q-meta {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text3);
+      letter-spacing: .08em;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+
+    .q-number {
+      background: var(--accent);
+      color: #fff !important;
+      min-width: 22px;
+      height: 18px;
+      padding: 0 8px;
+      border-radius: 6px;
+      font-size: 10px;
+      font-weight: 600;
+      line-height: 1;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center
+    }
+
+    .q-text {
+      font-family: var(--head);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--text);
+      margin-bottom: 22px;
+      letter-spacing: -.01em
+    }
+
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px
+    }
+
+    .opt-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 14px 16px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      font-size: 14px;
+      color: var(--text2)
+    }
+
+    .opt-row:hover {
+      border-color: var(--border2);
+      color: var(--text);
+      background: var(--bg4)
+    }
+
+    .opt-row.selected {
+      border-color: rgba(37, 99, 235, .45);
+      background: rgba(37, 99, 235, .08);
+      color: var(--text)
+    }
+
+    .opt-circle {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      border: 1.5px solid var(--border2);
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: var(--transition)
+    }
+
+    .opt-row.selected .opt-circle {
+      border-color: var(--accent)
+    }
+
+    .opt-circle-inner {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--accent);
+      display: none
+    }
+
+    .opt-row.selected .opt-circle-inner {
+      display: block
+    }
+
+    .q-letter {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text3);
+      width: 20px;
+      flex-shrink: 0;
+      text-align: center
+    }
+
+    .opt-row.selected .q-letter {
+      color: var(--accent2)
+    }
+
+    .q-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center;
+      margin-top: 4px
+    }
+
+    .q-actions .btn {
+      padding: 10px 22px
+    }
+
+    .q-spacer {
+      flex: 1
+    }
+
+    .q-nav-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px
+    }
+
+    .qn-btn {
+      width: 30px;
+      height: 30px;
+      border-radius: 7px;
+      border: 1px solid var(--border);
+      background: var(--bg3);
+      color: var(--text2);
+      font-family: var(--mono);
+      font-size: 11px;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .qn-btn:hover {
+      border-color: var(--border2);
+      color: var(--text)
+    }
+
+    .qn-btn.answered {
+      background: rgba(37, 99, 235, .10);
+      border-color: rgba(37, 99, 235, .28);
+      color: var(--accent)
+    }
+
+    .qn-btn.current {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff
+    }
+
+    .media-box {
+      border-radius: var(--radius);
+      background: #1e293b;
+      overflow: hidden;
+      position: relative;
+      border: 1px solid var(--border)
+    }
+
+    .cam-video-wrap {
+      aspect-ratio: 4/3;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .screen-video-wrap {
+      aspect-ratio: 16/9;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .media-box video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: none
+    }
+
+    .media-placeholder {
+      color: var(--text3);
+      font-size: 11px;
+      font-family: var(--mono);
+      text-align: center;
+      padding: 8px
+    }
+
+    .media-label {
+      position: absolute;
+      bottom: 6px;
+      left: 8px;
+      font-family: var(--mono);
+      font-size: 9px;
+      color: rgba(255, 255, 255, .85);
+      background: rgba(15, 23, 42, .7);
+      padding: 2px 6px;
+      border-radius: 4px
+    }
+
+    .live-dot {
+      position: absolute;
+      top: 7px;
+      right: 8px;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--success);
+      display: none;
+      box-shadow: 0 0 8px var(--success);
+      animation: pulse 2s infinite
+    }
+
+    .status-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 10px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--text2)
+    }
+
+    .s-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0
+    }
+
+    .s-ok {
+      background: var(--success);
+      box-shadow: 0 0 6px rgba(34, 197, 94, .5)
+    }
+
+    .s-warn {
+      background: var(--warn)
+    }
+
+    .s-err {
+      background: var(--danger);
+      box-shadow: 0 0 6px rgba(239, 68, 68, .5)
+    }
+
+    .vlog-wrap {
+      max-height: 100px;
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 4px
+    }
+
+    .vlog-entry {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--danger);
+      padding: 4px 0;
+      border-bottom: 1px solid var(--border);
+      line-height: 1.5
+    }
+
+    .vlog-empty {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3)
+    }
+
+    .prog-bar {
+      height: 4px;
+      background: var(--bg4);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 8px 0
+    }
+
+    .prog-fill {
+      height: 100%;
+      background: var(--accent);
+      border-radius: 4px;
+      transition: width .3s ease
+    }
+
+    .prog-text {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text2);
+      display: flex;
+      justify-content: space-between
+    }
+
+    .sidebar-sep {
+      height: 1px;
+      background: var(--border);
+      margin: 2px 0
+    }
+
+    .sidebar-head {
+      font-family: var(--mono);
+      font-size: 9px;
+      color: var(--text3);
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 8px
+    }
+
+    /* RESULT */
+    #result-view {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 40px 20px
+    }
+
+    .result-inner {
+      max-width: 720px;
+      width: 100%;
+      text-align: center
+    }
+
+    .result-ring {
+      width: 130px;
+      height: 130px;
+      margin: 0 auto 28px;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: center
+    }
+
+    .result-ring svg {
+      position: absolute;
+      inset: 0;
+      transform: rotate(-90deg)
+    }
+
+    .ring-bg {
+      fill: none;
+      stroke: var(--bg4);
+      stroke-width: 6
+    }
+
+    .ring-fill {
+      fill: none;
+      stroke: var(--accent);
+      stroke-width: 6;
+      stroke-linecap: round;
+      transition: stroke-dashoffset 1.2s cubic-bezier(.4, 0, .2, 1);
+      filter: drop-shadow(0 0 8px var(--accent))
+    }
+
+    .result-score-inner {
+      text-align: center
+    }
+
+    .result-pct {
+      font-family: var(--head);
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .result-lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      letter-spacing: .1em
+    }
+
+    .result-heading {
+      font-family: var(--head);
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -.02em
+    }
+
+    .result-sub {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 20px
+    }
+
+    .result-visual {
+      margin: 0 0 28px;
+      border: 1px solid rgba(37, 99, 235, .14);
+      border-radius: 14px;
+      overflow: hidden;
+      background: var(--bg2);
+      box-shadow: 0 8px 24px rgba(15, 23, 42, .08);
+      aspect-ratio: 16/10
+    }
+
+    .result-visual img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center
+    }
+
+    .result-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-bottom: 16px
+    }
+
+    .stat-box {
+      padding: 16px 12px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius)
+    }
+
+    .stat-val {
+      font-family: var(--head);
+      font-size: 26px;
+      font-weight: 700;
+      color: var(--text)
+    }
+
+    .stat-lbl {
+      font-family: var(--mono);
+      font-size: 10px;
+      color: var(--text3);
+      margin-top: 4px;
+      letter-spacing: .06em
+    }
+
+    .gs-status-box {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      justify-content: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text2);
+      margin-bottom: 20px;
+      padding: 10px 14px;
+      background: var(--bg3);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: 0 1px 4px rgba(0, 0, 0, .04)
+    }
+
+    .gs-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--warn);
+      flex-shrink: 0
+    }
+
+    .gs-dot.sent {
+      background: var(--success);
+      box-shadow: 0 0 6px rgba(34, 197, 94, .5)
+    }
+
+    .gs-dot.fail {
+      background: var(--danger)
+    }
+
+    .gs-dot.pending {
+      background: var(--warn);
+      animation: pulse 1s infinite
+    }
+
+    /* MODALS */
+    .modal-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 999;
+      background: rgba(0, 0, 0, .7);
+      backdrop-filter: blur(8px);
+      display: none;
+      align-items: center;
+      justify-content: center
+    }
+
+    .modal-overlay.show {
+      display: flex
+    }
+
+    .modal-box {
+      background: #ffffff;
+      border: 1px solid var(--border2);
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.12);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      max-width: 420px;
+      width: 90%;
+      animation: modalIn .2s ease;
+      box-shadow: 0 0 60px rgba(0, 0, 0, .5)
+    }
+
+    .modal-box.wide {
+      max-width: 540px
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: scale(.96) translateY(8px)
+      }
+
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0)
+      }
+    }
+
+    .modal-box h3 {
+      font-family: var(--head);
+      font-size: 18px;
+      font-weight: 600;
+      margin-bottom: 10px
+    }
+
+    .modal-box p {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.7;
+      margin-bottom: 20px
+    }
+
+    .modal-actions {
+      display: flex;
+      gap: 10px
+    }
+
+    .modal-actions .btn {
+      flex: 1
+    }
+
+    .violation-modal-title {
+      color: var(--danger)
+    }
+
+    .code-block {
+      background: #1e293b;
+      border: 1px solid rgba(0, 0, 0, 0.15);
+      border-radius: 8px;
+      padding: 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: #93c5fd;
+      white-space: pre-wrap;
+      line-height: 1.7;
+      margin: 12px 0;
+      overflow-x: auto
+    }
+
+    @media(max-width:768px) {
+      .exam-layout {
+        grid-template-columns: 1fr
+      }
+
+      .proctor-sidebar {
+        display: none
+      }
+
+      .topic-grid {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .login-card {
+        padding: 24px 20px
+      }
+
+      .setup-benefits {
+        grid-template-columns: 1fr
+      }
+
+      .setup-hero {
+        padding: 24px 22px
+      }
+
+      .guide-content {
+        grid-template-columns: 1fr
+      }
+
+      .guide-steps {
+        display: grid;
+        grid-template-columns: 1fr
+      }
+
+      .guide-pill {
+        display: none
+      }
+    }
+
+    /* ── LANDING PAGE ─────────────────────────────────────────────────── */
+    @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&display=swap');
+
+    #landing-view {
+      min-height: calc(100vh - 56px);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 0;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Animated background mesh */
+    #landing-view::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 80% 60% at 20% 10%, rgba(37, 99, 235, 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 80%, rgba(139, 92, 246, 0.05) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 60% 30%, rgba(22, 163, 74, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .landing-inner {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      max-width: 1100px;
+      padding: 60px 24px 40px;
+    }
+
+    /* Hero two-column layout */
+    .lp-hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 440px;
+      gap: 48px;
+      align-items: center;
+      margin-bottom: 56px;
+    }
+
+    .lp-hero-left {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .lp-hero-right {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: 0 8px 48px rgba(37, 99, 235, 0.12), 0 0 0 1px rgba(0, 0, 0, 0.06);
+    }
+
+    .lp-hero-right img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 24px;
+    }
+
+    .lp-hero-right::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(59, 130, 246, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    @media(max-width: 980px) {
+      .header-trust {
+        display: none
+      }
+    }
+
+    @media(max-width: 768px) {
+      .lp-hero-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .lp-hero-right {
+        max-width: 380px;
+        margin: 0 auto;
+      }
+    }
+
+    /* Hero badge */
+    .lp-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: linear-gradient(135deg, rgba(245, 158, 11, 0.18), rgba(245, 158, 11, 0.06));
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #b45309;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: .1em;
+      padding: 6px 16px;
+      border-radius: 40px;
+      margin-bottom: 28px;
+      animation: fadeUp .5s ease both;
+    }
+
+    .lp-badge-star {
+      font-size: 13px;
+    }
+
+    /* Hero headline */
+    .lp-headline {
+      font-family: 'Playfair Display', 'Space Grotesk', serif;
+      font-size: clamp(36px, 6vw, 72px);
+      font-weight: 900;
+      line-height: 1.08;
+      letter-spacing: -0.03em;
+      color: var(--text);
+      margin-bottom: 20px;
+      animation: fadeUp .55s .08s ease both;
+    }
+
+    .lp-headline .hl-accent {
+      background: linear-gradient(135deg, #3b82f6, #a78bfa);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .lp-headline .hl-gold {
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    /* Subheadline */
+    .lp-sub {
+      font-size: clamp(15px, 2vw, 19px);
+      color: var(--text2);
+      line-height: 1.55;
+      max-width: 620px;
+      margin-bottom: 24px;
+      animation: fadeUp .55s .14s ease both;
+    }
+
+    .hero-proof {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 24px;
+      animation: fadeUp .55s .18s ease both
+    }
+
+    .hero-proof span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      padding: 8px 12px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text2);
+      white-space: nowrap
+    }
+
+    .hero-proof strong {
+      color: var(--text);
+      font-weight: 600
+    }
+
+    .cta-note {
+      margin-top: 10px;
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--text2);
+      letter-spacing: .04em;
+      animation: fadeUp .55s .28s ease both
+    }
+
+    /* Scholarship callout card */
+    .scholarship-banner {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(251, 191, 36, 0.12), rgba(37, 99, 235, 0.05));
+      border: 1.5px solid rgba(217, 119, 6, 0.3);
+      border-radius: 16px;
+      padding: 20px 24px;
+      margin-bottom: 36px;
+      animation: fadeUp .55s .2s ease both;
+      box-shadow: 0 4px 24px rgba(217, 119, 6, 0.08);
+    }
+
+    .scholarship-icon {
+      font-size: 38px;
+      flex-shrink: 0;
+    }
+
+    .scholarship-text h3 {
+      font-family: var(--head);
+      font-size: 18px;
+      font-weight: 700;
+      color: #b45309;
+      margin-bottom: 4px;
+    }
+
+    .scholarship-text p {
+      font-size: 13px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    .scholarship-pct {
+      font-family: 'Playfair Display', serif;
+      font-size: 52px;
+      font-weight: 900;
+      background: linear-gradient(135deg, #d97706, #f59e0b);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      flex-shrink: 0;
+      margin-left: auto;
+      line-height: 1;
+    }
+
+    .scholarship-pct span {
+      display: block;
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: .1em;
+      color: var(--warn);
+      -webkit-text-fill-color: var(--warn);
+      background: none;
+      margin-top: 2px;
+      text-align: center;
+    }
+
+    /* Feature grid */
+    .lp-features {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin-bottom: 40px;
+      animation: fadeUp .55s .26s ease both;
+    }
+
+    .feat-card {
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 20px 18px;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.04);
+    }
+
+    .feat-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.05), transparent);
+      opacity: 0;
+      transition: opacity var(--transition);
+    }
+
+    .feat-card:hover {
+      border-color: rgba(37, 99, 235, 0.3);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(37, 99, 235, 0.08);
+    }
+
+    .feat-card:hover::after {
+      opacity: 1;
+    }
+
+    .feat-icon {
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+
+    .feat-title {
+      font-family: var(--head);
+      font-size: 14px;
+      font-weight: 600;
+      margin-bottom: 5px;
+    }
+
+    .feat-desc {
+      font-size: 12px;
+      color: var(--text2);
+      line-height: 1.6;
+    }
+
+    /* Social proof strip */
+    .proof-strip {
+      display: flex;
+      align-items: center;
+      gap: 28px;
+      padding: 16px 24px;
+      background: var(--bg2);
+      border: 1px solid var(--border);
+      box-shadow: 0 1px 6px rgba(0, 0, 0, 0.04);
+      border-radius: 12px;
+      margin-bottom: 36px;
+      flex-wrap: wrap;
+      animation: fadeUp .55s .3s ease both;
+    }
+
+    .proof-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--text2);
+    }
+
+    .proof-item strong {
+      color: var(--text);
+      font-family: var(--head);
+      font-size: 16px;
+    }
+
+    .proof-sep {
+      width: 1px;
+      height: 28px;
+      background: var(--border);
+    }
+
+    /* CTA section */
+    .lp-cta {
+      text-align: center;
+      padding: 44px 32px;
+      background: linear-gradient(135deg, rgba(37, 99, 235, 0.06), rgba(139, 92, 246, 0.04));
+      border: 1.5px solid rgba(37, 99, 235, 0.2);
+      border-radius: 20px;
+      margin-bottom: 32px;
+      animation: fadeUp .55s .36s ease both;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .lp-cta::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.08), transparent 70%);
+      pointer-events: none;
+    }
+
+    .lp-cta h2 {
+      font-family: var(--head);
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      letter-spacing: -.02em;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+
+    .lp-cta p {
+      font-size: 14px;
+      color: var(--text2);
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
+    .cta-phone-row {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn-cta-primary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, #2563eb, #4f46e5);
+      color: #fff;
+      border: none;
+      border-radius: 12px;
+      padding: 14px 28px;
+      font-family: var(--head);
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      box-shadow: 0 4px 20px rgba(37, 99, 235, 0.3);
+      text-decoration: none;
+    }
+
+    .btn-cta-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 28px rgba(37, 99, 235, 0.38);
+    }
+
+    .btn-cta-primary:active {
+      transform: scale(.98);
+    }
+
+    .btn-cta-secondary {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: transparent;
+      color: var(--text);
+      border: 1.5px solid var(--border2);
+      background: var(--bg2);
+      border-radius: 12px;
+      padding: 14px 24px;
+      font-family: var(--head);
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      text-decoration: none;
+    }
+
+    .btn-cta-secondary:hover {
+      border-color: rgba(37, 99, 235, 0.45);
+      color: var(--accent);
+      background: rgba(37, 99, 235, 0.04);
+    }
+
+    .phone-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(22, 163, 74, 0.08);
+      border: 1px solid rgba(22, 163, 74, 0.25);
+      color: var(--success);
+      border-radius: 10px;
+      padding: 8px 16px;
+      font-family: var(--mono);
+      font-size: 13px;
+      font-weight: 500;
+    }
+
+    .call-feedback {
+      margin-top: 10px;
+      font-size: 12px;
+      color: var(--text2);
+      font-family: var(--mono)
+    }
+
+    /* Urgency ticker */
+    .urgency-bar {
+      width: 100%;
+      background: linear-gradient(90deg, rgba(239, 68, 68, 0.12), rgba(245, 158, 11, 0.1), rgba(239, 68, 68, 0.12));
+      border-top: 1px solid rgba(239, 68, 68, 0.2);
+      border-bottom: 1px solid rgba(239, 68, 68, 0.2);
+      padding: 10px 0;
+      margin-bottom: 0;
+      overflow: hidden;
+      animation: fadeUp .55s .1s ease both;
+    }
+
+    .urgency-inner {
+      display: flex;
+      gap: 60px;
+      white-space: nowrap;
+      animation: ticker 18s linear infinite;
+      width: max-content;
+    }
+
+    @keyframes ticker {
+      from {
+        transform: translateX(0)
+      }
+
+      to {
+        transform: translateX(-50%)
+      }
+    }
+
+    .urgency-item {
+      font-family: var(--mono);
+      font-size: 11px;
+      color: var(--warn);
+      letter-spacing: .06em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .urgency-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--danger);
+      animation: pulse 1s infinite;
+    }
+
+    @media(max-width:700px) {
+      .lp-features {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .scholarship-pct {
+        display: none;
+      }
+
+      .proof-strip {
+        gap: 16px;
+      }
+
+      .proof-sep {
+        display: none;
+      }
+
+      .cta-phone-row {
+        flex-direction: column;
+      }
+    }
+
+    @media(max-width:480px) {
+      .lp-features {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="app">
+
+    <!-- HEADER -->
+    <header class="header">
+      <div class="logo" onclick="goBack()">
+        <img src="https://www.theiotacademy.co/assets/dit/images/navbar/logo.svg" alt="iot Logo">
+        <img src="pariksha_setu_logo.png" alt="pariksha setu Logo">
+
+      </div>
+      <div class="header-trust">FREE SCHOLARSHIP TEST &middot; 20 MINUTES &middot; COUNSELLOR GUIDANCE</div>
+      <div class="header-right" id="header-right">
+        <button id="header-cta" class="btn btn-primary" style="padding:7px 16px;font-size:12px"
+          onclick="showLogin()">Start Free Test &rarr;</button>
+      </div>
+    </header>
+
+    <!-- ═══════════════════════════════════
+     LANDING VIEW
+═══════════════════════════════════ -->
+    <div id="landing-view">
+
+      <!-- Urgency ticker -->
+      <div class="urgency-bar">
+        <div class="urgency-inner">
+          <span class="urgency-item"><span class="urgency-dot"></span>LIMITED SEATS - Scholarship batch filling
+            fast</span>
+          <span class="urgency-item"><span class="urgency-dot"></span>UP TO 50% SCHOLARSHIP available on qualifying
+            score</span>
+          <span class="urgency-item"><span class="urgency-dot"></span>FREE TEST - No registration fee required</span>
+          <span class="urgency-item"><span class="urgency-dot"></span>Counsellor guidance after test submission</span>
+          <span class="urgency-item"><span class="urgency-dot"></span>LIMITED SEATS - Scholarship batch filling
+            fast</span>
+          <span class="urgency-item"><span class="urgency-dot"></span>UP TO 50% SCHOLARSHIP available on qualifying
+            score</span>
+          <span class="urgency-item"><span class="urgency-dot"></span>FREE TEST - No registration fee required</span>
+          <span class="urgency-item"><span class="urgency-dot"></span>Counsellor guidance after test submission</span>
+        </div>
+      </div>
+
+      <div class="landing-inner">
+
+        <div class="lp-hero-grid">
+          <div class="lp-hero-left">
+            <h1 class="lp-headline">
+              Win Up to<br>
+              <span class="hl-gold">50% Scholarship</span><br>
+              <span class="hl-accent">With a Free Test.</span>
+            </h1>
+
+            <p class="lp-sub">
+              Take a 20-minute proctored test and let our counsellor guide you on your scholarship eligibility after
+              submission.
+            </p>
+
+            <div class="hero-proof">
+              <span><strong>Free</strong> to attempt</span>
+              <span><strong>No payment</strong> required</span>
+              <span><strong>Counsellor</strong> guidance</span>
+            </div>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:4px;animation:fadeUp .55s .22s ease both">
+              <button class="btn-cta-primary" onclick="showLogin()" style="font-size:14px;padding:14px 28px">
+                &#128640; Start Free Scholarship Test
+              </button>
+              <!--<button class="btn-cta-secondary" type="button" onclick="showCounsellorNumber()"-->
+              <!--  style="font-size:14px;padding:14px 22px">-->
+              <!--  &#128222; Call Our Counsellor-->
+              <!--</button>-->
+            </div>
+            <div class="cta-note">20 questions &middot; 20 minutes &middot; no registration fee</div>
+          </div>
+
+          <div class="lp-hero-right">
+            <img src="student_scholarship_test.png" alt="Student studying for scholarship test" />
+          </div>
+        </div>
+
+        <!--<div class="scholarship-banner">-->
+        <!--  <div class="scholarship-icon">&#127891;</div>-->
+        <!--  <div class="scholarship-text">-->
+        <!--    <h3>Scholarship up to 50% Available</h3>-->
+        <!--    <p>Qualify through our AI-proctored test and get a verified scholarship certificate. Applicable on Data-->
+        <!--      Analysis, Data Science/Machine Learning, Embedded IoT, and more courses.</p>-->
+        <!--  </div>-->
+        <!--  <div class="scholarship-pct">50%<span>SCHOLARSHIP</span></div>-->
+        <!--</div>-->
+
+        <!--<div class="lp-features">-->
+        <!--  <div class="feat-card">-->
+        <!--    <div class="feat-icon">&#9889;</div>-->
+        <!--    <div class="feat-title">Counsellor Review</div>-->
+        <!--    <div class="feat-desc">Your submission is reviewed and our counsellor helps you understand your scholarship-->
+        <!--      eligibility.</div>-->
+        <!--  </div>-->
+        <!--  <div class="feat-card">-->
+        <!--    <div class="feat-icon">&#128737;</div>-->
+        <!--    <div class="feat-title">AI Proctored &amp; Fair</div>-->
+        <!--    <div class="feat-desc">Camera, screen &amp; mic monitoring ensures every scholarship is merit-based and your-->
+        <!--      achievement is real.</div>-->
+        <!--  </div>-->
+        <!--  <div class="feat-card">-->
+        <!--    <div class="feat-icon">&#127919;</div>-->
+        <!--    <div class="feat-title">Choose Your Domain</div>-->
+        <!--    <div class="feat-desc">Pick from Data Analysis, Data Science/Machine Learning, and Embedded IoT. The test is-->
+        <!--      tailored to your field.</div>-->
+        <!--  </div>-->
+        <!--  <div class="feat-card">-->
+        <!--    <div class="feat-icon">&#128222;</div>-->
+        <!--    <div class="feat-title">Expert Counselling</div>-->
+        <!--    <div class="feat-desc">Our counsellors guide you through course selection and help you maximise your-->
+        <!--      scholarship benefit.</div>-->
+        <!--  </div>-->
+        <!--  <div class="feat-card">-->
+        <!--    <div class="feat-icon">&#128336;</div>-->
+        <!--    <div class="feat-title">Only 20 Minutes</div>-->
+        <!--    <div class="feat-desc">20 focused questions. Complete at home, anytime. The entire process is simple, quick,-->
+        <!--      and transparent.</div>-->
+        <!--  </div>-->
+        <!--  <div class="feat-card">-->
+        <!--    <div class="feat-icon">&#127885;</div>-->
+        <!--    <div class="feat-title">Verified Certificate</div>-->
+        <!--    <div class="feat-desc">Every qualifying student receives a verifiable scholarship letter to redeem on-->
+        <!--      enrollment.</div>-->
+        <!--  </div>-->
+        <!--</div>-->
+
+
+        <div class="lp-cta">
+          <h2>Ready to Earn Your Scholarship?</h2>
+          <p>Start the free test now. It takes 20 minutes, has no registration fee, and can unlock up to 50%
+            scholarship.</p>
+          <div class="cta-phone-row">
+            <button class="btn-cta-primary" onclick="showLogin()">
+              &#128640; Start Free Scholarship Test
+            </button>
+          </div>
+          <div style="margin-top:20px">
+            <div class="phone-badge">
+              &#128222; +91 96678 38746 &nbsp;&middot;&nbsp; Talk to our counsellor &amp; schedule your test
+            </div>
+            <div class="call-feedback" id="call-feedback" aria-live="polite"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     LOGIN VIEW
+═══════════════════════════════════ -->
+    <style>
+      #login-view {
+        min-height: calc(100vh - 56px);
+        display: none;
+        align-items: stretch;
+        justify-content: stretch;
+        padding: 0;
+        background: #eef2fb;
+      }
+
+      .login-split {
+        display: grid;
+        grid-template-columns: 1fr 480px;
+        width: 100%;
+        min-height: calc(100vh - 56px);
+      }
+
+      /* LEFT HERO PANEL */
+      .login-hero-panel {
+        position: relative;
+        overflow: hidden;
+        border-radius: 0;
+        background: #0f172a;
+      }
+
+      .login-hero-bg-img {
+        position: absolute;
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        opacity: 1;
+        border-radius: 0 40px 40px 0;
+      }
+
+      .login-hero-overlay {
+        position: absolute;
+        inset: 0;
+        border-radius: 0 40px 40px 0;
+        background: linear-gradient(160deg,
+            rgba(0, 0, 0, 0.18) 0%,
+            rgba(0, 0, 0, 0.05) 60%,
+            transparent 100%);
+        pointer-events: none;
+      }
+
+      .login-hero-content {
+        position: relative;
+        z-index: 2;
+        padding: 52px 44px 40px;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+      }
+
+      .login-hero-headline {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: clamp(28px, 3.2vw, 42px);
+        font-weight: 800;
+        line-height: 1.12;
+        letter-spacing: -0.03em;
+        color: #ffffff;
+        margin-bottom: 10px;
+        text-shadow: 0 2px 12px rgba(0, 0, 0, 0.3);
+      }
+
+      .login-hero-headline .hero-hl {
+        color: #93c5fd;
+      }
+
+      .login-hero-divider {
+        width: 36px;
+        height: 3px;
+        background: #93c5fd;
+        border-radius: 2px;
+        margin-bottom: 18px;
+      }
+
+      .login-hero-tagline {
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.85);
+        line-height: 1.6;
+        margin-bottom: 36px;
+      }
+
+      .login-hero-features {
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+      }
+
+      .login-feat-row {
+        display: flex;
+        align-items: flex-start;
+        gap: 14px;
+      }
+
+      .login-feat-icon {
+        width: 44px;
+        height: 44px;
+        border-radius: 12px;
+        background: rgba(255, 255, 255, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.3);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 20px;
+        flex-shrink: 0;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+      }
+
+      .login-feat-text strong {
+        display: block;
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 13.5px;
+        font-weight: 600;
+        color: #ffffff;
+        margin-bottom: 2px;
+        text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .login-feat-text span {
+        font-size: 12px;
+        color: rgba(255, 255, 255, 0.75);
+        line-height: 1.55;
+      }
+
+      /* RIGHT FORM PANEL */
+      .login-form-panel {
+        background: #ffffff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 48px 44px;
+        box-shadow: -4px 0 32px rgba(0, 0, 0, 0.06);
+      }
+
+      .login-form-inner {
+        width: 100%;
+        max-width: 360px;
+      }
+
+      .login-back-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        background: none;
+        border: none;
+        color: var(--text2);
+        font-family: var(--sans);
+        font-size: 13px;
+        cursor: pointer;
+        padding: 0;
+        margin-bottom: 28px;
+        transition: var(--transition);
+      }
+
+      .login-back-btn:hover {
+        color: var(--text);
+      }
+
+      .login-form-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 28px;
+        font-weight: 700;
+        letter-spacing: -0.03em;
+        color: #0f172a;
+        margin-bottom: 6px;
+      }
+
+      .login-form-sub {
+        font-size: 13px;
+        color: var(--text2);
+        line-height: 1.6;
+        margin-bottom: 28px;
+      }
+
+      .login-field-label {
+        font-size: 13px;
+        font-weight: 600;
+        color: #0f172a;
+        margin-bottom: 7px;
+        display: block;
+      }
+
+      .login-field-wrap {
+        position: relative;
+        margin-bottom: 18px;
+      }
+
+      .login-field-svg {
+        position: absolute;
+        left: 14px;
+        top: 50%;
+        transform: translateY(-50%);
+        pointer-events: none;
+        color: #94a3b8;
+      }
+
+      .login-field-input {
+        width: 100%;
+        padding: 13px 16px 13px 42px;
+        background: #f8fafc;
+        border: 1.5px solid #e2e8f0;
+        border-radius: 10px;
+        color: #0f172a;
+        font-family: var(--sans);
+        font-size: 14px;
+        outline: none;
+        transition: var(--transition);
+      }
+
+      .login-field-input:focus {
+        border-color: rgba(37, 99, 235, 0.5);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        background: #fff;
+      }
+
+      .login-field-input::placeholder {
+        color: #94a3b8;
+      }
+
+      .login-field-input.error {
+        border-color: rgba(239, 68, 68, 0.5);
+      }
+
+      .login-cta-btn {
+        width: 100%;
+        padding: 14px 20px;
+        background: #2563eb;
+        border: none;
+        border-radius: 10px;
+        color: #fff;
+        font-family: var(--sans);
+        font-size: 15px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition);
+        box-shadow: 0 4px 16px rgba(37, 99, 235, 0.3);
+        margin-top: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 8px;
+      }
+
+      .login-cta-btn:hover {
+        background: #1d4ed8;
+        box-shadow: 0 6px 20px rgba(37, 99, 235, 0.4);
+      }
+
+      .login-cta-btn:active {
+        transform: scale(0.98);
+      }
+
+      .login-safety-note {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        font-size: 12px;
+        color: #94a3b8;
+        margin-top: 14px;
+      }
+
+      /* BOTTOM TRUST BAR */
+      .login-trust-bar {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(255, 255, 255, 0.95);
+        border-top: 1px solid #e2e8f0;
+        padding: 10px 32px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 40px;
+        z-index: 50;
+        backdrop-filter: blur(10px);
+      }
+
+      .trust-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-size: 12.5px;
+        color: #475569;
+        white-space: nowrap;
+      }
+
+      .trust-item-icon {
+        width: 28px;
+        height: 28px;
+        border-radius: 8px;
+        background: rgba(37, 99, 235, 0.08);
+        border: 1px solid rgba(37, 99, 235, 0.15);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+        flex-shrink: 0;
+      }
+
+      .trust-sep {
+        width: 1px;
+        height: 24px;
+        background: #e2e8f0;
+      }
+
+      @media(max-width: 820px) {
+        .login-split {
+          grid-template-columns: 1fr;
+        }
+
+        .login-hero-panel {
+          min-height: 260px;
+        }
+
+        .login-hero-bg-img {
+          border-radius: 0;
+        }
+
+        .login-hero-overlay {
+          border-radius: 0;
+        }
+
+        .login-trust-bar {
+          gap: 16px;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+
+    <div id="login-view" style="display:none">
+      <div class="login-split">
+
+        <!-- LEFT: HERO PANEL -->
+        <div class="login-hero-panel">
+          <img class="login-hero-bg-img" src="login_students.jpg" alt="Student studying"
+            onerror="this.style.display='none'">
+          <div class="login-hero-overlay"></div>
+        </div>
+
+        <!-- RIGHT: FORM PANEL -->
+        <div class="login-form-panel">
+          <div class="login-form-inner">
+            <button class="login-back-btn" onclick="goBack()">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M10 12L6 8L10 4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"
+                  stroke-linejoin="round" />
+              </svg>
+              Back to home
+            </button>
+
+            <h1 class="login-form-title">Sign in to begin</h1>
+            <p class="login-form-sub">Enter your details to begin your exam session.</p>
+
+            <div>
+              <label class="login-field-label" for="f-name">Full name</label>
+              <div class="login-field-wrap">
+                <svg class="login-field-svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <circle cx="12" cy="8" r="4" />
+                  <path d="M4 20c0-4 3.6-7 8-7s8 3 8 7" />
+                </svg>
+                <input class="login-field-input" id="f-name" type="text" placeholder="e.g. Priya Sharma"
+                  autocomplete="name">
+              </div>
+              <div class="field-error" id="e-name"
+                style="font-size:11px;color:var(--danger);margin-top:-12px;margin-bottom:14px;font-family:var(--mono);display:none">
+                Please enter your full name (min 2 characters)</div>
+            </div>
+
+            <div>
+              <label class="login-field-label" for="f-email">Email address</label>
+              <div class="login-field-wrap">
+                <svg class="login-field-svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m2 7 10 7 10-7" />
+                </svg>
+                <input class="login-field-input" id="f-email" type="email" placeholder="e.g. priya@example.com"
+                  autocomplete="email">
+              </div>
+              <div class="field-error" id="e-email"
+                style="font-size:11px;color:var(--danger);margin-top:-12px;margin-bottom:14px;font-family:var(--mono);display:none">
+                Please enter a valid email address (e.g. name@domain.com)</div>
+            </div>
+
+            <div>
+              <label class="login-field-label" for="f-phone">Contact number</label>
+              <div class="login-field-wrap">
+                <svg class="login-field-svg" width="18" height="18" viewBox="0 0 24 24" fill="none"
+                  stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="5" y="2" width="14" height="20" rx="2" />
+                  <circle cx="12" cy="17" r="1" fill="currentColor" />
+                </svg>
+                <input class="login-field-input" id="f-phone" type="tel" placeholder="e.g. +91 98765 43210"
+                  autocomplete="tel">
+              </div>
+              <div class="field-error" id="e-phone"
+                style="font-size:11px;color:var(--danger);margin-top:-12px;margin-bottom:14px;font-family:var(--mono);display:none">
+                Please enter a valid phone number (min 7 digits)</div>
+            </div>
+
+            <button class="login-cta-btn" id="login-btn" onclick="doLogin()">
+              Continue to exam setup
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <path d="M5 12h14M13 6l6 6-6 6" />
+              </svg>
+            </button>
+
+            <div class="login-safety-note">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="11" width="18" height="11" rx="2" />
+                <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+              </svg>
+              Your data is safe and protected with us.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- BOTTOM TRUST BAR -->
+      <div class="login-trust-bar">
+        <div class="trust-item">
+          <div class="trust-item-icon">🛡️</div> Trusted by thousands of students across India
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+          <div class="trust-item-icon">🤖</div> AI-Powered Proctoring
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+          <div class="trust-item-icon">🔒</div> End-to-End Encryption
+        </div>
+        <div class="trust-sep"></div>
+        <div class="trust-item">
+          <div class="trust-item-icon">🏠</div> 100% Secure &amp; Private
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     SETUP VIEW
+═══════════════════════════════════ -->
+    <div id="setup-view" style="display:none">
+      <div class="setup-inner">
+        <div class="setup-hero">
+          <div class="user-greeting">
+            <div class="user-avatar" id="user-avatar">?</div>
+            <div>
+              <div class="user-name-label" id="user-name-label">Candidate</div>
+              <div class="user-meta" id="user-meta-label"></div>
+            </div>
+          </div>
+          <div class="setup-ready">You are one step away from starting your scholarship test.</div>
+          <p style="font-size:13px;color:var(--text2);line-height:1.7;margin-top:8px">Choose your topic and complete a
+            quick fairness check. The test is free, takes 20 minutes, and our counsellor will guide you after
+            submission.</p>
+          <div class="setup-benefits">
+            <div class="setup-benefit"><strong>Free</strong><span>No test fee</span></div>
+            <div class="setup-benefit"><strong>20 min</strong><span>Short test</span></div>
+            <div class="setup-benefit"><strong>Up to 50%</strong><span>Scholarship</span></div>
+          </div>
+        </div>
+
+        <div class="section-label">Choose exam topic</div>
+        <div class="topic-grid">
+          <div class="topic-card" onclick="selectTopic(this,'Data Analysis')">
+            <span class="topic-icon">📊</span>
+            <div class="topic-name">Data Analysis</div>
+            <div class="topic-meta">20 questions &middot; 20 min</div>
+          </div>
+          <div class="topic-card" onclick="selectTopic(this,'Embedded IoT')">
+            <span class="topic-icon">🔌</span>
+            <div class="topic-name">Embedded IoT</div>
+            <div class="topic-meta">20 questions &middot; 20 min</div>
+          </div>
+          <div class="topic-card" onclick="selectTopic(this,'Data Science/Machine Learning')">
+            <span class="topic-icon">🤖</span>
+            <div class="topic-name">Data Science/Machine Learning</div>
+            <div class="topic-meta">20 questions &middot; 20 min</div>
+          </div>
+          <div class="topic-card" onclick="selectTopic(this,'Quantum Computing')">
+            <span class="topic-icon">⚛️</span>
+            <div class="topic-name">Quantum Computing</div>
+            <div class="topic-meta">20 questions &middot; 20 min</div>
+          </div>
+        </div>
+
+        <div class="setup-visual">
+          <img src="setup_permission_student.jpg" alt="Student allowing test permissions on laptop">
+        </div>
+
+        <div class="section-label">Fair test check</div>
+        <p class="setup-note">These permissions are used only during the test to keep scholarship eligibility fair for
+          every student. Keep your phone away from the desk and make sure only you are visible in the camera.</p>
+        <div class="permission-guide" aria-label="Permission access guide">
+          <div class="guide-head">
+            <div>
+              <div class="guide-title">How to allow permissions</div>
+              <div class="guide-sub">When the browser asks, move your cursor to the highlighted button and choose allow
+                or share.</div>
+            </div>
+            <div class="guide-pill">Quick guide</div>
+          </div>
+          <div class="guide-stage">
+            <div class="guide-browser">
+              <div class="guide-bar">
+                <span class="guide-dot"></span><span class="guide-dot"></span><span class="guide-dot"></span>
+                <div class="guide-url">parikshasetu exam setup</div>
+              </div>
+              <div class="guide-content">
+                <div class="guide-prompt">
+                  <div class="guide-prompt-title">parikshasetu wants to use your camera and microphone</div>
+                  <div class="guide-prompt-copy">For camera and microphone, click Allow. For screen sharing, click the
+                    small screen preview first, then click Share.</div>
+                  <div class="guide-actions">
+                    <button class="guide-action" type="button">Block</button>
+                    <button class="guide-action allow" type="button">Allow / Share</button>
+                  </div>
+                  <div class="share-demo" aria-label="Screen share selection example">
+                    <div class="share-demo-title">Screen sharing popup</div>
+                    <div class="share-thumb"></div>
+                    <div class="share-action-row">
+                      <button class="share-action" type="button">Cancel</button>
+                      <button class="share-action disabled enabled" type="button">Share</button>
+                    </div>
+                  </div>
+                  <span class="guide-cursor" aria-hidden="true"></span>
+                </div>
+                <div class="guide-steps">
+                  <div class="guide-step">
+                    <span class="guide-step-num">1</span>
+                    <div><strong>Camera</strong><span>Click Allow when camera access appears.</span></div>
+                  </div>
+                  <div class="guide-step">
+                    <span class="guide-step-num">2</span>
+                    <div><strong>Screen</strong><span>Click the small screen preview below first, then Share becomes
+                        active.</span></div>
+                  </div>
+                  <div class="guide-step">
+                    <span class="guide-step-num">3</span>
+                    <div><strong>Microphone</strong><span>Click Allow if the microphone prompt appears.</span></div>
+                  </div>
+                </div>
+              </div>
+              <div class="guide-foot">If camera or microphone is blocked, click the lock icon near the browser address
+                bar and set them to Allow, then try the setup again.</div>
+            </div>
+          </div>
+        </div>
+        <div class="perm-list">
+          <div class="perm-row" id="pr-cam">
+            <div class="perm-icon-wrap">📷</div>
+            <div class="perm-info"><strong>Camera access</strong><span>Confirms the same candidate is present during the
+                test</span></div>
+            <span class="perm-badge pending" id="pb-cam">Pending</span>
+          </div>
+          <div class="perm-row" id="pr-screen">
+            <div class="perm-icon-wrap">🖥️</div>
+            <div class="perm-info"><strong>Screen sharing</strong><span>Keeps the test fair by showing only your exam
+                activity</span></div>
+            <span class="perm-badge pending" id="pb-screen">Pending</span>
+          </div>
+          <div class="perm-row" id="pr-mic">
+            <div class="perm-icon-wrap">🎙️</div>
+            <div class="perm-info"><strong>Microphone</strong><span>Helps verify a quiet and fair test
+                environment</span></div>
+            <span class="perm-badge pending" id="pb-mic">Pending</span>
+          </div>
+          <div class="perm-row">
+            <div class="perm-icon-wrap">📵</div>
+            <div class="perm-info"><strong>No phone or helper</strong><span>Phone use, AI help from another device, or
+                another person in frame will be flagged</span></div>
+            <span class="perm-badge ok">Required</span>
+          </div>
+        </div>
+
+        <div class="btn-row">
+          <button class="btn btn-primary" style="flex:2" onclick="grantPermissions()">Start my free scholarship
+            test</button>
+        </div>
+        <div class="perm-msg" id="perm-msg"></div>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     EXAM VIEW
+═══════════════════════════════════ -->
+    <div id="exam-view" style="display:none">
+      <div class="exam-layout">
+        <div class="exam-main">
+          <div class="q-progress-bar">
+            <div class="q-progress-fill" id="q-prog-fill" style="width:0%"></div>
+          </div>
+          <div id="question-container"></div>
+          <div class="q-actions">
+            <button class="btn" id="prev-btn" onclick="navigate(-1)">&larr; Prev</button>
+            <div class="q-spacer"></div>
+            <button class="btn" id="next-btn" onclick="navigate(1)">Next &rarr;</button>
+            <button class="btn btn-submit-full" id="submit-btn" style="display:none" onclick="confirmSubmit()">Submit
+              exam</button>
+          </div>
+        </div>
+        <aside class="proctor-sidebar">
+          <div>
+            <div class="sidebar-head">Live camera</div>
+            <div class="media-box">
+              <div class="cam-video-wrap">
+                <video id="cam-video" autoplay muted playsinline></video>
+                <div class="media-placeholder" id="cam-ph">Camera inactive</div>
+              </div>
+              <span class="media-label">Candidate feed</span>
+              <span class="live-dot" id="cam-live-dot"></span>
+            </div>
+          </div>
+          <div>
+            <div class="sidebar-head">Screen capture</div>
+            <div class="media-box">
+              <div class="screen-video-wrap">
+                <video id="screen-video" autoplay muted playsinline></video>
+                <div class="media-placeholder" id="screen-ph">Screen not shared</div>
+              </div>
+              <span class="media-label">Screen feed</span>
+              <span class="live-dot" id="screen-live-dot"></span>
+            </div>
+          </div>
+          <div class="sidebar-sep"></div>
+          <div>
+            <div class="sidebar-head">Proctor status</div>
+            <div style="display:flex;flex-direction:column;gap:6px">
+              <div class="status-item"><span class="s-dot s-warn" id="d-cam"></span><span id="t-cam">Camera:
+                  inactive</span></div>
+              <div class="status-item"><span class="s-dot s-warn" id="d-screen"></span><span id="t-screen">Screen: not
+                  shared</span></div>
+              <div class="status-item"><span class="s-dot s-warn" id="d-mic"></span><span id="t-mic">Mic:
+                  inactive</span></div>
+              <div class="status-item"><span class="s-dot s-ok" id="d-tab"></span><span id="t-tab">Tab: focused</span>
+              </div>
+              <div class="status-item"><span class="s-dot s-ok" id="d-face"></span><span id="t-face">Face:
+                  monitoring</span></div>
+            </div>
+          </div>
+          <div class="sidebar-sep"></div>
+          <div>
+            <div class="sidebar-head">Progress</div>
+            <div class="prog-text"><span>Answered</span><span><span id="ans-count">0</span> / <span
+                  id="ans-total">10</span></span></div>
+            <div class="prog-bar">
+              <div class="prog-fill" id="sidebar-prog" style="width:0%"></div>
+            </div>
+            <div class="q-nav-grid" id="q-nav" style="margin-top:10px"></div>
+          </div>
+          <div class="sidebar-sep"></div>
+          <div>
+            <div class="sidebar-head">Violation log</div>
+            <div class="vlog-wrap" id="vlog">
+              <div class="vlog-empty">No violations recorded</div>
+            </div>
+          </div>
+          <div class="sidebar-sep"></div>
+          <div>
+            <div class="sidebar-head">Candidate</div>
+            <div style="font-family:var(--mono);font-size:10px;color:var(--text2);line-height:2" id="sidebar-candidate">
+            </div>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- ═══════════════════════════════════
+     RESULT VIEW
+═══════════════════════════════════ -->
+    <div id="result-view" style="display:none">
+      <div class="result-inner" style="text-align:center;max-width:720px;padding:48px 32px">
+
+        <div class="result-visual">
+          <img src="submission_counsellor_student.jpg"
+            alt="Student receiving counsellor guidance after test submission">
+        </div>
+
+        <div
+          style="width:88px;height:88px;border-radius:50%;background:linear-gradient(135deg,rgba(37,99,235,0.10),rgba(139,92,246,0.08));border:2px solid rgba(37,99,235,0.2);display:flex;align-items:center;justify-content:center;font-size:38px;margin:0 auto 24px">
+          ✅
+        </div>
+
+        <h2
+          style="font-family:var(--head);font-size:26px;font-weight:700;letter-spacing:-.02em;margin-bottom:10px;color:var(--text)"
+          id="result-heading">Test Submitted Successfully!</h2>
+
+        <p style="font-size:15px;color:var(--text2);line-height:1.7;margin-bottom:28px" id="result-sub">
+          Thank you for completing the ParikshaSetu scholarship test. Our team will review your responses and get back
+          to you shortly with your scholarship eligibility.
+        </p>
+
+        <div
+          style="background:linear-gradient(135deg,rgba(245,158,11,0.08),rgba(59,130,246,0.06));border:1.5px solid rgba(245,158,11,0.25);border-radius:14px;padding:20px 24px;margin-bottom:28px">
+          <div style="font-size:13px;color:var(--warn);font-family:var(--mono);letter-spacing:.06em;margin-bottom:6px">
+            WHAT HAPPENS NEXT</div>
+          <div style="font-size:13px;color:var(--text2);line-height:1.8;text-align:left">
+            <div style="display:flex;gap:10px;margin-bottom:8px"><span>📋</span><span>Your answers have been recorded
+                securely.</span></div>
+            <div style="display:flex;gap:10px;margin-bottom:8px"><span>🔍</span><span>Our counsellors will evaluate your
+                performance.</span></div>
+            <div style="display:flex;gap:10px;margin-bottom:8px"><span>📞</span><span>You will receive a call within
+                <strong style="color:var(--text)">24-48 hours</strong>.</span></div>
+            <div style="display:flex;gap:10px"><span>🎓</span><span>Scholarship details will be shared on your
+                registered contact.</span></div>
+          </div>
+        </div>
+
+        <div
+          style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 20px;margin-bottom:28px;display:flex;align-items:center;justify-content:center;gap:10px">
+          <span style="font-size:18px">📞</span>
+          <div style="text-align:left">
+            <div style="font-size:11px;color:var(--text2);font-family:var(--mono);letter-spacing:.06em">HAVE QUESTIONS?
+              CALL US</div>
+            <div style="font-size:16px;font-family:var(--mono);font-weight:600;color:var(--text)">+91 96678 38746</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div><!-- /app -->
+
+  <!-- SUBMIT MODAL -->
+  <div class="modal-overlay" id="modal-submit">
+    <div class="modal-box">
+      <h3>Submit exam?</h3>
+      <p id="modal-msg">Are you sure? This action cannot be undone.</p>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeModal('modal-submit')">Cancel</button>
+        <button class="btn btn-submit-full" onclick="submitExam()">Submit now</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- COUNSELLOR CONTACT MODAL -->
+  <div class="modal-overlay" id="modal-counsellor">
+    <div class="modal-box">
+      <h3>Call Our Counsellor</h3>
+      <p>You can contact our counsellor on this number:</p>
+      <div
+        style="background:var(--bg2);border:1px solid var(--border);border-radius:12px;padding:14px 16px;margin-bottom:20px;text-align:center;font-family:var(--mono);font-size:18px;font-weight:600;color:var(--text)">
+        +91 96678 38746
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="closeModal('modal-counsellor')">Cancel</button>
+        <button class="btn btn-primary" onclick="copyCounsellorNumber()">Copy Number</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIOLATION MODAL -->
+  <div class="modal-overlay" id="modal-violation">
+    <div class="modal-box">
+      <h3 class="violation-modal-title" id="v-modal-title">Warning: Violation detected</h3>
+      <p id="v-modal-msg">You switched tabs. This incident has been recorded.</p>
+      <div class="modal-actions">
+        <button class="btn btn-primary" onclick="closeModal('modal-violation')">Resume exam</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- SCREEN SHARE WARNING MODAL -->
+  <div class="modal-overlay" id="modal-screen-warn">
+    <div class="modal-box">
+      <h3 class="violation-modal-title">🖥️ Screen Share Stopped!</h3>
+      <p>You stopped sharing your screen. Screen sharing is mandatory throughout the exam.</p>
+      <p style="margin-top:10px;font-size:15px;font-weight:600;color:var(--danger);text-align:center">
+        Resume within <span id="screen-warn-countdown" style="font-size:26px;font-family:var(--mono)">30</span>
+        seconds<br>
+        <span style="font-size:12px;font-weight:400;color:var(--text2)">or your exam will be automatically
+          submitted.</span>
+      </p>
+      <div class="modal-actions" style="margin-top:20px">
+        <button class="btn btn-primary" onclick="resumeScreenShare()">Resume Resume Screen Share</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- FACE WARNING MODAL -->
+  <div class="modal-overlay" id="modal-face-warn">
+    <div class="modal-box">
+      <h3 class="violation-modal-title" style="display:flex;align-items:center;gap:8px">
+        👤 Face Not Detected!
+      </h3>
+      <p>Your face is not visible in the camera. Please position yourself so your face is clearly in frame.</p>
+      <p style="margin-top:10px;font-size:15px;font-weight:600;color:var(--danger);text-align:center">
+        Show your face within <span id="face-warn-countdown" style="font-size:26px;font-family:var(--mono)">30</span>
+        seconds<br>
+        <span style="font-size:12px;font-weight:400;color:var(--text2)">or your exam will be automatically
+          submitted.</span>
+      </p>
+      <div style="margin:14px 0;border-radius:10px;overflow:hidden;border:2px solid var(--danger);position:relative">
+        <video id="face-warn-preview" autoplay muted playsinline
+          style="width:100%;display:block;background:#000;max-height:160px;object-fit:cover"></video>
+        <div id="face-warn-status"
+          style="position:absolute;bottom:6px;left:8px;font-family:var(--mono);font-size:10px;background:rgba(239,68,68,0.85);color:#fff;padding:2px 8px;border-radius:4px">
+          No face detected</div>
+      </div>
+      <div class="modal-actions">
+        <button class="btn" onclick="dismissFaceWarning()">I'm back - resume exam</button>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="modal-overlay" id="modal-gs-help">
+    <div class="modal-box wide">
+      <h3>Setting up Google Sheets integration</h3>
+      <div style="font-size:13px;color:var(--text2);line-height:1.8;margin-top:12px">
+        <p style="margin-bottom:12px">Follow these 4 steps to capture all exam data in your own Google Sheet:</p>
+        <ol style="padding-left:18px;display:flex;flex-direction:column;gap:10px">
+          <li>Open <strong style="color:var(--text)">Google Sheets</strong> -&gt; create a new spreadsheet.</li>
+          <li>In <strong style="color:var(--text)">Row 1</strong>, add these exact headers (A-&gt;N):<br>
+            <code
+              style="font-family:var(--mono);font-size:10px;background:var(--bg4);padding:4px 8px;border-radius:4px;display:inline-block;margin-top:6px;color:var(--accent2)">Timestamp | Name | Email | Phone | Topic | Score% | Correct | Wrong | Violations | TimeTaken | ViolationLog | ResultMessage | EmailStatus | FaceSnapshotUrl</code>
+          </li>
+          <li>Go to <strong style="color:var(--text)">Extensions -&gt; Apps Script</strong>. Replace all existing code
+            with:</li>
+        </ol>
+        <div class="code-block">function saveFaceSnapshot(d) {
+          if (!d.faceSnapshot) return '';
+
+          var match = d.faceSnapshot.match(/^data:(image\/[a-zA-Z0-9.+-]+);base64,(.+)$/);
+          if (!match) return '';
+
+          var mimeType = match[1];
+          var bytes = Utilities.base64Decode(match[2]);
+          var safeName = String(d.name || 'candidate').replace(/[^a-zA-Z0-9_-]/g, '_');
+          var timestamp = Utilities.formatDate(new Date(), 'Asia/Kolkata', 'yyyyMMdd_HHmmss');
+          var blob = Utilities.newBlob(bytes, mimeType, 'face_' + safeName + '_' + timestamp + '.jpg');
+          var file = DriveApp.createFile(blob);
+          return file.getUrl();
+          }
+
+          function saveSubmission(d) {
+          var sheet = SpreadsheetApp
+          .getActiveSpreadsheet()
+          .getActiveSheet();
+
+          var faceSnapshotUrl = '';
+          try {
+          faceSnapshotUrl = saveFaceSnapshot(d);
+          } catch (err) {
+          faceSnapshotUrl = 'Failed: ' + err.message;
+          }
+
+          var emailStatus = 'Not sent';
+          try {
+          if (d.email) {
+          MailApp.sendEmail({
+          to: d.email,
+          subject: 'ParikshaSetu Scholarship Test Submitted',
+          body: d.resultMessage
+          });
+          emailStatus = 'Sent to ' + d.email;
+          } else {
+          emailStatus = 'Failed: No email found';
+          }
+          } catch (err) {
+          emailStatus = 'Failed: ' + err.message;
+          }
+
+          sheet.appendRow([
+          d.timestamp, d.name, d.email, d.phone,
+          d.topic, d.score, d.correct, d.wrong,
+          d.violations, d.timeTaken, d.violationLog,
+          d.resultMessage, emailStatus, faceSnapshotUrl
+          ]);
+
+          return ContentService
+          .createTextOutput(JSON.stringify({status:'ok', emailStatus:emailStatus, faceSnapshotUrl:faceSnapshotUrl}))
+          .setMimeType(ContentService.MimeType.JSON);
+          }
+
+          function doPost(e) {
+          return saveSubmission(JSON.parse(e.postData.contents));
+          }
+
+          function doGet(e) {
+          return saveSubmission(JSON.parse(e.parameter.data));
+          }</div>
+        <ol style="padding-left:18px;display:flex;flex-direction:column;gap:8px" start="4">
+          <li>Click <strong style="color:var(--text)">Deploy -&gt; New deployment -&gt; Web app</strong>.<br>Set
+            <em>Execute as</em> = <strong style="color:var(--text)">Me</strong>, <em>Who has access</em> = <strong
+              style="color:var(--text)">Anyone</strong>. Click Deploy.</li>
+          <li>Copy the <strong style="color:var(--text)">Web App URL</strong> and paste it into the URL field on the
+            login screen.</li>
+        </ol>
+        <p
+          style="margin-top:14px;font-size:12px;background:var(--warn-bg);border:1px solid rgba(245,158,11,.2);border-radius:8px;padding:10px 12px;color:var(--warn)">
+          Warning: If you see a CORS error in the browser console, that's normal - the data is still submitted correctly
+          via <code>no-cors</code> mode.</p>
+      </div>
+      <div class="modal-actions" style="margin-top:20px">
+        <button class="btn btn-primary" onclick="closeModal('modal-gs-help')">Got it, close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    // ─── Question Bank ─────────────────────────────────────────────────────────────
+    const QB = {
+      "Data Analysis": [
+        { q: "What does a box plot primarily display?", opts: ["Mean and standard deviation", "Median, quartiles, and outliers", "Correlation between two variables", "Frequency distribution"], a: 1 },
+        { q: "Which measure of central tendency is most resistant to outliers?", opts: ["Mean", "Variance", "Median", "Standard deviation"], a: 2 },
+        { q: "A Pearson correlation of −1 indicates:", opts: ["No relationship between variables", "Perfect positive linear correlation", "Perfect negative linear correlation", "A weak negative relationship"], a: 2 },
+        { q: "Which visualization is best for showing parts of a whole?", opts: ["Line chart", "Scatter plot", "Pie/donut chart", "Histogram"], a: 2 },
+        { q: "The first step in the data analysis workflow is typically:", opts: ["Data visualization", "Data cleaning", "Data collection", "Hypothesis testing"], a: 2 },
+        { q: "Which Python library is the standard tool for tabular data manipulation?", opts: ["Matplotlib", "NumPy", "Pandas", "Seaborn"], a: 2 },
+        { q: "ETL stands for:", opts: ["Extract, Transform, Load", "Evaluate, Train, Log", "Extract, Test, Load", "Encode, Transform, Link"], a: 0 },
+        { q: "In linear regression, R² measures:", opts: ["The slope of the regression line", "Proportion of variance explained by the model", "Number of independent predictors", "Residual error magnitude"], a: 1 },
+        { q: "Eye color is an example of which data type?", opts: ["Continuous numerical", "Ordinal categorical", "Nominal categorical", "Interval numerical"], a: 2 },
+        { q: "A pivot table is primarily used to:", opts: ["Plot graphs and charts", "Summarize and aggregate data", "Clean missing values", "Train machine learning models"], a: 1 },
+        { q: "Which SQL clause filters rows after aggregation?", opts: ["WHERE", "GROUP BY", "HAVING", "ORDER BY"], a: 2 },
+        { q: "Standard deviation measures:", opts: ["The middle value of a dataset", "The spread of data around the mean", "The most frequent value", "The difference between max and min"], a: 1 },
+        { q: "A histogram is used to visualise:", opts: ["Relationship between two variables", "Distribution of a single variable", "Trends over time", "Comparison of categories"], a: 1 },
+        { q: "Which technique replaces missing values with the column mean?", opts: ["One-hot encoding", "Mean imputation", "Normalisation", "Outlier removal"], a: 1 },
+        { q: "A heat map is most useful for:", opts: ["Showing time series trends", "Displaying a correlation matrix", "Plotting geographical data", "Comparing two distributions"], a: 1 },
+        { q: "In hypothesis testing, the p-value represents:", opts: ["The probability the null hypothesis is true", "Probability of observing results at least as extreme under the null", "The confidence interval width", "The effect size of the test"], a: 1 },
+        { q: "Which chart type is best for showing trends over time?", opts: ["Bar chart", "Pie chart", "Line chart", "Scatter plot"], a: 2 },
+        { q: "Min-max normalisation scales data to:", opts: ["Mean 0 and std 1", "A range of 0 to 1", "A log scale", "Integer values only"], a: 1 },
+        { q: "Which of these is a NoSQL database?", opts: ["PostgreSQL", "MySQL", "MongoDB", "SQLite"], a: 2 },
+        { q: "Feature engineering refers to:", opts: ["Selecting the right model", "Creating or transforming variables to improve model performance", "Removing duplicate rows", "Splitting data into train and test sets"], a: 1 },
+      ],
+      "Embedded IoT": [
+        { q: "Which protocol is the de-facto standard for lightweight IoT messaging?", opts: ["HTTP/REST", "FTP", "MQTT", "SMTP"], a: 2 },
+        { q: "Which of these is a microcontroller-based IoT platform (not a full Linux SBC)?", opts: ["Raspberry Pi 4", "Arduino Uno", "NVIDIA Jetson", "BeagleBone Black"], a: 1 },
+        { q: "GPIO stands for:", opts: ["General Purpose Input/Output", "Global Protocol I/O", "Graphics Processing Input/Output", "General Port Interface Output"], a: 0 },
+        { q: "Which wireless protocol is designed for low-power mesh networking at 2.4 GHz?", opts: ["Wi-Fi 6", "Zigbee", "4G LTE", "USB 3.0"], a: 1 },
+        { q: "I²C communication uses which two signal lines?", opts: ["TX and RX", "SDA and SCL", "MOSI and MISO", "VCC and GND"], a: 1 },
+        { q: "The purpose of a hardware watchdog timer is to:", opts: ["Track real-world wall-clock time", "Reset the MCU if software becomes unresponsive", "Measure elapsed execution time", "Synchronize clock domains"], a: 1 },
+        { q: "Which MCU power mode achieves the lowest current consumption?", opts: ["Active mode", "Idle/sleep mode", "Deep sleep / hibernate", "Run mode"], a: 2 },
+        { q: "ADC in embedded systems refers to:", opts: ["Analog to Digital Converter", "Automatic Data Controller", "Advanced Device Controller", "Analog Device Configuration"], a: 0 },
+        { q: "CoAP is specifically designed for:", opts: ["High-bandwidth streaming", "Resource-constrained IoT devices over UDP", "Browser-to-server communication", "Industrial Ethernet networks"], a: 1 },
+        { q: "Firmware is best described as:", opts: ["Standard application software on a PC", "Low-level software permanently stored in device hardware", "A cloud computing service", "A type of network communication protocol"], a: 1 },
+        { q: "SPI communication differs from I²C mainly because SPI:", opts: ["Is slower", "Uses fewer wires", "Is full-duplex and typically faster", "Does not require a clock signal"], a: 2 },
+        { q: "Which frequency band does LoRa typically operate on in India?", opts: ["2.4 GHz", "5 GHz", "865-867 MHz", "433 MHz only"], a: 2 },
+        { q: "PWM (Pulse Width Modulation) is commonly used to:", opts: ["Convert analog signals to digital", "Control motor speed and LED brightness", "Measure temperature", "Establish wireless communication"], a: 1 },
+        { q: "RTOS stands for:", opts: ["Remote Terminal Operating System", "Real-Time Operating System", "Rapid Task Orchestration Software", "Reduced Temperature OS"], a: 1 },
+        { q: "Which communication protocol is used for short-range NFC payments?", opts: ["Bluetooth", "Zigbee", "NFC (13.56 MHz RFID)", "Z-Wave"], a: 2 },
+        { q: "Edge computing in IoT means:", opts: ["Using only cloud servers", "Processing data locally on or near the device", "Connecting all devices to a central hub", "Reducing the number of sensors"], a: 1 },
+        { q: "The DAC in an embedded system is used to:", opts: ["Convert digital signals to analog output", "Store data in flash memory", "Manage interrupt requests", "Control power supply voltage"], a: 0 },
+        { q: "Which topology connects all IoT nodes directly to a central hub?", opts: ["Mesh", "Ring", "Star", "Bus"], a: 2 },
+        { q: "Interrupt-driven programming is preferred over polling because it:", opts: ["Is simpler to code", "Reduces CPU cycles wasted waiting", "Uses more memory", "Requires no OS support"], a: 1 },
+        { q: "Which protocol is used to securely communicate over the internet in IoT devices?", opts: ["Telnet", "FTP", "TLS/SSL over TCP", "Raw UDP only"], a: 2 },
+      ],
+      "Quantum Computing": [
+        { q: "What is a qubit?", opts: ["A unit of classical binary data", "The quantum analogue of a classical bit that can exist in superposition", "A type of quantum error", "A measurement unit for quantum entanglement"], a: 1 },
+        { q: "Superposition in quantum computing means a qubit can:", opts: ["Only be 0 or 1 at any given time", "Exist as both 0 and 1 simultaneously until measured", "Communicate faster than light", "Perform two classical operations at once"], a: 1 },
+        { q: "What is quantum entanglement?", opts: ["A method of error correction", "A correlation between qubits so the state of one instantly affects the other", "A type of quantum gate", "A qubit's ability to hold multiple values"], a: 1 },
+        { q: "Which quantum algorithm offers exponential speedup for integer factorisation?", opts: ["Grover's algorithm", "HHL algorithm", "Shor's algorithm", "Deutsch-Jozsa algorithm"], a: 2 },
+        { q: "Grover's algorithm provides what advantage over classical search?", opts: ["Exponential speedup", "Quadratic speedup (√N instead of N)", "Linear speedup", "No speedup - only improves accuracy"], a: 1 },
+        { q: "A quantum gate is analogous to:", opts: ["A transistor in classical hardware", "A classical logic gate operating on qubits", "A type of qubit material", "An error-correcting code"], a: 1 },
+        { q: "What does the Hadamard gate do to a qubit?", opts: ["Flips a qubit from |0⟩ to |1⟩", "Creates a superposition of equal probability between |0⟩ and |1⟩", "Entangles two qubits", "Measures the qubit's state"], a: 1 },
+        { q: "Quantum decoherence refers to:", opts: ["A qubit holding its state indefinitely", "Loss of quantum properties due to interaction with the environment", "The process of measuring a qubit", "Applying multiple gates in sequence"], a: 1 },
+        { q: "What is quantum error correction primarily used for?", opts: ["Speeding up computations", "Protecting quantum information from decoherence and noise", "Entangling more qubits", "Reducing gate count"], a: 1 },
+        { q: "Which physical implementation uses superconducting circuits for quantum computers?", opts: ["Trapped ion", "Photonic", "Superconducting transmon qubits", "Topological qubits"], a: 2 },
+        { q: "The CNOT gate is a:", opts: ["Single-qubit gate", "Two-qubit gate that flips target qubit if control is |1⟩", "Three-qubit gate", "Measurement operator"], a: 1 },
+        { q: "Quantum supremacy means:", opts: ["A quantum computer can solve all problems classically", "A quantum computer solved a specific task faster than any classical computer", "Quantum computers are error-free", "All classical computers are obsolete"], a: 1 },
+        { q: "What is a quantum circuit?", opts: ["A physical wire connecting qubits", "A sequence of quantum gates applied to qubits to perform computation", "A type of superconducting material", "A classical simulation of quantum behavior"], a: 1 },
+        { q: "The Pauli-X gate is equivalent to:", opts: ["A classical AND gate", "A classical NOT gate - it flips |0⟩ to |1⟩ and vice versa", "A classical OR gate", "A NAND gate"], a: 1 },
+        { q: "Quantum teleportation transfers:", opts: ["Physical qubits through space", "Quantum state information using entanglement and classical communication", "Data faster than light", "Physical matter between locations"], a: 1 },
+        { q: "What is the No-Cloning Theorem?", opts: ["Qubits cannot be cooled below absolute zero", "An arbitrary unknown quantum state cannot be copied perfectly", "Quantum computers cannot simulate classical systems", "Entangled qubits cannot be separated"], a: 1 },
+        { q: "Variational Quantum Eigensolver (VQE) is primarily used for:", opts: ["Cryptography", "Finding ground state energies of molecules", "Integer factorisation", "Database search"], a: 1 },
+        { q: "What does NISQ stand for?", opts: ["Non-Isolated Superposition Quantum", "Noisy Intermediate-Scale Quantum", "Normalised Integrated Supercomputing Queue", "Network Integrated Signal Quantum"], a: 1 },
+        { q: "Which company demonstrated 'quantum supremacy' in 2019?", opts: ["IBM", "Microsoft", "Google (Sycamore processor)", "Intel"], a: 2 },
+        { q: "Quantum key distribution (QKD) is used for:", opts: ["Speeding up encryption algorithms", "Distributing cryptographic keys with unconditional security based on quantum physics", "Breaking RSA encryption", "Compressing quantum data"], a: 1 },
+      ],
+      "Data Science/Machine Learning": [
+        { q: "SVMs work by finding:", opts: ["The best cluster centroids", "A maximum-margin decision boundary", "Principal components of data", "Probability distributions per class"], a: 1 },
+        { q: "Overfitting is best described as:", opts: ["Model performs well on both train and test sets", "Model has high bias on training data", "Model memorises training data but fails to generalise", "Model ignores all training patterns"], a: 2 },
+        { q: "Gradient descent aims to minimise:", opts: ["Model accuracy", "The loss/cost function", "The number of features", "Prediction variance"], a: 1 },
+        { q: "k-fold cross-validation is used to:", opts: ["Bootstrap new training samples", "Regularise model weights", "Get a reliable estimate of generalisation performance", "Select the optimal number of epochs"], a: 2 },
+        { q: "The role of a non-linear activation function is to:", opts: ["Initialise network weights", "Allow the network to learn non-linear relationships", "Compute the final loss value", "Normalise the input data"], a: 1 },
+        { q: "Unsupervised learning differs from supervised learning in that it:", opts: ["Requires labels for every sample", "Trains on unlabelled data to find hidden structure", "Uses reinforcement signals", "Fine-tunes a pre-trained model"], a: 1 },
+        { q: "For heavily imbalanced binary classification, the best metric is:", opts: ["Accuracy", "F1 score", "Mean Squared Error", "R-squared"], a: 1 },
+        { q: "A hyperparameter is:", opts: ["A weight learned via backpropagation", "A configuration set before training begins", "A specific type of hidden layer", "The output activation function"], a: 1 },
+        { q: "Dropout regularisation works by:", opts: ["Adding extra neurons", "Randomly deactivating neurons during training", "Normalising layer outputs", "Decaying the learning rate"], a: 1 },
+        { q: "Which algorithm groups data into clusters without predefined labels?", opts: ["Logistic Regression", "Random Forest", "K-Means Clustering", "Gradient Boosting"], a: 2 },
+        { q: "Which technique reduces model complexity by penalising large weights?", opts: ["Data augmentation", "Regularisation (L1/L2)", "Feature scaling", "One-hot encoding"], a: 1 },
+        { q: "In a confusion matrix, a False Positive means:", opts: ["Model correctly predicted positive", "Model predicted positive but it was negative", "Model predicted negative but it was positive", "Model correctly predicted negative"], a: 1 },
+        { q: "Principal Component Analysis (PCA) is primarily used for:", opts: ["Classification", "Regression", "Dimensionality reduction", "Clustering"], a: 2 },
+        { q: "Which loss function is most appropriate for multi-class classification?", opts: ["Mean Squared Error", "Binary Cross-Entropy", "Categorical Cross-Entropy", "Hinge Loss"], a: 2 },
+        { q: "Transfer learning involves:", opts: ["Training a model from scratch on new data", "Reusing a pre-trained model's knowledge for a new task", "Transferring data between databases", "Reducing the number of training epochs"], a: 1 },
+        { q: "The vanishing gradient problem primarily affects:", opts: ["Decision trees", "Shallow neural networks", "Deep neural networks during backpropagation", "Linear regression models"], a: 2 },
+        { q: "Batch normalisation is used to:", opts: ["Randomly drop neurons", "Normalise layer inputs to stabilise training", "Increase the learning rate", "Reduce the dataset size"], a: 1 },
+        { q: "Precision is defined as:", opts: ["TP / (TP + FN)", "TP / (TP + FP)", "TN / (TN + FP)", "FP / (FP + TN)"], a: 1 },
+        { q: "Which ensemble method trains multiple trees on random subsets of data and features?", opts: ["AdaBoost", "Gradient Boosting", "Random Forest", "Bagging with Decision Stumps"], a: 2 },
+        { q: "The elbow method in K-Means is used to:", opts: ["Select the learning rate", "Determine the optimal number of clusters", "Evaluate model accuracy", "Normalise input features"], a: 1 },
+      ]
+    };
+
+    const QUESTIONS_PER_TEST = 20;
+    const QUESTION_POOL_TARGET = 100;
+
+    const QUESTION_CONCEPTS = {
+      "Data Analysis": [
+        { term: "Data profiling", meaning: "reviewing data structure, quality, missing values, and patterns before analysis", scenario: "A team first checks column types, null counts, and unusual values before building charts." },
+        { term: "Outlier detection", meaning: "identifying values that are unusually far from the rest of the data", scenario: "A sales dashboard flags one transaction that is 100 times larger than normal orders." },
+        { term: "Correlation analysis", meaning: "measuring how strongly two variables move together", scenario: "An analyst studies whether study hours and test scores rise together." },
+        { term: "Data cleaning", meaning: "fixing inconsistent, missing, duplicated, or incorrect records", scenario: "A dataset has duplicate customer rows and dates written in multiple formats." },
+        { term: "Data validation", meaning: "checking whether data follows required rules and expected ranges", scenario: "A form rejects ages below 0 and email values without an at sign." },
+        { term: "Sampling", meaning: "selecting a smaller representative portion of a larger population", scenario: "A survey team studies 500 students to estimate preferences across a college." },
+        { term: "Confidence interval", meaning: "a range of plausible values for an unknown population parameter", scenario: "A report says the average wait time is 12 minutes plus or minus 2 minutes." },
+        { term: "Categorical encoding", meaning: "converting category values into numeric features for analysis or modelling", scenario: "A column with red, blue, and green labels must be used in a machine learning model." },
+        { term: "Aggregation", meaning: "summarising detailed records into totals, averages, counts, or groups", scenario: "Daily transaction rows are converted into monthly revenue by city." },
+        { term: "Dashboard", meaning: "a visual interface that tracks key metrics for quick decisions", scenario: "Managers open one page to view revenue, leads, conversion, and support tickets." },
+        { term: "Data warehouse", meaning: "a central store optimised for reporting and historical analysis", scenario: "Data from sales, marketing, and support systems is combined for business reporting." },
+        { term: "Data mart", meaning: "a focused subset of a warehouse built for a department or business area", scenario: "The finance team uses a reporting store containing only budget and invoice data." },
+        { term: "Time series analysis", meaning: "analysing data points collected in time order", scenario: "A company studies monthly demand to identify seasonality and trends." },
+        { term: "A/B testing", meaning: "comparing two versions to see which performs better using data", scenario: "A website shows two checkout pages and compares conversion rates." },
+        { term: "Data lineage", meaning: "tracking where data came from and how it changed over time", scenario: "An auditor asks how a dashboard number was created from source tables." },
+        { term: "ETL pipeline", meaning: "extracting, transforming, and loading data into a target system", scenario: "A nightly job pulls CRM data, cleans it, and stores it in a reporting table." },
+        { term: "Join", meaning: "combining rows from two tables using a related key", scenario: "Customer details are combined with order records using customer_id." },
+        { term: "Primary key", meaning: "a field that uniquely identifies each row in a table", scenario: "Every student record has a unique student_id." },
+        { term: "Data governance", meaning: "policies and responsibilities for managing data quality, privacy, and access", scenario: "A company defines who can approve access to sensitive student records." },
+        { term: "Business metric", meaning: "a measurable value used to track performance against goals", scenario: "A counselling team tracks lead conversion rate every week." }
+      ],
+      "Embedded IoT": [
+        { term: "Microcontroller", meaning: "a compact chip with CPU, memory, and peripherals for controlling devices", scenario: "A small board reads a sensor and switches a relay without running Linux." },
+        { term: "Sensor", meaning: "a device that converts a physical condition into an electrical signal", scenario: "A temperature module reports the room temperature to the controller." },
+        { term: "Actuator", meaning: "a device that converts control signals into physical action", scenario: "A motor opens a valve when the controller sends a signal." },
+        { term: "UART", meaning: "a serial communication interface using transmit and receive lines", scenario: "A GPS module sends text data to a microcontroller over TX and RX pins." },
+        { term: "I2C address", meaning: "a unique identifier used by devices sharing an I2C bus", scenario: "Two sensors are connected to the same SDA and SCL lines." },
+        { term: "Pull-up resistor", meaning: "a resistor that holds a signal line at logic high when not driven low", scenario: "An I2C bus needs resistors to keep SDA and SCL high by default." },
+        { term: "Debouncing", meaning: "filtering false rapid transitions from a mechanical button or switch", scenario: "One button press is being detected as many presses due to contact bounce." },
+        { term: "Interrupt", meaning: "a signal that pauses normal execution to handle an urgent event", scenario: "A button press immediately triggers a handler instead of waiting for a loop check." },
+        { term: "Bootloader", meaning: "small startup code that loads or updates firmware", scenario: "A device accepts new firmware over USB before the main program starts." },
+        { term: "Flash memory", meaning: "non-volatile memory used to store firmware or persistent data", scenario: "A device keeps its program even after power is removed." },
+        { term: "Brownout reset", meaning: "a reset triggered when supply voltage drops below a safe threshold", scenario: "A controller restarts when the battery voltage falls too low." },
+        { term: "Duty cycle", meaning: "the percentage of time a PWM signal stays high in one period", scenario: "An LED appears dimmer when the high portion of the PWM signal is reduced." },
+        { term: "Gateway", meaning: "a device that connects local IoT nodes to another network or cloud", scenario: "Sensor nodes send data to one box that forwards it to the internet." },
+        { term: "Device provisioning", meaning: "registering and configuring a device for secure network use", scenario: "A new sensor is assigned credentials before it can send cloud data." },
+        { term: "OTA update", meaning: "updating device firmware remotely over a network", scenario: "A deployed meter receives a firmware fix without a technician visiting the site." },
+        { term: "MQTT broker", meaning: "a server that routes publish and subscribe messages between clients", scenario: "Many sensors publish readings to topics that dashboards subscribe to." },
+        { term: "QoS", meaning: "MQTT delivery assurance level for messages", scenario: "A device chooses whether a message is delivered at most once or at least once." },
+        { term: "Low-power design", meaning: "engineering hardware and software to minimise energy use", scenario: "A battery sensor sleeps most of the day and wakes only to transmit readings." },
+        { term: "Real-time constraint", meaning: "a requirement that a task completes within a strict time limit", scenario: "A motor controller must react within milliseconds to avoid unsafe motion." },
+        { term: "Edge inference", meaning: "running AI or decision logic locally on the device", scenario: "A camera module detects a person locally before sending an alert." }
+      ],
+      "Quantum Computing": [
+        { term: "Bloch sphere", meaning: "a visual representation of a single qubit state", scenario: "A teacher shows rotations of one qubit as points on a sphere." },
+        { term: "Measurement", meaning: "observing a qubit and collapsing it to a classical result", scenario: "A circuit ends by reading qubits as 0s and 1s." },
+        { term: "Amplitude", meaning: "a complex value whose squared magnitude gives measurement probability", scenario: "A simulator displays values that determine the chance of each basis state." },
+        { term: "Phase", meaning: "relative angle information in a quantum state that affects interference", scenario: "Two paths have equal probability but combine differently because their angles differ." },
+        { term: "Interference", meaning: "the combining of quantum amplitudes to increase or reduce outcome probabilities", scenario: "An algorithm boosts correct answers and cancels many wrong answers." },
+        { term: "Oracle", meaning: "a black-box operation that marks or evaluates candidate solutions", scenario: "Grover search uses a special operation to mark the desired database item." },
+        { term: "Controlled gate", meaning: "a gate that acts on a target qubit depending on a control qubit", scenario: "A target qubit flips only when another qubit is in state one." },
+        { term: "Unitary operation", meaning: "a reversible quantum operation that preserves total probability", scenario: "Quantum gates can be undone by applying their inverse operation." },
+        { term: "T gate", meaning: "a single-qubit phase gate important for universal fault-tolerant computation", scenario: "A compiler counts a costly non-Clifford gate used in a circuit." },
+        { term: "Bell state", meaning: "a maximally entangled two-qubit state", scenario: "Two qubits are prepared so measuring one strongly determines the other." },
+        { term: "Quantum annealing", meaning: "using quantum effects to search for low-energy solutions to optimisation problems", scenario: "A machine is used to explore possible schedules by minimising an energy function." },
+        { term: "Hamiltonian", meaning: "an operator representing the energy of a quantum system", scenario: "A chemistry algorithm encodes molecular energy into an operator." },
+        { term: "Shot", meaning: "one repeated run of a quantum circuit to sample measurement outcomes", scenario: "A circuit is executed 1024 times to estimate probabilities." },
+        { term: "Fidelity", meaning: "a measure of how close an actual quantum state or operation is to the desired one", scenario: "Engineers compare a noisy gate result with the ideal state." },
+        { term: "Quantum volume", meaning: "a benchmark combining qubit count, connectivity, and gate quality", scenario: "A vendor reports a number to compare practical device capability." },
+        { term: "Topological qubit", meaning: "a proposed qubit type designed to resist local noise using topology", scenario: "Researchers explore quasiparticles that could store information more robustly." },
+        { term: "Trapped ion qubit", meaning: "a qubit encoded in the states of ions held by electromagnetic fields", scenario: "Lasers manipulate charged atoms suspended in a vacuum system." },
+        { term: "Photonic qubit", meaning: "a qubit encoded using properties of light such as polarisation or path", scenario: "A quantum communication experiment sends single photons through optical fibre." },
+        { term: "Surface code", meaning: "a quantum error-correcting code arranged on a two-dimensional lattice", scenario: "Many physical qubits are combined to protect one logical qubit." },
+        { term: "Logical qubit", meaning: "an error-protected qubit built from multiple physical qubits", scenario: "A fault-tolerant computer stores one reliable qubit across many noisy qubits." }
+      ],
+      "Data Science/Machine Learning": [
+        { term: "Training set", meaning: "data used by a model to learn patterns", scenario: "A model adjusts its weights using one portion of labelled examples." },
+        { term: "Validation set", meaning: "data used to tune choices before final testing", scenario: "A team selects the best learning rate using a separate holdout split." },
+        { term: "Test set", meaning: "data reserved for final unbiased performance evaluation", scenario: "A model is evaluated once on examples not used during development." },
+        { term: "Bias", meaning: "error from overly simple assumptions in a model", scenario: "A linear model performs poorly because the true relationship is curved." },
+        { term: "Variance", meaning: "error from sensitivity to small changes in training data", scenario: "A model changes predictions drastically when trained on a slightly different sample." },
+        { term: "Regularisation", meaning: "penalising model complexity to improve generalisation", scenario: "A loss function adds a penalty for very large weights." },
+        { term: "Feature scaling", meaning: "rescaling numeric inputs so features have comparable ranges", scenario: "Age and income are transformed before distance-based modelling." },
+        { term: "One-hot encoding", meaning: "representing categories as separate binary indicator columns", scenario: "A color column becomes red, blue, and green indicator fields." },
+        { term: "Learning rate", meaning: "the step size used when updating model parameters", scenario: "Training becomes unstable when parameter updates are too large." },
+        { term: "Epoch", meaning: "one complete pass through the training dataset", scenario: "A neural network sees every training example once during a pass." },
+        { term: "Batch size", meaning: "the number of samples used before one parameter update", scenario: "A model updates weights after processing 32 examples." },
+        { term: "Decision tree", meaning: "a model that splits data using feature-based rules", scenario: "A classifier first asks if income is above a threshold, then checks age." },
+        { term: "Random forest", meaning: "an ensemble of decision trees trained with randomness", scenario: "Many trees vote together to reduce overfitting." },
+        { term: "Gradient boosting", meaning: "an ensemble method that builds models sequentially to correct previous errors", scenario: "Each new tree focuses more on examples the earlier trees got wrong." },
+        { term: "ROC curve", meaning: "a plot of true positive rate against false positive rate across thresholds", scenario: "A classifier is evaluated at many probability cutoffs." },
+        { term: "AUC", meaning: "a single score summarising the ROC curve", scenario: "Two binary classifiers are compared using area under the curve." },
+        { term: "Embedding", meaning: "a dense vector representation of items such as words or users", scenario: "Words with similar meaning are placed near each other in vector space." },
+        { term: "Tokenisation", meaning: "splitting text into smaller units for model processing", scenario: "A sentence is broken into words or subword pieces before training." },
+        { term: "Fine-tuning", meaning: "adapting a pre-trained model on a smaller task-specific dataset", scenario: "A language model is further trained on customer support examples." },
+        { term: "Inference", meaning: "using a trained model to produce predictions on new data", scenario: "A deployed model predicts whether a new applicant may convert." }
+      ]
+    };
+
+    function shuffleArray(items) {
+      const copy = items.slice();
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildQuestion(q, correct, candidates, offset) {
+      const distractors = [];
+      let i = offset + 1;
+      while (distractors.length < 3 && distractors.length < candidates.length - 1) {
+        const item = candidates[i % candidates.length];
+        if (item !== correct && !distractors.includes(item)) distractors.push(item);
+        i++;
+      }
+      const opts = shuffleArray([correct, ...distractors]);
+      return { q, opts, a: opts.indexOf(correct) };
+    }
+
+    function buildConceptQuestions(topic, concepts) {
+      const terms = concepts.map(c => c.term);
+      const meanings = concepts.map(c => c.meaning);
+      const questions = [];
+      concepts.forEach((concept, index) => {
+        questions.push(buildQuestion(`Which ${topic} concept means ${concept.meaning}?`, concept.term, terms, index));
+        questions.push(buildQuestion(`In ${topic}, ${concept.term} primarily refers to:`, concept.meaning, meanings, index));
+        questions.push(buildQuestion(`${concept.scenario} Which concept is most relevant?`, concept.term, terms, index + 4));
+        questions.push(buildQuestion(`Which statement best matches ${concept.term}?`, concept.meaning, meanings, index + 6));
+      });
+      return questions;
+    }
+
+    Object.keys(QB).forEach(topic => {
+      const expanded = QB[topic].concat(buildConceptQuestions(topic, QUESTION_CONCEPTS[topic] || []));
+      QB[topic] = expanded.slice(0, QUESTION_POOL_TARGET);
+    });
+
+    // ─── Config ────────────────────────────────────────────────────────────────────
+    const GS_URL = 'https://script.google.com/macros/s/AKfycbzuq9p-0WRajuBQra5eWDMfdGKZa1GkP-ofMRbjRJJzuZ8iG7Sznah0icbxHERBBeBV3Q/exec';
+
+    // ─── State ─────────────────────────────────────────────────────────────────────
+    let user = { name: '', email: '', phone: '' };
+    let currentTopic = null, questions = [], currentQ = 0;
+    let answers = [], violations = 0, violationLog = [];
+    let timeLeft = 1200, timerInterval = null, examStartTime = null;
+    let camStream = null, screenStream = null, faceTimer = null;
+    let candidateFaceSnapshot = '';
+
+    // ─── LOGIN ──────────────────────────────────────────────────────────────────────
+    function showLogin() {
+      document.getElementById('landing-view').style.display = 'none';
+      document.getElementById('login-view').style.display = 'flex';
+      document.getElementById('header-cta').style.display = 'none';
+    }
+
+    function goBack() {
+      document.getElementById('login-view').style.display = 'none';
+      document.getElementById('landing-view').style.display = 'flex';
+      document.getElementById('header-cta').style.display = 'inline-flex';
+    }
+
+    function doLogin() {
+      const name = document.getElementById('f-name').value.trim();
+      const email = document.getElementById('f-email').value.trim();
+      const phone = document.getElementById('f-phone').value.trim();
+      let valid = true;
+
+      function ve(errId, fieldId, show) {
+        document.getElementById(errId).style.display = show ? 'block' : 'none';
+        document.getElementById(fieldId).classList.toggle('error', show);
+      }
+
+      if (name.length < 2) { ve('e-name', 'f-name', true); valid = false; } else ve('e-name', 'f-name', false);
+      const emailOk = /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(email) && !email.includes('..') && !email.startsWith('.') && !email.includes('@.');
+      if (!emailOk) { ve('e-email', 'f-email', true); valid = false; } else ve('e-email', 'f-email', false);
+      const digits = phone.replace(/[\s\-\+\(\)]/g, '');
+      if (digits.length < 7 || !/^\d+$/.test(digits)) { ve('e-phone', 'f-phone', true); valid = false; } else ve('e-phone', 'f-phone', false);
+
+      if (!valid) return;
+
+      user = { name, email, phone };
+
+      const initials = name.split(' ').map(w => w[0]).join('').toUpperCase().slice(0, 2);
+      document.getElementById('user-avatar').textContent = initials;
+      document.getElementById('user-name-label').textContent = name;
+      document.getElementById('user-meta-label').textContent = email + '  &middot;  ' + phone;
+
+      document.getElementById('login-view').style.display = 'none';
+      document.getElementById('setup-view').style.display = 'flex';
+    }
+
+    // Allow Enter key on login fields
+    ['f-name', 'f-email', 'f-phone'].forEach(id => {
+      document.getElementById(id).addEventListener('keydown', e => { if (e.key === 'Enter') doLogin(); });
+    });
+
+    // ─── REAL-TIME EMAIL VALIDATION ─────────────────────────────────────────────────
+    (function () {
+      const emailInput = document.getElementById('f-email');
+      const emailErr = document.getElementById('e-email');
+      let emailTouched = false;
+
+      function isValidEmail(val) {
+        // RFC-5321 inspired: local@domain.tld, no consecutive dots, proper TLD
+        return /^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$/.test(val)
+          && !val.includes('..')
+          && !val.startsWith('.')
+          && !val.includes('@.');
+      }
+
+      function showEmailState(val) {
+        const empty = val.length === 0;
+        const valid = isValidEmail(val);
+        if (empty) {
+          emailInput.classList.remove('error');
+          emailInput.style.borderColor = '';
+          emailErr.style.display = 'none';
+        } else if (valid) {
+          emailInput.classList.remove('error');
+          emailInput.style.borderColor = 'rgba(34,197,94,0.5)';
+          emailInput.style.boxShadow = '0 0 0 3px rgba(34,197,94,0.1)';
+          emailErr.style.display = 'none';
+        } else {
+          emailInput.classList.add('error');
+          emailInput.style.borderColor = '';
+          emailInput.style.boxShadow = '';
+          emailErr.style.display = 'block';
+          // Contextual hint
+          const v = val;
+          if (!v.includes('@')) emailErr.textContent = 'Missing "@" - email should look like name@domain.com';
+          else if (v.indexOf('@') !== v.lastIndexOf('@')) emailErr.textContent = 'Only one "@" is allowed';
+          else if (v.endsWith('@')) emailErr.textContent = 'Add a domain after "@" (e.g. gmail.com)';
+          else if (!v.includes('.', v.indexOf('@'))) emailErr.textContent = 'Domain is missing a "." (e.g. @gmail.com)';
+          else if (v.endsWith('.')) emailErr.textContent = 'Email cannot end with a dot';
+          else if (v.includes('..')) emailErr.textContent = 'Email cannot contain consecutive dots';
+          else emailErr.textContent = 'Please enter a valid email (e.g. name@domain.com)';
+        }
+      }
+
+      // Validate on blur (first touch)
+      emailInput.addEventListener('blur', () => {
+        emailTouched = true;
+        // Reset green glow on blur if empty
+        if (!emailInput.value.trim()) {
+          emailInput.style.borderColor = '';
+          emailInput.style.boxShadow = '';
+        } else {
+          showEmailState(emailInput.value.trim());
+        }
+      });
+
+      // Live feedback only after user has already blurred once
+      emailInput.addEventListener('input', () => {
+        if (emailTouched) showEmailState(emailInput.value.trim());
+      });
+
+      // Reset green glow when user clears the field
+      emailInput.addEventListener('focus', () => {
+        if (!emailInput.classList.contains('error')) {
+          emailInput.style.boxShadow = emailInput.value.trim() ? '0 0 0 3px rgba(34,197,94,0.1)' : '';
+        }
+      });
+    })();
+
+    // ─── GOOGLE SHEETS ──────────────────────────────────────────────────────────────
+    async function submitToSheets(payload) {
+      try {
+        await fetch(GS_URL, {
+          method: 'POST',
+          mode: 'no-cors',
+          headers: { 'Content-Type': 'text/plain' },
+          body: JSON.stringify(payload)
+        });
+      } catch (err) {
+        // Fallback: send via GET with encoded payload
+        try {
+          const params = new URLSearchParams(payload).toString();
+          await fetch(GS_URL + '?data=' + encodeURIComponent(JSON.stringify(payload)), {
+            method: 'GET',
+            mode: 'no-cors'
+          });
+        } catch (e) {
+          console.error('Sheet submission failed:', e);
+        }
+      }
+    }
+
+    // ─── TOPIC ──────────────────────────────────────────────────────────────────────
+    function selectTopic(el, topic) {
+      document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('selected'));
+      el.classList.add('selected');
+      currentTopic = topic;
+    }
+
+    // ─── PERMISSIONS ────────────────────────────────────────────────────────────────
+    async function grantPermissions() {
+      if (!currentTopic) { setPermMsg('Please choose a topic to continue.'); return; }
+      setPermMsg('Opening the fairness check. Please allow camera, microphone, and screen sharing.');
+
+      let camOk = false, micOk = false, screenOk = false;
+
+      try {
+        camStream = await navigator.mediaDevices.getUserMedia({ video: true, audio: true });
+        camOk = true; micOk = true;
+        setPerm('cam', true); setPerm('mic', true);
+        setPermMsg('Camera allowed. Capturing candidate identity snapshot...');
+        candidateFaceSnapshot = await captureCandidateSnapshot(camStream);
+      } catch (e) { }
+
+      try {
+        screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        screenOk = true;
+        setPerm('screen', true);
+      } catch (e) { }
+
+      if (!camOk || !micOk || !screenOk) {
+        const missing = [];
+        if (!camOk) missing.push('Camera');
+        if (!micOk) missing.push('Microphone');
+        if (!screenOk) missing.push('Screen sharing');
+
+        let countdown = 60;
+        setPermMsg(`${missing.join(', ')} still needs permission. Please allow it to start your free test. This page will reset in ${countdown}s if the check is not completed.`);
+
+        const logoutTimer = setInterval(() => {
+          countdown--;
+          if (countdown <= 0) {
+            clearInterval(logoutTimer);
+            forceLogout();
+          } else {
+            setPermMsg(`${missing.join(', ')} still needs permission. Please allow it to start your free test. This page will reset in ${countdown}s if the check is not completed.`);
+          }
+        }, 1000);
+        return;
+      }
+
+      setTimeout(startExam, 500);
+    }
+
+    function captureCandidateSnapshot(stream) {
+      return new Promise((resolve) => {
+        const video = document.createElement('video');
+        video.muted = true;
+        video.playsInline = true;
+        video.srcObject = stream;
+
+        const finish = () => {
+          try {
+            const canvas = document.createElement('canvas');
+            canvas.width = 480;
+            canvas.height = 360;
+            const ctx = canvas.getContext('2d');
+            ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+            video.srcObject = null;
+            resolve(canvas.toDataURL('image/jpeg', 0.72));
+          } catch (e) {
+            console.warn('Candidate snapshot capture failed:', e);
+            video.srcObject = null;
+            resolve('');
+          }
+        };
+
+        video.onloadeddata = () => {
+          video.play().then(() => setTimeout(finish, 350)).catch(finish);
+        };
+        video.onerror = () => resolve('');
+      });
+    }
+
+    function forceLogout() {
+      if (camStream) camStream.getTracks().forEach(t => t.stop());
+      if (screenStream) screenStream.getTracks().forEach(t => t.stop());
+      camStream = null; screenStream = null;
+
+      document.getElementById('setup-view').style.display = 'none';
+      document.getElementById('login-view').style.display = 'flex';
+
+      user = { name: '', email: '', phone: '' };
+      candidateFaceSnapshot = '';
+      ['f-name', 'f-email', 'f-phone'].forEach(id => document.getElementById(id).value = '');
+      currentTopic = null;
+      document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('selected'));
+      ['cam', 'screen', 'mic'].forEach(k => {
+        const b = document.getElementById('pb-' + k);
+        b.textContent = 'Pending'; b.className = 'perm-badge pending';
+        document.getElementById('pr-' + k).classList.remove('granted');
+      });
+      document.getElementById('perm-msg').textContent = '';
+
+      // Show logout notice on login page
+      const card = document.querySelector('.login-card');
+      const existing = document.getElementById('logout-notice');
+      if (!existing) {
+        const notice = document.createElement('div');
+        notice.id = 'logout-notice';
+        notice.style.cssText = 'background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:10px;padding:12px 14px;margin-bottom:20px;font-size:12px;color:#ef4444;font-family:var(--mono)';
+        notice.textContent = 'The setup was reset because the fairness check was not completed. You can try again whenever you are ready.';
+        card.insertBefore(notice, card.firstChild);
+        setTimeout(() => notice.remove(), 6000);
+      }
+    }
+
+
+
+    function setPerm(key, ok) {
+      if (!ok) return;
+      document.getElementById('pr-' + key).classList.add('granted');
+      const b = document.getElementById('pb-' + key);
+      b.textContent = 'Granted'; b.className = 'perm-badge ok';
+    }
+    function setPermMsg(m) { document.getElementById('perm-msg').textContent = m; }
+
+    // ─── START EXAM ─────────────────────────────────────────────────────────────────
+    function startExam() {
+      questions = shuffleArray(QB[currentTopic]).slice(0, QUESTIONS_PER_TEST);
+      answers = new Array(questions.length).fill(null);
+      currentQ = 0; violations = 0; violationLog = [];
+      faceHiddenCount = 0; multiFaceCount = 0; lastMultiFaceViolationAt = 0;
+      timeLeft = 1200; examStartTime = Date.now();
+
+      document.getElementById('header-right').innerHTML =
+        '<span class="chip chip-ok" id="face-chip">Face detected</span>' +
+        '<span class="chip chip-ok" id="tab-chip">Tab active</span>' +
+        '<span class="timer-display" id="timer">20:00</span>';
+
+      document.getElementById('setup-view').style.display = 'none';
+      document.getElementById('exam-view').style.display = 'block';
+      document.getElementById('ans-total').textContent = questions.length;
+
+      document.getElementById('sidebar-candidate').innerHTML =
+        `<div>${user.name}</div><div>${user.email}</div><div>${user.phone}</div>` +
+        `<div style="color:var(--accent2);margin-top:4px">${currentTopic}</div>`;
+
+      if (camStream) {
+        const v = document.getElementById('cam-video');
+        v.srcObject = camStream; v.style.display = 'block';
+        document.getElementById('cam-ph').style.display = 'none';
+        document.getElementById('cam-live-dot').style.display = 'block';
+        setStat('cam', 'ok', 'Camera: active');
+        setStat('mic', 'ok', 'Mic: active');
+      }
+      if (screenStream) {
+        const sv = document.getElementById('screen-video');
+        sv.srcObject = screenStream; sv.style.display = 'block';
+        document.getElementById('screen-ph').style.display = 'none';
+        document.getElementById('screen-live-dot').style.display = 'block';
+        setStat('screen', 'ok', 'Screen: sharing');
+        screenStream.getVideoTracks()[0].onended = () => { handleScreenShareStopped(); };
+      }
+
+      document.addEventListener('visibilitychange', onVisibility);
+      window.addEventListener('blur', onBlur);
+      startTimer(); renderQ(); renderNav();
+      startFaceDetection();
+    }
+
+    // ─── SCREEN SHARE STOPPED ───────────────────────────────────────────────────────
+    let screenWarnTimer = null;
+    function handleScreenShareStopped() {
+      logViolation('Screen share stopped by candidate');
+      setStat('screen', 'err', 'Screen: stopped!');
+      document.getElementById('screen-live-dot').style.display = 'none';
+
+      // Show warning modal with countdown
+      let countdown = 30;
+      document.getElementById('screen-warn-countdown').textContent = countdown;
+      document.getElementById('modal-screen-warn').classList.add('show');
+
+      screenWarnTimer = setInterval(() => {
+        countdown--;
+        document.getElementById('screen-warn-countdown').textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(screenWarnTimer);
+          screenWarnTimer = null;
+          document.getElementById('modal-screen-warn').classList.remove('show');
+          // Force submit exam
+          logViolation('Exam terminated - screen share not resumed');
+          submitExam();
+        }
+      }, 1000);
+    }
+
+    async function resumeScreenShare() {
+      try {
+        screenStream = await navigator.mediaDevices.getDisplayMedia({ video: true });
+        const sv = document.getElementById('screen-video');
+        sv.srcObject = screenStream; sv.style.display = 'block';
+        document.getElementById('screen-ph').style.display = 'none';
+        document.getElementById('screen-live-dot').style.display = 'block';
+        setStat('screen', 'ok', 'Screen: sharing');
+        screenStream.getVideoTracks()[0].onended = () => { handleScreenShareStopped(); };
+        if (screenWarnTimer) { clearInterval(screenWarnTimer); screenWarnTimer = null; }
+        document.getElementById('modal-screen-warn').classList.remove('show');
+      } catch (e) {
+        setStat('screen', 'err', 'Screen: denied');
+      }
+    }
+
+    // ─── FACE DETECTION (face-api.js ML model) ──────────────────────────────────────
+    let faceDetectionInterval = null;
+    let faceModelsLoaded = false;
+    let faceHiddenCount = 0;
+    let multiFaceCount = 0;
+    let lastMultiFaceViolationAt = 0;
+    let faceWarnTimer = null;
+    let faceWarnActive = false;
+    const FACE_HIDDEN_THRESHOLD = 3;   // consecutive misses -&gt; trigger warning
+    const MULTI_FACE_THRESHOLD = 2;     // consecutive multi-face detections -&gt; flag
+    const MULTI_FACE_COOLDOWN_MS = 15000;
+    const FACE_WARN_SECONDS = 30;       // seconds before auto-submit
+    const FACEAPI_MODELS_URL = 'https://cdn.jsdelivr.net/npm/@vladmandic/face-api@latest/model/';
+
+    async function loadFaceModels() {
+      try {
+        await faceapi.nets.tinyFaceDetector.loadFromUri(FACEAPI_MODELS_URL);
+        faceModelsLoaded = true;
+      } catch (e) {
+        console.warn('face-api models failed to load, falling back to pixel detection:', e);
+        faceModelsLoaded = false;
+      }
+    }
+
+    async function startFaceDetection() {
+      if (!camStream) return;
+      const video = document.getElementById('cam-video');
+      await new Promise(res => { if (video.readyState >= 2) res(); else video.onloadeddata = res; });
+
+      // Load face model in background; detection starts regardless
+      loadFaceModels();
+
+      faceDetectionInterval = setInterval(() => runFaceCheck(video), 2000);
+    }
+
+    async function runFaceCheck(video) {
+      if (!video || video.readyState < 2 || faceWarnActive) return;
+
+      let facePresent = false;
+      let faceCount = 0;
+
+      if (faceModelsLoaded) {
+        // Real ML detection via TinyFaceDetector
+        try {
+          const detections = await faceapi.detectAllFaces(
+            video,
+            new faceapi.TinyFaceDetectorOptions({ inputSize: 160, scoreThreshold: 0.45 })
+          );
+          faceCount = detections.length;
+          facePresent = faceCount > 0;
+        } catch (e) {
+          facePresent = true; // don't penalise on model error
+        }
+      } else {
+        // Fallback: pixel brightness + skin-tone sampling
+        try {
+          const c = document.createElement('canvas');
+          c.width = 160; c.height = 120;
+          const ctx = c.getContext('2d');
+          ctx.drawImage(video, 0, 0, 160, 120);
+          const data = ctx.getImageData(0, 0, 160, 120).data;
+          let skinPixels = 0, totalBright = 0;
+          for (let i = 0; i < data.length; i += 4) {
+            const r = data[i], g = data[i + 1], b = data[i + 2];
+            totalBright += (r + g + b) / 3;
+            if (r > 60 && g > 30 && b > 15 && r > g && r > b && (r - b) > 15 && r < 250) skinPixels++;
+          }
+          facePresent = (totalBright / (160 * 120)) > 20 && (skinPixels / (160 * 120)) > 0.04;
+        } catch (e) { facePresent = true; }
+      }
+
+      if (faceModelsLoaded && faceCount > 1) {
+        multiFaceCount++;
+        faceHiddenCount = 0;
+        setStat('face', 'err', `Face: ${faceCount} faces detected!`);
+        updateChip('face-chip', 'warn', 'Multiple faces!');
+        if (multiFaceCount >= MULTI_FACE_THRESHOLD) {
+          multiFaceCount = 0;
+          triggerMultipleFaceWarning(faceCount);
+        }
+        return;
+      }
+
+      if (!facePresent) {
+        faceHiddenCount++;
+        multiFaceCount = 0;
+        setStat('face', 'err', 'Face: not visible!');
+        updateChip('face-chip', 'warn', 'Face hidden!');
+        if (faceHiddenCount >= FACE_HIDDEN_THRESHOLD) {
+          faceHiddenCount = 0;
+          triggerFaceWarning();
+        }
+      } else {
+        faceHiddenCount = 0;
+        multiFaceCount = 0;
+        if (!faceWarnActive) {
+          setStat('face', 'ok', 'Face: detected');
+          updateChip('face-chip', 'ok', 'Face detected');
+        }
+      }
+    }
+
+    function triggerMultipleFaceWarning(faceCount) {
+      const now = Date.now();
+      if (now - lastMultiFaceViolationAt < MULTI_FACE_COOLDOWN_MS) return;
+      lastMultiFaceViolationAt = now;
+      logViolation(`Multiple faces detected in camera (${faceCount})`);
+      showVModal(
+        'Multiple faces detected',
+        'Only the registered candidate should be visible during the test. This incident has been recorded and will be reviewed by the counsellor.'
+      );
+    }
+
+    function triggerFaceWarning() {
+      if (faceWarnActive) return;
+      faceWarnActive = true;
+      logViolation('Face not detected - warning issued');
+
+      // Mirror cam into the modal preview
+      const preview = document.getElementById('face-warn-preview');
+      if (camStream) preview.srcObject = camStream;
+
+      let countdown = FACE_WARN_SECONDS;
+      document.getElementById('face-warn-countdown').textContent = countdown;
+      document.getElementById('modal-face-warn').classList.add('show');
+
+      // Keep checking face while modal is open and update button state
+      const checkWhileWarn = setInterval(async () => {
+        const video = document.getElementById('cam-video');
+        let detected = false;
+        let faceCount = 0;
+        if (faceModelsLoaded && video.readyState >= 2) {
+          try {
+            const d = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize: 160, scoreThreshold: 0.45 }));
+            faceCount = d.length;
+            detected = faceCount === 1;
+          } catch (e) { }
+        }
+        const statusEl = document.getElementById('face-warn-status');
+        if (statusEl) {
+          statusEl.textContent = detected ? 'OK One face detected - click Resume' : (faceCount > 1 ? 'Multiple faces detected' : 'No face detected');
+          statusEl.style.background = detected ? 'rgba(34,197,94,0.85)' : 'rgba(239,68,68,0.85)';
+        }
+      }, 800);
+
+      faceWarnTimer = setInterval(() => {
+        countdown--;
+        const el = document.getElementById('face-warn-countdown');
+        if (el) el.textContent = countdown;
+        if (countdown <= 0) {
+          clearInterval(faceWarnTimer);
+          clearInterval(checkWhileWarn);
+          faceWarnTimer = null;
+          document.getElementById('modal-face-warn').classList.remove('show');
+          logViolation('Exam terminated - face not shown in time');
+          submitExam();
+        }
+      }, 1000);
+
+      // Store checkWhileWarn ref for cleanup
+      faceWarnTimer._check = checkWhileWarn;
+    }
+
+    function dismissFaceWarning() {
+      if (!faceWarnActive) return;
+      // Only allow dismiss if face is actually visible
+      const checkAndDismiss = async () => {
+        const video = document.getElementById('cam-video');
+        let faceOk = false;
+        let faceCount = 0;
+        if (faceModelsLoaded && video.readyState >= 2) {
+          try {
+            const d = await faceapi.detectAllFaces(video, new faceapi.TinyFaceDetectorOptions({ inputSize: 160, scoreThreshold: 0.45 }));
+            faceCount = d.length;
+            faceOk = faceCount === 1;
+          } catch (e) { faceOk = true; }
+        } else {
+          faceOk = true; // fallback: allow dismiss
+        }
+
+        if (!faceOk) {
+          const statusEl = document.getElementById('face-warn-status');
+          if (statusEl) {
+            statusEl.textContent = faceCount > 1 ? 'Warning: Multiple faces visible! Only the candidate should be in frame.' : 'Warning: Face still not visible! Look at camera.';
+            statusEl.style.background = 'rgba(245,158,11,0.9)';
+          }
+          return; // don't dismiss until face is present
+        }
+
+        if (faceWarnTimer) {
+          clearInterval(faceWarnTimer);
+          if (faceWarnTimer._check) clearInterval(faceWarnTimer._check);
+          faceWarnTimer = null;
+        }
+        faceWarnActive = false;
+        document.getElementById('modal-face-warn').classList.remove('show');
+        setStat('face', 'ok', 'Face: detected');
+        updateChip('face-chip', 'ok', 'Face detected');
+      };
+      checkAndDismiss();
+    }
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        const m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const s = String(timeLeft % 60).padStart(2, '0');
+        const el = document.getElementById('timer');
+        if (el) { el.textContent = m + ':' + s; if (timeLeft <= 300) el.classList.add('urgent'); }
+        if (timeLeft <= 0) { clearInterval(timerInterval); submitExam(); }
+      }, 1000);
+    }
+
+    // ─── TIMER ──────────────────────────────────────────────────────────────────────
+    function startTimer() {
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        const m = String(Math.floor(timeLeft / 60)).padStart(2, '0');
+        const s = String(timeLeft % 60).padStart(2, '0');
+        const el = document.getElementById('timer');
+        if (el) { el.textContent = m + ':' + s; if (timeLeft <= 300) el.classList.add('urgent'); }
+        if (timeLeft <= 0) { clearInterval(timerInterval); submitExam(); }
+      }, 1000);
+    }
+
+
+    // ─── VISIBILITY ─────────────────────────────────────────────────────────────────
+    function onVisibility() {
+      if (document.hidden) {
+        logViolation('Navigated away from exam tab');
+        setStat('tab', 'err', 'Tab: left!');
+        updateChip('tab-chip', 'warn', 'Tab left!');
+        showVModal('Tab switch detected', 'You navigated away from the exam tab. This incident has been permanently recorded.');
+      } else {
+        setStat('tab', 'ok', 'Tab: focused');
+        updateChip('tab-chip', 'ok', 'Tab active');
+      }
+    }
+    function onBlur() { logViolation('Window lost focus'); }
+
+    function updateChip(id, state, text) {
+      const el = document.getElementById(id);
+      if (!el) return;
+      el.className = 'chip';
+      el.classList.add(state === 'ok' ? 'chip-ok' : 'chip-warn');
+      el.textContent = text;
+    }
+
+    // ─── VIOLATIONS ─────────────────────────────────────────────────────────────────
+    function logViolation(msg) {
+      violations++;
+      const now = new Date();
+      const ts = [now.getHours(), now.getMinutes(), now.getSeconds()].map(n => String(n).padStart(2, '0')).join(':');
+      violationLog.unshift(ts + ' - ' + msg);
+      const el = document.getElementById('vlog');
+      el.innerHTML = '';
+      violationLog.slice(0, 8).forEach(v => {
+        const d = document.createElement('div');
+        d.className = 'vlog-entry'; d.textContent = v; el.appendChild(d);
+      });
+    }
+    function showVModal(title, msg) {
+      document.getElementById('v-modal-title').textContent = 'Warning: ' + title;
+      document.getElementById('v-modal-msg').textContent = msg;
+      document.getElementById('modal-violation').classList.add('show');
+    }
+    function setStat(key, state, text) {
+      const dot = document.getElementById('d-' + key);
+      const lbl = document.getElementById('t-' + key);
+      if (!dot || !lbl) return;
+      dot.className = 's-dot';
+      dot.classList.add(state === 'ok' ? 's-ok' : state === 'warn' ? 's-warn' : 's-err');
+      lbl.textContent = text;
+    }
+
+    // ─── RENDER QUESTION ────────────────────────────────────────────────────────────
+    function renderQ() {
+      const q = questions[currentQ];
+      const letters = ['A', 'B', 'C', 'D'];
+      document.getElementById('question-container').innerHTML = `
+    <div class="q-card">
+      <div class="q-meta"><span class="q-number">Q${currentQ + 1}</span><span>of ${questions.length} &nbsp;&middot;&nbsp; ${currentTopic}</span></div>
+      <div class="q-text">${q.q}</div>
+      <div class="options">${q.opts.map((o, i) => `
+        <div class="opt-row${answers[currentQ] === i ? ' selected' : ''}" onclick="selectAnswer(${i})">
+          <div class="opt-circle"><div class="opt-circle-inner"></div></div>
+          <span class="q-letter">${letters[i]}</span>
+          <span>${o}</span>
+        </div>`).join('')}
+      </div>
+    </div>`;
+      const isLast = currentQ === questions.length - 1;
+      document.getElementById('prev-btn').disabled = currentQ === 0;
+      document.getElementById('prev-btn').style.opacity = currentQ === 0 ? '0.35' : '1';
+      document.getElementById('next-btn').style.display = isLast ? 'none' : 'inline-flex';
+      document.getElementById('submit-btn').style.display = isLast ? 'inline-flex' : 'none';
+    }
+    function selectAnswer(i) { answers[currentQ] = i; renderQ(); updateProgress(); renderNav(); }
+    function navigate(dir) { currentQ = Math.max(0, Math.min(questions.length - 1, currentQ + dir)); renderQ(); renderNav(); }
+    function renderNav() {
+      const nav = document.getElementById('q-nav'); nav.innerHTML = '';
+      questions.forEach((_, i) => {
+        const b = document.createElement('button');
+        b.className = 'qn-btn' + (i === currentQ ? ' current' : answers[i] !== null ? ' answered' : '');
+        b.textContent = i + 1;
+        b.onclick = () => { currentQ = i; renderQ(); renderNav(); };
+        nav.appendChild(b);
+      });
+    }
+    function updateProgress() {
+      const done = answers.filter(a => a !== null).length;
+      const pct = Math.round(done / questions.length * 100);
+      document.getElementById('ans-count').textContent = done;
+      document.getElementById('sidebar-prog').style.width = pct + '%';
+      document.getElementById('q-prog-fill').style.width = pct + '%';
+    }
+
+    // ─── SUBMIT ─────────────────────────────────────────────────────────────────────
+    function confirmSubmit() {
+      const u = answers.filter(a => a === null).length;
+      document.getElementById('modal-msg').textContent = u > 0
+        ? `You have ${u} unanswered question(s). Once submitted, you cannot return.`
+        : 'All questions answered. Ready to submit your exam?';
+      document.getElementById('modal-submit').classList.add('show');
+    }
+
+    async function submitExam() {
+      closeModal('modal-submit');
+      closeModal('modal-screen-warn');
+      clearInterval(timerInterval);
+      if (faceTimer) clearInterval(faceTimer);
+      if (faceDetectionInterval) { clearInterval(faceDetectionInterval); faceDetectionInterval = null; }
+      if (screenWarnTimer) { clearInterval(screenWarnTimer); screenWarnTimer = null; }
+      if (faceWarnTimer) {
+        if (faceWarnTimer._check) clearInterval(faceWarnTimer._check);
+        clearInterval(faceWarnTimer); faceWarnTimer = null;
+      }
+      faceWarnActive = false;
+      document.removeEventListener('visibilitychange', onVisibility);
+      window.removeEventListener('blur', onBlur);
+      if (camStream) camStream.getTracks().forEach(t => t.stop());
+      if (screenStream) screenStream.getTracks().forEach(t => t.stop());
+
+      const correct = answers.filter((a, i) => a === questions[i].a).length;
+      const pct = Math.round(correct / questions.length * 100);
+      const elapsed = Math.round((Date.now() - examStartTime) / 1000);
+      const timeTaken = String(Math.floor(elapsed / 60)).padStart(2, '0') + 'm ' + String(elapsed % 60).padStart(2, '0') + 's';
+
+      document.getElementById('exam-view').style.display = 'none';
+      document.getElementById('result-view').style.display = 'flex';
+      document.getElementById('header-right').innerHTML = '<span class="chip chip-blue">Submitted</span>';
+
+      const resultMessage = `Thank you, ${user.name}. Your ${currentTopic} test has been submitted. Our team will review your responses and get back to you shortly with your scholarship eligibility.`;
+      document.getElementById('result-sub').textContent = resultMessage;
+
+      const payload = {
+        timestamp: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
+        name: user.name,
+        email: user.email,
+        phone: user.phone,
+        topic: currentTopic,
+        score: pct + '%',
+        correct: correct,
+        wrong: questions.length - correct,
+        violations: violations,
+        timeTaken: timeTaken,
+        violationLog: violationLog.join(' | ') || 'None',
+        resultMessage: resultMessage,
+        faceSnapshot: candidateFaceSnapshot
+      };
+
+      await submitToSheets(payload);
+    }
+
+    // ─── HELPERS ────────────────────────────────────────────────────────────────────
+    function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+    function showCounsellorNumber() {
+      document.getElementById('modal-counsellor').classList.add('show');
+    }
+
+    function copyCounsellorNumber() {
+      const displayPhone = '+91 96678 38746';
+      if (navigator.clipboard && window.isSecureContext) {
+        navigator.clipboard.writeText(displayPhone).catch(() => { });
+      }
+      closeModal('modal-counsellor');
+    }
+
+    function restartExam() {
+      camStream = null; screenStream = null; violations = 0; violationLog = []; currentTopic = null;
+      candidateFaceSnapshot = '';
+      faceHiddenCount = 0; multiFaceCount = 0; lastMultiFaceViolationAt = 0; faceWarnActive = false; faceModelsLoaded = false;
+      document.getElementById('result-view').style.display = 'none';
+      document.getElementById('landing-view').style.display = 'flex';
+      document.getElementById('header-cta').style.display = 'inline-flex';
+      document.querySelectorAll('.topic-card').forEach(c => c.classList.remove('selected'));
+      ['cam', 'screen', 'mic'].forEach(k => {
+        const b = document.getElementById('pb-' + k);
+        b.textContent = 'Pending'; b.className = 'perm-badge pending';
+        document.getElementById('pr-' + k).classList.remove('granted');
+      });
+      document.getElementById('perm-msg').textContent = '';
+      document.getElementById('header-right').innerHTML = '<button id="header-cta" class="btn btn-primary" style="padding:7px 16px;font-size:12px" onclick="showLogin()">Start Free Test &rarr;</button>';
+    }
+  </script>
+</body>
+
+</html>

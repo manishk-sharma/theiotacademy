@@ -1,0 +1,483 @@
+:root {
+    --heading-font: "Inter", sans-serif;
+    --default-font: "Nunito", sans-serif;
+
+    --bg-white: #ffffff;
+    --bg-light: #F5F5FF;
+    --bg-blue: #010273;
+    --bg-orange: #FF8C02;
+    --bg-yellow: #FF9D00;
+    --bg-banner-gradient: linear-gradient(-90deg, #D7C8FF, #F6F6F6);
+    --bg-blue-gradient: linear-gradient(-90deg, #02C4EB, #010273);
+    --bg-angular-gradient: conic-gradient(from 90deg, #010273, #BFBFE7);
+    --bg-accent: #02C4EB;
+    --bg-gray: #E8E8E8;
+    --bg-part2: #E8EEFF; 
+    --bg-green: #008E17; 
+
+    --default-color: #010273;
+    --accent-color: #02C4EB;
+    --text-white: #fff;
+    --text-black: #000;
+    --text-green: #008E17;
+    --text-orange: #FF8C02;
+    --text-yellow: #FF9D00;
+
+    scroll-behavior: smooth;
+}
+.sec-padding{
+    padding: 0 7%;
+}
+.heading{
+    color: var(--default-color);
+    font-family: "Inter", sans-serif;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 65px;
+    margin-bottom: 30px;
+}
+.heading span{
+    color: var(--accent-color);
+}
+.blue-btn{
+    font-size: 20px;
+    font-weight: 700;
+    min-height: 44px;
+    min-width: 172px;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    border: 0;
+    color: var(--text-white);
+    background: var(--bg-blue);
+}
+.blue-btn:hover{
+    background: var(--accent-color);
+    color: var(--default-color);
+}
+.accent-btn{
+    font-size: 20px;
+    font-weight: 700;
+    min-height: 44px;
+    min-width: 172px;
+    text-align: center;
+    text-decoration: none;
+    padding: 5px 10px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    border: 0;
+    color: var(--default-color);
+    background: var(--accent-color);
+}
+.accent-btn:hover{
+    color: var(--text-white);
+    background: var(--bg-blue);
+}
+.white-btn{
+    font-size: 20px;
+    font-weight: 700;
+    min-height: 50px;
+    min-width: 189px;
+    text-align: center;
+    text-decoration: none;
+    padding: 10px 40px;
+    display: inline-flex !important;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    -webkit-border-radius: 26px;
+    -moz-border-radius: 26px;
+    border-radius: 26px;
+    text-transform: capitalize;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    border: 0;
+    color: var(--default-color);
+    background: var(--bg-white);
+}
+.white-btn:hover{
+    background: var(--accent-color);
+    color: var(--default-color);
+}
+
+/*--banner--*/
+.banner-top{
+    background: var(--bg-blue);
+    width: 100%;
+    min-height: 425px;
+    position: relative;  
+    border-top: 1px solid #ffffff3d;  
+    text-align: center;
+    padding-bottom: 170px;
+    overflow: hidden;
+}
+.banner-top::after, .banner-top::before{
+    content: "";
+    height: 425px;
+    width: 207px;
+    position: absolute;
+    background: url(../images/contact/dot-bg.webp) center center no-repeat;
+    top: 0;
+}
+.banner-top::after{
+    right: 0;
+}
+.banner-top::before{
+    left: 0;
+    transform: rotate(180deg);
+}
+.banner-top .heading{
+    color: var(--text-white);
+    line-height: 65px;
+    font-size: 45px;
+    text-transform: capitalize;
+    margin-bottom: 27px;
+    position: relative;
+    padding-top: 70px;
+    z-index: 2;
+}
+.banner-top .heading::before{
+    content: "";
+    height: 375px;
+    width: 98px;
+    position: absolute;
+    background: url(../images/contact/tellphone.webp) center center no-repeat;
+    top: 0;
+    left: 0;
+}
+.banner-top .tagline{
+    color: var(--text-white);
+    font-size: 20px;
+    line-height: 30px;
+    margin-bottom: 43px;
+    position: relative;
+    z-index: 2;
+}
+.banner-top .white-btn{
+    font-family: var(--heading-font);
+    position: relative;
+    z-index: 2;
+}
+
+.contact-details{
+    position: relative;
+    top: -111px;
+}
+.contact-details .part{
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(0, 0, 0, 16%);
+    min-height: 226px;
+    background: var(--bg-white);
+}
+.contact-details .part img{
+    margin-bottom: 15px;
+}
+.contact-details .part a{
+    display: block;
+    font-size: 18px;
+    font-family: var(--heading-font);
+    line-height: 30px;
+    color: var(--text-black);
+    font-weight: 500;
+    text-decoration: none;
+}
+.contact-details .part .btn-group{
+    margin-top: 25px;
+    gap: 30px;
+}
+.contact-details .part .btn-group a{
+    display: block;
+    font-size: 18px;
+    font-family: var(--heading-font);
+    line-height: 23px;
+    color: var(--default-color);
+    font-weight: 600;
+}
+.contact-details .col-lg-3:nth-child(2) .part a{
+    text-decoration: underline;
+}
+.contact-details .part .head{
+    display: block;
+    font-size: 18px;
+    font-family: var(--heading-font);
+    line-height: 23px;
+    color: var(--default-color);
+    font-weight: 600;
+    margin-bottom: 0;
+}
+.contact-details .part button{
+    position: relative;
+    margin-top: 30px;
+    font-family: var(--heading-font);
+    font-size: 15px;
+    font-weight: 600;
+    min-height: 40px;
+    min-width: 141px;
+    border-radius: 21px;
+}
+.contact-details .part button .onecountnummertawlk {
+    font-size: 15px;
+    height: 21px;
+    width: 21px;
+}
+
+.form-sec .part{
+    text-align: center;
+    padding-top: 70px;
+    padding-bottom: 150px;
+    margin-bottom: -130px;
+    position: relative;
+    overflow: hidden;
+}
+.form-sec .part:after{
+    content: "";
+    background: linear-gradient(180deg, var(--bg-blue), var(--bg-white));
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.form-sec .part .heading{
+    font-size: 30px;
+    font-family: var(--heading-font);
+    line-height: 65px;
+    color: var(--text-white);
+    margin-bottom: 10px;
+}
+.form-sec .part form{
+    width: 60%;
+    margin: auto;
+    position: relative;
+    z-index: 1;
+}
+.form-sec .part label{
+    position: absolute;
+    left: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: 10px;
+}
+.form-sec .part form .form-control{
+    border-radius: 10px;
+    border: none;
+    min-height: 42px;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: 1.5rem;
+    padding-left: 45px;
+}
+.form-sec .part form .form-group .blue-btn{
+    width: 100%;
+    height: 50px;
+    border-radius: 25px;
+    font-weight: 600;
+}
+
+.instructor{
+    background: var(--bg-blue);
+    width: 100%;
+    min-height: 570px;
+    position: relative;   
+    text-align: center;
+    padding-top: 70px;
+    overflow: hidden;
+}
+.instructor::after, .instructor::before{
+    content: "";
+    height: 310px;
+    width: 322px;
+    position: absolute;
+    background: url(../images/contact/sqaure-bg.webp) center center no-repeat;
+}
+.instructor::after{
+    left: 0;
+    top: 0;
+}
+.instructor::before{
+    bottom: 0;
+    right: 0;
+    transform: rotate(180deg);
+}
+.instructor .heading{
+    color: var(--text-white);
+    font-size: 30px;
+    line-height: 46px;
+    font-family: var(--heading-font);
+    text-align: left;
+    margin-bottom: 40px;
+    position: relative;
+    z-index: 2;
+}
+.instructor form{
+    position: relative;
+    z-index: 2;
+}
+.instructor form .form-group{
+    position: relative;
+}
+.instructor form label{
+    position: absolute;
+    left: 0;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    margin-left: 20px;
+}
+.instructor form .form-control, .instructor form .form-select{
+    border-radius: 10px;
+    border: none;
+    min-height: 42px;
+    outline: none;
+    box-shadow: none;
+    margin-bottom: 1.5rem;
+    padding-left: 45px;
+}
+.instructor form .form-select option{
+    background: #E0E0FF;
+    color: #010273;
+}
+.instructor form .form-select option:checked, .instructor form .form-select option:hover {
+    background: #CECEFF;
+    color: #010273;
+}
+.instructor form .form-group:nth-last-child(2) .form-control{
+    padding-left: 10px;
+    padding-top: 9px;
+}
+.instructor form .form-group:nth-last-child(1){
+    text-align: left;
+}
+.instructor form .form-group .blue-btn{
+    height: 50px;
+    min-width: 189px;
+    border-radius: 25px;
+    font-weight: 700;
+    background: var(--bg-orange);
+    color: var(--default-color);
+}
+.instructor img{
+    position: relative;
+    z-index: 2;
+}
+
+.location-sec{
+    background: linear-gradient(180deg, #E0E0FF, #fff);
+    padding: 65px 0;
+}
+.location-sec .part{
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 2px 1px 15px 1px rgb(0, 0, 0, 16%);
+    min-height: 226px;
+    background: var(--bg-white);
+}
+.location-sec .part img{
+    margin-bottom: 15px;
+}
+.location-sec .part .head{
+    font-size: 20px;
+    line-height: 30px;
+    font-family: var(--heading-font);
+    color: var(--text-black);
+}
+.location-sec .part p{
+    color: var(--text-black);
+}
+.location-sec .part a{
+    font-size: 18px;
+    line-height: 30px;
+    font-family: var(--heading-font);
+    color: var(--default-color);
+    text-decoration: none;
+}
+/* Extra large devices (large laptops and desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    .contact-details .col-lg-3:nth-child(2) .part a {
+        text-decoration: underline;
+        word-wrap: break-word;
+    }
+    .contact-details .part {
+        min-height: 280px;
+    }
+}
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+    .banner-top .heading::before{
+        display: none;
+    }
+    .instructor .heading, .instructor form .form-group:nth-last-child(1){
+        text-align: center;
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 767px) {
+    .banner-top .heading{
+        line-height: 40px;
+        font-size: 30px;
+        margin-bottom: 10px;
+    }
+    .banner-top .white-btn {
+        font-size: 17px;
+        min-height: 40px;
+        min-width: 150px;
+        padding: 5px 20px;
+    }
+    .contact-details .part a{
+        font-size: 16px;
+    }
+    .contact-details .part {
+        min-height: auto;
+    }
+    .form-sec .part:after{
+        border-radius: 0;
+    }
+    .form-sec .part form{
+        width: 90%;
+    }
+    .instructor .heading {
+        font-size: 25px;
+        line-height: 35px;
+        margin-bottom: 25px;
+    }
+    .instructor form {
+        margin-bottom: 2rem;
+    }
+    
+}
+/*---other css--*/
+.chattawlkank{
+    display: none;
+}

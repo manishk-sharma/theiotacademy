@@ -1,0 +1,126 @@
+<?xml version='1.0' encoding='UTF-8'?>
+
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+
+     xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+     xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+
+       http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd
+
+       http://www.google.com/schemas/sitemap-news/0.9
+
+       http://www.google.com/schemas/sitemap-news/0.9/sitemap-news.xsd">
+<url>
+   <loc>https://www.theiotacademy.co/blog/which-is-better-iot-or-cloud-computing</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-27</news:publication_date>
+     <news:title>Which is better: IoT or Cloud Computing in today’s technology?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/what-are-the-applications-of-iot</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-25</news:publication_date>
+     <news:title>What are the applications of IoT?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/best-digital-marketing-platforms-for-e-commerce-websites</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-24</news:publication_date>
+     <news:title>What are the best Digital Marketing platforms for e-commerce websites?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/biggest-challenges-in-digital-marketing-that-you-need-to-know</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-22</news:publication_date>
+     <news:title>What Are the Biggest Challenges in Digital Marketing That You Need to Know?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/digital-marketing-important-for-business</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-21</news:publication_date>
+     <news:title>How is Digital Marketing important for business?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/top-seo-and-link-building-strategies-in-digital-marketing</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-20</news:publication_date>
+     <news:title>What Are the Top SEO And Link Building Strategies in Digital Marketing?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/types-of-digital-marketing</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-19</news:publication_date>
+     <news:title>What are the types of Digital Marketing?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/what-is-technical-seo-affect-the-digital-marketing-of-any-business</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-18</news:publication_date>
+     <news:title>What is Technical SEO? How can it affect the digital marketing of any business?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/latest-trends-you-need-to-know-in-digital-marketing-in-2022</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-17</news:publication_date>
+     <news:title>What are the latest trends you need to know in Digital Marketing in 2022?</news:title>
+    </news:news>
+  </url>
+<url>
+   <loc>https://www.theiotacademy.co/blog/relationship-between-iot-and-cloud-computing</loc>
+   <news:news>
+   <news:publication>
+     <news:name>The IoT Academy</news:name>
+     <news:language>en</news:language>
+   </news:publication>
+   <news:publication_date>2022-01-15</news:publication_date>
+     <news:title>What is the relationship between IoT and Cloud Computing?</news:title>
+    </news:news>
+  </url>
+ </urlset>

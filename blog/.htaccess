@@ -1,0 +1,100 @@
+# BEGIN LSCACHE
+# END LSCACHE
+# BEGIN NON_LSCACHE
+# END NON_LSCACHE
+# BEGIN Custom Redirects
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /blog/
+# RewriteRule ^iot-in-agriculture/?$ /blog/iot-architecture/ [R=301,L]
+RewriteRule ^difference-between-artificial-intelligence-and-machine-learning/?$ difference-between-ai-and-machine-learning/ [R=301,L]
+RewriteRule ^what-is-artificial-intelligence-salary-in-india/?$ ai-engineer-salary/ [R=301,L]
+RewriteRule ^why-is-there-a-need-for-a-data-analyst/?$ how-to-become-a-data-analyst-a-beginners-guide/ [R=301,L]
+RewriteRule ^12-reasons-to-consider-a-data-analyst-career-path/?$ how-to-become-a-data-analyst-a-beginners-guide/ [R=301,L]
+RewriteRule ^who-is-a-business-data-analyst-and-why-is-this-role-important-to-businesses/?$ how-to-become-a-data-analyst-a-beginners-guide/ [R=301,L]
+RewriteRule ^what-is-data-science-life-cycle/?$ data-science-lifecycle/ [R=301,L]
+
+RewriteRule ^what-is-the-benefits-of-cloud-computing-in-iot/?$ what-is-cloud-computing-and-its-role-in-iot/ [R=301,L]
+RewriteRule ^which-is-better-iot-or-cloud-computing/?$ what-is-cloud-computing-and-its-role-in-iot/ [R=301,L]
+RewriteRule ^how-does-cloud-computing-help-iot-devices/?$ what-is-cloud-computing-and-its-role-in-iot/ [R=301,L]
+RewriteRule ^iot-career-opportunities-ultimate-guide/?$ future-of-iot/ [R=301,L]
+RewriteRule ^will-the-iot-boom-create-a-lot-of-embedded-jobs/?$ future-of-iot/ [R=301,L]
+RewriteRule ^what-is-the-future-of-the-internet-of-things/?$ future-of-iot/ [R=301,L]
+RewriteRule ^top-10-data-visualization-tools/?$ data-visualization-tools/ [R=301,L]
+RewriteRule ^what-is-deep-learning-explain-it/?$ introduction-to-deep-learning-for-beginners/ [R=301,L]
+RewriteRule ^ai-text-prompt-generator/?$ what-is-generative-ai/ [R=301,L]
+RewriteRule ^the-basics-of-embedded-systems-and-the-iot/?$ difference-between-iot-and-embedded-systems/ [R=301,L]
+
+RewriteRule ^role-of-embedded-systems-in-internet-of-things/?$ difference-between-iot-and-embedded-systems/ [R=301,L]
+
+RewriteRule ^relation-between-embedded-systems-and-iot/?$ difference-between-iot-and-embedded-systems/ [R=301,L]
+
+RewriteRule ^career-opportunities-in-embedded-systems-and-iot/?$ scope-of-embedded-system-in-india-after-5-years/ [R=301,L]
+
+RewriteRule ^is-embedded-systems-a-good-career-option/?$ scope-of-embedded-system-in-india-after-5-years/ [R=301,L]
+
+RewriteRule ^-what-is-data-processing-and-manipulation/?$ all-about-data-processing-types-and-methods/ [R=301,L]
+RewriteRule ^-list-out-the-libraries-in-python-used-for-data-analysis-and-scientific-computations/?$ learn-data-analysis-with-python/ [R=301,L]
+RewriteRule ^-how-to-overcome-data-challenges/?$ challenges-in-data-science-and-machine-learning/ [R=301,L]
+RewriteRule ^learn-how-to-become-a-data-scientist-from-the-comfort-of-your-browser-with-datacamps-data-science-/?$ can-an-average-student-become-a-data-scientist/ [R=301,L]
+RewriteRule ^what-future-holds-of-ar-and-vr--in-the-education-sector/?$ /blog/ [R=301,L]
+RewriteRule ^-top-4-factors-to-identify-machine-learning-solvable-problems/?$ some-interesting-facts-about-machine-learning-life-cycle/ [R=301,L]
+RewriteRule ^-15-popular-php-project-ideas-that-beginners-can-opt-for-in-2022/?$ go-vs-php/ [R=301,L]
+RewriteRule ^-20-exciting-web-development-projects-for-beginners/?$ /blog/ [R=301,L]
+RewriteRule ^which-industries-pay-the-highest-data-analyst-salary-in-the-u.s/?$ /blog/ [R=301,L]
+
+RewriteRule ^topics-covered-in-data-science/?$ what-are-the-topics-covered-in-data-science/ [R=301,L]
+RewriteRule ^learn-c-programming-langage/?$ learn-c-programming-language/ [R=301,L]
+RewriteRule ^basics-of-python-programming/?$ what-is-python/ [R=301,L]
+RewriteRule ^what-kind-of-jobs-are-available-for-data-science/?$ data-science-and-machine-learning-jobs-in-the-future/  [R=301,L]
+RewriteRule ^java-virtual-machine/?$ jvm-java-virtual-machine/ [R=301,L]
+RewriteRule ^learn-from-home-internship/?$ work-from-home-internship/ [R=301,L]
+RewriteRule ^how-to-learn-python-for-data-science-in-5-steps/?$ first-5-steps-to-launch-your-data-science-career-with-python/ [R=301,L]
+RewriteRule ^skills-need-to-become-data-scientist/?$ first-5-steps-to-launch-your-data-science-career-with-python/ [R=301,L]
+RewriteRule ^skills-need-to-become-data-scientist/?$ how-to-become-a-data-scientist/ [R=301,L]
+RewriteRule ^career-options-post-mca/?$ mca-career-options/ [R=301,L]
+
+RewriteRule ^beginners-guide-to-machine-learning/?$ career-opportunities-in-finance-with-data-science/ [R=301,L]
+</IfModule>
+# END Custom Redirects
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /blog/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /blog/index.php [L]
+</IfModule>
+
+## WP Defender - Prevent information disclosure ##
+
+<FilesMatch "\.(md|exe|sh|bak|inc|pot|po|mo|log|sql)$">
+Order allow,deny
+Deny from all
+</FilesMatch>
+
+<Files robots.txt>
+Allow from all
+</Files>
+
+<Files ads.txt>
+Allow from all
+</Files>
+
+## WP Defender - End ##
+# BEGIN WordPress
+# The directives (lines) between "BEGIN WordPress" and "END WordPress" are
+# dynamically generated, and should only be modified via WordPress filters.
+# Any changes to the directives between these markers will be overwritten.
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+RewriteBase /blog/
+RewriteRule ^index\.php$ - [L]
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule . /blog/index.php [L]
+</IfModule>
+
+# END WordPress

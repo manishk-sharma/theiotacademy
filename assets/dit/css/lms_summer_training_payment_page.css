@@ -1,0 +1,889 @@
+:root {
+    --heading-font: "Inter", sans-serif;
+    --default-font: "Nunito", sans-serif;
+
+    --bg-white: #ffffff;
+    --bg-light: #F5F5FF;
+    --bg-blue: #010273;
+    --bg-orange: #FF8C02;
+    --bg-yellow: #FF9D00;
+    --bg-banner-gradient: linear-gradient(-90deg, #D9F9FF, #EAECFF);
+    --bg-blue-gradient: linear-gradient(-90deg, #02C4EB, #010273);
+    --bg-angular-gradient: conic-gradient(from 90deg, #010273, #BFBFE7);
+    --bg-accent: #30C5D2;
+    --bg-gray: #E8E8E8;
+    --bg-part2: #E8EEFF; 
+    --bg-green: #008E17; 
+
+    --default-color: #010273;
+    --accent-color: #30C5D2;
+    --text-white: #fff;
+    --text-black: #000;
+    --text-green: #008E17;
+    --text-orange: #FF8C02;
+    --text-yellow: #FF9D00;
+
+    scroll-behavior: smooth;
+}
+.is-wrapper > div.is-section-100{
+    height: auto !important;
+}
+.new_container_dv_fluid{
+    max-width: 1400px !important;
+}
+.sec-padding{
+    padding: 0 7%;
+}
+.heading {
+    color: var(--default-color);
+    font-family: var(--heading-font);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 20px;
+}
+.heading span{
+    color: var(--accent-color);
+}
+.blue-btn{
+    color: var(--text-white);
+    text-align: center;
+    font-family: var(--heading-font);
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    min-height: 50px;
+    min-width: 145px;
+    text-decoration: none;
+    padding: 10px 20px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex !important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    border: 1px solid #010273;
+    color: var(--text-white);
+    background: var(--bg-blue);
+}
+.blue-btn:hover{
+    background: var(--bg-blue);
+}
+
+.courseDescriptionCont{
+    margin-top: 0px !important;
+}
+.why-choose{
+    padding: 50px 0;
+    /* background: linear-gradient(0deg, var(--bg-light), transparent); */
+}
+.why-choose .heading{
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.why-choose .points{
+    margin-top: 25px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin: auto;
+}
+.why-choose .points .part{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: calc(25% - 20px);
+    text-align: center;
+    background: linear-gradient(0deg, #0b0d93, #10203b);
+    border-radius: 10px;
+    padding: 20px;
+    border: 1px solid #ffffff57;
+    min-height: 170px;
+    overflow: hidden;
+    position: relative;
+    transition: ease 0.3s;
+}
+.why-choose .points .part:hover{
+    background: #010273;
+}
+.why-choose .points .part .icon{
+    margin-bottom: 20px;
+    transition: ease 0.3s;
+    position: absolute;
+    top: 30px;
+}
+.why-choose .points .part .head{
+    color: #fff;
+    font-family: Nunito;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 0;
+    padding: 0 30px;
+    transition: ease 0.3s;
+    position: absolute;
+    top: 80px;
+}
+.why-choose .points .part .content{
+    padding: 30px;
+    transition: ease 0.3s;
+    position: absolute;
+    top: 100%;
+}
+.why-choose .points .part p{
+    color: #fff;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    display: block;
+}
+.why-choose .points .part:hover .icon{
+    top: -100%;
+    transition: ease 0.3s;
+}
+.why-choose .points .part:hover .head{
+    top: -100%;
+    transition: ease 0.3s;
+}
+.why-choose .points .part:hover .content{
+    top: 0;
+    transition: ease 0.3s;
+}
+
+.courses{
+    padding: 60px 0;
+}
+.courses .heading{
+    margin-bottom: 40px;
+}
+.courses .nav-tabs{
+    flex-wrap: nowrap;
+    border: 0;
+    justify-content: center;
+    margin-bottom: 40px;
+}
+.courses .nav-tabs .nav-link{
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    border-bottom: 1px solid var(--bg-blue);
+}
+.courses .nav-tabs .nav-link.active{
+    background: var(--bg-blue);
+    color: #fff;
+}
+.courses .row{
+    row-gap: 30px;
+}
+.courses .part{
+    padding: 30px;
+    border-radius: 10px;
+    background: #fff0;
+    box-shadow: 0 6px 14px 0 #0102731f;
+    border: 2px solid transparent;
+    min-height: 400px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    transition: ease 0.5s;
+}
+.courses .part:hover{
+    background: linear-gradient(#fff, #eafdff) padding-box, linear-gradient(119deg, rgb(17 33 60) 15%, rgb(67 128 191)) border-box;
+}
+.courses .part .image{
+    position: relative;
+    top: 0;
+    transition: ease 0.5s;
+    height: auto;
+    margin-bottom: 20px;   
+}
+.courses .part .image img{
+   object-fit: content;
+   width: 100%;
+   border-radius: 10px;
+   margin-bottom: 10px;
+}
+.courses .part:hover .image {
+    position: relative;
+    top: -100%;
+    transition: ease 0.5s;
+    height: 0;
+    margin-bottom: 0;
+}
+.courses .part .head{
+    font-size: 23px;
+    font-weight: 700;
+    margin-bottom: 0;
+    color: #000;
+}
+.courses .part .head span{
+    display: block;
+    padding: 5px 20px;
+    border-left: 4px solid #010273;
+    background: linear-gradient(90deg, #ddd, #fff);
+    font-size: 18px;
+    font-weight: 500;
+    color: #000;
+    margin-top: 10px;
+}
+.courses .part .content{
+    position: relative;
+    bottom: -100%;
+    height: 0;
+    transition: ease 0.5s;
+}
+.courses .part:hover .content{
+    position: relative;
+    bottom: 0;
+    height: auto;
+    margin-top: 20px;
+}
+.courses .part ul{
+    padding-left: 1rem;
+    margin-bottom: 20px;
+}
+.courses .part ul li{
+    color: #000;
+}
+.courses .part .blue-btn{
+    min-width: 100px;
+    font-size: 16px;
+    min-height: 30px;
+    /*position: absolute;*/
+    /*bottom: 30px;*/
+}
+.courses .part .blue-btn:hover{
+    background: var(--text-white) !important;
+    color: var(--bg-blue) !important;
+}
+
+.certificate .btn-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.certificate .btn-group .blue-btn{
+    min-width: 200px;
+    font-size: 16px;
+    min-height: 30px;
+}
+.certificate .btn-group .blue-btn:hover{
+    background: var(--text-white) !important;
+    color: var(--bg-blue) !important;
+}
+
+.certificate .nav-tabs {
+    justify-content: center;
+    flex-direction: unset;
+    border: none;
+    margin-top: 0.4rem;
+    gap: 20px
+}
+
+.certificate .nav-tabs .nav-link {
+    color: #010273;
+    font-weight: 600;
+    position: relative;
+    font-size: 15px;
+    padding: 0;
+    padding-left: 30px;
+    margin-left: 10px;
+    border: none
+}
+
+.certificate .nav-tabs .nav-link:after {
+    content: "";
+    position: absolute;
+    top: 5px;
+    left: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 1px solid #010273
+}
+
+.certificate .nav-tabs .nav-link.active:after {
+    background: #010273;
+    box-shadow: inset 0 0 0 2px #fff
+}
+
+.certificate .nav-tabs .nav-link.active {
+    background: #fff0;
+    border: none;
+    color: #010273;
+    font-weight: 600;
+    padding: 0;
+    padding-left: 30px;
+    margin-left: 10px
+}
+.internship-program{
+    padding-bottom: 30px;
+}
+.internship-program .row{
+    border-radius: 10px;
+    background: #1F0C44;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.10);
+    position: relative;
+    margin: 0 .5rem;
+}
+.internship-program .row .col-md-6{
+   padding: 0
+}
+.internship-program .row .col-md-6 img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+.internship-program .row .col-md-6:nth-child(2){
+    padding: 40px;
+    position: relative;
+}
+.internship-program .row .col-md-6:nth-child(2):after{
+    content: "";
+    width: 185px;
+    height: 118px;
+    background: url(../images/career-accelx-programs/paper-roll.webp);
+    position: absolute;
+    right: 40px;
+    bottom: 30px;
+}
+.internship-program .heading{
+    font-size: 26px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.internship-program p{
+    font-size: 18px;
+    color: #fff;
+    margin-bottom: 20px;
+}
+.internship-program .btn-group{
+     margin-top: 10px;       
+    position: relative;
+    z-index: 1;
+}
+.internship-program .blue-btn{
+    border: 0;
+    color: #1F0C44;
+    background: #FFC300;
+    min-height: 43px;
+}
+.internship-program .blue-btn:hover{
+    background: #1ECEFF;
+}
+.internship-program .icon{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   width: 100%;
+}
+.internship-program .icon span{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 75px;
+    height: 75px;
+    transform: rotate(-45deg);
+    flex-shrink: 0;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.15);
+    position: relative;
+    top: -37.5px;
+}
+.internship-program .icon span svg{
+    transform: rotate(45deg);
+}
+
+.academic-partner {
+    padding: 60px 0;
+    background: var(--bg-light);
+}
+
+.academic-partner .heading {
+    text-align: center;
+    margin-bottom: 40px
+}
+
+.academic-partner .part {
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 6px 14.7px 0 rgb(1 2 115 / .1);
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 20px;
+    padding: 0 30px;
+    min-height: 90px
+}
+
+.academic-partner .part .icon {
+    max-width: 70px
+}
+
+.academic-partner .part p {
+    color: var(--text-black);
+    font-family: var(--default-font);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 22px;
+    margin: 0
+}
+
+.faculties {
+    padding: 60px 0
+}
+
+.faculties .heading {
+    margin-bottom: 40px
+}
+
+.faculties .swiper {
+    margin-bottom: 0
+}
+
+.faculties .swiper .swiper-slide .item {
+    position: relative;
+    min-height: 402px;
+    margin: 10px;
+    padding: 30px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0 0 12px 0 rgb(12 112 106 / .25);
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center
+}
+
+.faculties .swiper .swiper-slide .item img:nth-child(1) {
+    width: 100px;
+    margin: 10px auto 0 auto;
+    border-radius: 50%;
+    overflow: hidden
+}
+
+.faculties .swiper .swiper-slide .item img:nth-last-child(1) {
+    text-align: center;
+    display: inline-block;
+    padding-top: 20px
+}
+
+.faculties .swiper .swiper-slide .item .content-box {
+    padding: 15px 15px 20px 15px
+}
+
+.faculties .swiper .swiper-slide .item .content-box .head {
+    font-size: 18px;
+    font-weight: 700;
+    color: var(--text-black);
+    font-family: var(--default-font)
+}
+
+.faculties .swiper .swiper-slide .item .content-box p {
+    font-size: 16px;
+    color: var(--text-black);
+    font-family: var(--default-font);
+    margin: 0
+}
+
+.faculties .swiper .swiper-slide .item .content-box p strong {
+    display: block
+}
+
+.faculties .swiper .next-pre {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 40px;
+    gap: 20px
+}
+
+.faculties .swiper .swiper-button-prev1,.faculties .swiper .swiper-button-next1 {
+    background: var(--bg-blue);
+    border-radius: 50%;
+    box-shadow: 0 1px 2px 1px #f1f0f0;
+    font-size: 0;
+    line-height: 0;
+    display: block;
+    width: 40px;
+    height: 40px;
+    position: relative
+}
+
+.faculties .swiper .swiper-button-next1 {
+    right: 0
+}
+
+.faculties .swiper .swiper-button-prev1:after {
+    content: '';
+    background: url(../images/career-accelx-programs/arrow-down-left.svg) center center no-repeat;
+    transform: rotate(0deg);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0
+}
+
+.faculties .swiper .swiper-button-next1::after {
+    content: '';
+    background: url(../images/career-accelx-programs/arrow-down-left.svg) center center no-repeat;
+    transform: rotate(-180deg);
+    width: 40px;
+    height: 40px;
+    position: absolute;
+    left: 0
+}
+
+.certificate{
+    padding: 60px 0;
+    background: #eaeaf2;
+}
+.certificate .heading{
+    margin-bottom: 20px;
+}
+.certificate .heading span span{
+    color: var(--default-color);
+}
+.certificate .heading span span:after{
+    display: none;
+}
+.certificate .tagline{
+    font-size: 18px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.certificate .image-part{
+    border-radius: 10px;
+    background: linear-gradient(180deg, #17769F 0%, #030405 100%);
+    padding: 20px;
+    text-align: center;
+}
+.certificate .image-part img{
+    width: 100%;
+}
+.certificate .image-part .certificate-tagline{
+    color: #FFF;
+    text-align: center;
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-bottom: 0;
+    margin-top: 20px;
+}
+.certificate .parts{
+    display: flex;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    padding: 20px 0;
+    gap: 20px;
+    justify-content: center;
+}
+.certificate .parts .part{
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #DDD;
+    background: #FFF;
+    box-shadow: 0px 4px 4px 0px rgba(221, 221, 221, 0.25);
+    min-height: 220px;
+    width: calc(50% - 20px);
+}
+.certificate .parts .part .icon{
+    min-width: 50px;
+    min-height: 50px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: #F6F4FB;
+    border-radius: 50%;
+    margin-bottom: 15px;
+}
+.certificate .parts .part .head{
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+.certificate .parts .part p{
+    color: #000;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-bottom: 0;
+}
+.certificate .btn-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+}
+.certificate .btn-group .blue-btn{
+    min-width: 200px;
+    font-size: 16px;
+    min-height: 30px;
+}
+.certificate .btn-group .blue-btn:hover{
+    background: var(--text-white) !important;
+    color: var(--bg-blue) !important;
+}
+
+.achievement{
+    background: radial-gradient(81.6% 39.35% at 50.28% 50%, #135094 0%, #053151 100%);
+}
+.achievement .heading{
+    color: #fff;
+    margin-bottom: 20px;
+    margin-top: 50px;
+}
+.achievement .tagline{
+    font-size: 16px;
+    color: #fff;
+    margin-bottom: 10px;
+    line-height: 24px;
+}
+
+.achievement ul{
+    list-style: none;
+    margin-bottom: 50px;
+}
+.achievement li{
+    color: #fff;
+    position: relative;
+    font-size: 15px;
+    margin-bottom: 2px;
+}
+.achievement li:before{
+    content: "";
+    height: 17px;
+    width: 17px;
+    position: absolute;
+    left: -37px;
+    top: 5px;
+    background: url(../images/career-accelx-programs/arrow-right.webp) no-repeat;
+}
+.achievement img{
+ object-fit: cover;
+ height: 100%;
+}
+
+.service{
+    padding: 60px 0;
+}
+.service .heading{
+    margin-bottom: 20px;
+    text-align: center;
+}
+.service .tagline{
+    font-size: 18px;
+    margin-bottom: 60px;
+    text-align: center;
+}
+.service .row{
+    border-radius: 40px;
+    border: 10px solid #FFF;
+    background: #135094;
+    box-shadow: 0px 4px 4px 2px rgba(31, 12, 68, 0.10);
+    margin: 0 0.5rem;
+    padding: 0 1rem;
+    justify-content: center;
+}
+.service .part{
+    text-align: center;
+    padding: 20px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    min-height: 364px;
+    transition: ease 0.4s;
+}
+.service .part:hover{
+    padding-top: 0;
+}
+.service .part:after{
+    content: "";
+    position: absolute;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    border-radius: 40px 40px 0px 0px;
+    background: transparent;
+    z-index: -1;
+    transition: ease 0.4s;
+}
+.service .part:hover:after{
+    height: 115%;
+    background: #F6C600;
+}
+.service .part .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 58px;
+    width: 58px;
+    border-radius: 10px;
+    border: 2px solid rgba(255, 255, 255, 0.50);
+    background: #0F3E73;
+    margin-bottom: 30px;
+    transition: ease 0.4s;
+}
+.service .part:hover .icon{
+    background: #DEAB08;
+}
+.service .part:hover .icon svg path[fill="#FFD600"]{
+    fill: #0F3E73;
+}
+.service .part .head{
+    color: #FFF;
+    font-size: 18px;
+    font-weight: 700;
+    margin-bottom: 10px;
+    line-height: 25px;
+}
+.service .part p{
+    color: #FFF;
+    margin-bottom: 30px;
+}
+.service .part:hover .head, .service .part:hover p{
+    color: #0F3E73;
+}
+
+/*--heading animation--*/
+.why-choose .heading span, .courses .heading span, .certificate .heading span{
+    position: relative;
+    display: inline-block;
+}
+.why-choose .heading span:after, .courses .heading span:after, .certificate .heading span:after{
+    content:"";
+    height: 3px;
+    width: 20px;
+    background-color: var(--bg-orange);
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+    border-radius: 5px;
+    -webkit-animation: left-right 6s linear infinite both;
+    animation: left-right 6s linear infinite both;
+}
+@keyframes left-right {
+    0%{
+        left: 0;
+    }
+    50%{
+        left: calc(100% - 20px);
+    }
+    100%{
+        left: 0;
+    }
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    .banner-top .form-sec{
+        width: 100%;
+    }
+    .banner-top .form-sec:after {
+        left: -30%;
+        width: 20%;
+    }
+}
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+    .banner-top .form-sec:after {
+        display: none;
+    }
+    .banner-top .form-sec{
+        width: 380px;
+        margin: auto;
+        margin-top: 30px;
+    }
+}
+@media only screen and (max-width: 768px) {
+    .certificate .parts{
+        padding: 0 20px;
+    }
+    .academic_parterner_row{
+    padding: 0 15px;
+}
+    .why-choose{
+        padding: 30px 0;
+    }
+    .why-choose .points{
+        width: 100%;
+        justify-content: center;
+    }
+    .internship-program .icon{
+        display: none;   
+    }
+}
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .heading{
+        font-size: 30px;
+    }
+    .banner-top .heading{
+        gap: 0;
+    }
+    .banner-top .heading img{
+        display: none;
+    }
+    .banner-top .points{
+        flex-wrap: wrap;
+    }
+    .banner-top .points .part{
+        min-width: calc(50% - 40px);
+    }
+    .banner-top .points .part:nth-child(2)::after{
+       display: none;
+    }
+    .banner-top .form-sec{
+        width: 100%;
+    }
+    .why-choose .points .part .head, .why-choose .points .part .content{
+        font-size: 16px;
+        padding: 10px;
+    }
+    .why-choose .points .part{
+        width: calc(50% - 20px);
+    }
+    .academic-partner .part {
+        padding: 10px;
+        min-height: 70px;
+    }
+    .academic-partner .part .icon{
+        max-width: 50px;
+        max-height: 50px;
+    }
+    .academic-partner .part p {
+        font-size: 9px;
+        line-height: 14px;
+    }
+    .certificate .parts .part {
+        width: 100%;
+    }
+}
+/*---other css--*/

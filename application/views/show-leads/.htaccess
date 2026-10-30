@@ -1,0 +1,4 @@
+AuthType Basic
+AuthUserFile "/home/theioqrb/.htpasswds/public_html/theiotacademy/application/views/show-leads/passwd"
+require valid-user
+AuthName "Protected public_html/theiotacademy/application/views/show-leads"

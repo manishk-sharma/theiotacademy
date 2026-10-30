@@ -1,0 +1,65 @@
+.DS_Store
+
+application/cache/*
+!application/cache/index.html
+
+application/logs/*
+!application/logs/index.html
+
+!application/*/.htaccess
+
+composer.lock
+
+user_guide_src/build/*
+user_guide_src/cilexer/build/*
+user_guide_src/cilexer/dist/*
+user_guide_src/cilexer/pycilexer.egg-info/*
+/vendor/
+
+# IDE Files
+#-------------------------
+/nbproject/
+.idea/*
+
+## Sublime Text cache files
+*.tmlanguage.cache
+*.tmPreferences.cache
+*.stTheme.cache
+*.sublime-workspace
+*.sublime-project
+/tests/tests/
+/tests/results/
+
+# Archives & Large Files (>100MB rejected by GitHub)
+*.zip
+*.tar
+*.gz
+*.sql
+
+# Error Logs & CodeIgniter Sessions
+error_log
+*.log
+application/log/*
+!application/log/index.html
+
+# Uploaded User Data & Sensitive Documents (Resumes, Offer Letters, Assignments)
+uploads/
+assets/offerletter/
+
+# Node & Frontend / Backend Dependencies & Builds
+node_modules/
+*/node_modules/
+client/node_modules/
+server/node_modules/
+backend/node_modules/
+dist/
+client/dist/
+client/public/assets/
+
+# Environment Variables & Secrets
+.env
+.env.local
+.env.*.local
+server/.env
+
+

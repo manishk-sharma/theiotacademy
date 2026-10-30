@@ -1,0 +1,176 @@
+    @font-face {
+            font-display: swap;
+            font-family: Inter, sans-serif;
+            font-weight: normal;
+            font-style: normal
+        }
+    body {
+      scroll-behavior: smooth;
+    }
+    header {
+      backdrop-filter: blur(10px);
+    }
+    .sbanner-mvp-class{
+    }
+    .eligibility-crd{
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      min-height: 215px;
+    }
+    .funding-domain-crd{
+      box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+      min-height: 215px;
+    }
+    .fnd-icon-span{
+      width: 50px;
+      height: 50px;
+      border-radius: 10px;
+      background-color: #cffafe;
+    }
+    .section-title {
+      font-weight: 700;
+      color: #0f172a;
+    }
+    .card-hover:hover {
+      box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+      border-color: #93c5fd !important;
+    }
+    .btn-blue {
+      background-color: #2563eb;
+      color: #fff;
+    }
+    .btn-blue:hover {
+      background-color: #1d4ed8;
+      color: #fff;
+    }
+    .domain-card {
+      border: 1px solid #e5e7eb;
+      border-radius: 12px;
+      padding: 25px;
+      transition: all 0.3s ease;
+      height: 100%;
+      min-height: 215px;
+      background: #fff;
+    }
+    .domain-card:hover {
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+      transform: translateY(-3px);
+    }
+    .icon-box {
+      width: 48px;
+      height: 48px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 10px;
+      background-color: #e6f4ff;
+      margin-bottom: 15px;
+    }
+    .icon-box i {
+      font-size: 1.5rem;
+      color: #007bff;
+    }
+    .domain-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .domain-text {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 5px;
+    }
+    .process-section {
+      text-align: center;
+      padding: 60px 0;
+    }
+    .process-section h2 {
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .process-section p {
+      color: #666;
+      margin-bottom: 50px;
+    }
+    .process-card {
+      background: #fff;
+      border-radius: 15px;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+      padding: 30px 20px;
+      height: 100%;
+      transition: all 0.3s ease;
+    }
+    .process-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 18px rgba(0,0,0,0.08);
+    }
+    .process-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, #007bff, #00b3ff);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      color: #fff;
+      font-size: 1.4rem;
+    }
+    .step-badge {
+      display: inline-block;
+      background-color: #f0f3ff;
+      color: #007bff;
+      font-size: 0.85rem;
+      padding: 4px 12px;
+      border-radius: 20px;
+      margin-bottom: 10px;
+    }
+    .process-title {
+      font-weight: 600;
+      font-size: 1.1rem;
+    }
+    .process-desc {
+      color: #555;
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+    .form-container {
+      max-width: 900px;
+      margin: auto;
+      background: #fff;
+      border-radius: 8px;
+      padding: 30px 40px;
+      box-shadow: 0 0 20px rgba(0,0,0,0.1);
+    }
+    .form-appli-h5 {
+      margin-top: 30px;
+      border-bottom: 2px solid #dee2e6;
+      padding-bottom: 5px;
+      color: #0d6efd;
+    }
+    .form-label {
+      font-weight: 500;
+    }
+    textarea {
+      resize: vertical;
+    }
+    .btn-primary {
+      width: 100%;
+    }
+    input:focus{
+      box-shadow: none !important;
+      border-color:none !important;
+    }
+.application-btn-cls,.application-btn-cls:hover{
+    color: #007bff;
+    font-size: 17px;
+    padding: 9px 31px;
+    background: #fff;
+}
+
+@media (max-width: 575.98px) {
+  .btn-banner-apply-and-elg{
+  font-size: 14px;
+}
+}
+
+
+    

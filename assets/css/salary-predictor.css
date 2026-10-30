@@ -1,0 +1,668 @@
+body {
+  font-family: "Merriweather Sans", sans-serif;
+}
+/* :root {
+  --primary-color: #4e73df;
+} */
+.fw600 {
+  font-weight: 600;
+}
+.fw700 {
+  font-weight: 700;
+}
+.blackColor {
+  color: black;
+}
+.spclGreenColor {
+  color: #57cc99;
+}
+.greenBorder {
+  border: 1px solid rgba(87, 204, 153, 0.46) !important;
+}
+
+/* 🎨 Custom styles for Salary Predictor (with Bootstrap 5) */
+.main-wrapper {
+  max-width: 1530px;
+  margin: 0 auto; /* center align */
+}
+
+/* Navbar */
+/* Custom Navbar Styles */
+.navbar {
+  background: linear-gradient(135deg, var(--primary-color), #6f42c1) !important;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.navbar-brand {
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+/* Custom Navbar Buttons */
+/* Base navbar button */
+.nav-btn {
+  border-radius: 8px;
+  font-weight: 600;
+  padding: 10px 14px;
+  box-shadow: none;
+  border: none !important;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Transparent button with white border (Login & Logout) */
+.nav-btn-border {
+  background-color: transparent;
+  border: 2px solid #fff;
+  color: #fff;
+}
+
+.nav-btn-border:hover {
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
+/* Solid white button (Register) */
+.nav-btn-solid {
+  background-color: #fff;
+  color: var(--primary-color);
+}
+
+.nav-btn-solid:hover {
+  background-color: #f1f1f1;
+}
+
+/* =======================
+   Hero Section
+   ======================= */
+.sec1 {
+  /* background-image: url("./assets/bannerBackground.png"); */
+  background-image: url("https://www.theiotacademy.co/assets/images/salary-predictor/bannerBackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-block: 100px;
+  margin-bottom: 10px;
+}
+
+.bannerContent {
+  height: 300px;
+  width: 800px;
+  margin-left: 220px;
+  border-top-left-radius: 30px;
+  background-color: #074568;
+  position: relative;
+}
+
+.headings {
+  color: #fff;
+  padding-top: 30px;
+  margin-left: 130px;
+  width: 470px;
+}
+.headings > h1 {
+  margin-bottom: 0;
+}
+
+.bannerContent2 {
+  height: 100px;
+  width: 600px;
+  left: -10%;
+  bottom: -15%;
+  border-top-right-radius: 30px;
+  border-bottom-left-radius: 30px;
+  background-color: #57cc99;
+  position: absolute;
+  padding: 1rem;
+  color: #fff;
+}
+.bannerContent2 p {
+  color: white;
+}
+
+.banner-upper-coin,
+.banner-middle-coin,
+.banner-lower-coin,
+.banner-businessWomen {
+  position: absolute;
+}
+
+.banner-upper-coin {
+  width: 150px;
+  top: 0;
+  right: 0;
+}
+.banner-middle-coin {
+  width: 150px;
+  top: 62%;
+  left: -10.5%;
+}
+.banner-lower-coin {
+  width: 150px;
+  bottom: -20%;
+  right: -30%;
+}
+.banner-businessWomen {
+  width: 310px;
+  bottom: -33%;
+  right: -16%;
+}
+
+.twIcon {
+  background-color: #e9fef2;
+  border-radius: 50%;
+  padding: 10px;
+}
+.twIcon > img {
+  width: 80%;
+}
+.sptIcon {
+  background-color: #123054;
+  border-radius: 50%;
+  padding: 10px;
+}
+.sptIcon > img {
+  width: 80%;
+}
+
+/* =======================
+   Form Section
+   ======================= */
+.formBackground {
+  /* background-image: url("./assets//formBackground.png"); */
+  background-image: url("https://www.theiotacademy.co/assets/images/salary-predictor/formBackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+}
+
+/* Green card */
+.salaryFormCard {
+  border-radius: 16px;
+  position: relative;
+}
+
+/* OR badge */
+.formOr {
+  position: absolute;
+  left: 50%;
+  bottom: -25px;
+  transform: translateX(-50%);
+  width: 55px;
+  height: 55px;
+  background: #123054;
+  color: #fff;
+  border-radius: 20%;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+  border: 1px solid #327874;
+  z-index: 2;
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Upload + Submit row spacing */
+.upload-row {
+  margin-top: 3.5rem;
+}
+
+.bg-input {
+  background-color: #47ad8a !important;
+}
+.text-placeholder,
+.text-placeholder::placeholder {
+  color: #daefe8 !important;
+  opacity: 1;
+}
+.selectInput,
+.formInput {
+  color: #daefe8;
+  border-color: rgba(255, 255, 255, 0.6);
+}
+.selectInput:focus,
+.formInput:focus {
+  box-shadow: none;
+  border-color: none;
+  color: white;
+  background-color: #47ad8a;
+}
+.formInputFields {
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.5) !important;
+  height: 60px;
+}
+.formTxtArea {
+  color: #daefe8;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.6) !important;
+}
+.pdfInput > label {
+  margin-right: 70px;
+}
+
+.pdfInput > p {
+  margin-right: 166px;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 12px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 20px; /* 166.667% */
+}
+
+.error-msg {
+  position: absolute;
+  bottom: -17px;
+  left: 15px;
+  font-size: 12px;
+  color: #ff0000; /* red error */
+}
+
+.selectInput {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 10l5 5 5-5z'/></svg>") !important;
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 35px 70px !important;
+  padding-right: 2rem;
+  cursor: pointer;
+}
+
+/* When dropdown is open → arrow ↑ */
+.selectInput.open {
+  background-image: url("data:image/svg+xml;utf8,<svg fill='white' height='20' viewBox='0 0 24 24' width='20' xmlns='http://www.w3.org/2000/svg'><path d='M7 14l5-5 5 5z'/></svg>") !important;
+}
+
+/* Prediction Result Popup CSS */
+/* Prediction Result Modal Styles */
+
+.modal-content {
+  border-radius: 15px;
+  border: none;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
+}
+
+.modal-header {
+  border-radius: 15px 15px 0 0;
+  border-bottom: 1px solid #e3e6f0;
+}
+
+.modal-body {
+  padding: 1.5rem;
+}
+
+.modal-footer {
+  border-top: 1px solid #e3e6f0;
+}
+
+/* Cards inside Modal */
+.modal-body .card {
+  border-radius: 15px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 1rem;
+}
+
+.modal-body .card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Predicted Salary Card */
+#predictedSalary {
+  font-size: 2.5rem; /* or adjust as needed */
+  font-weight: 700;
+  color: #1cc88a; /* Success color */
+}
+
+#predictedSalary.success-pulse {
+  animation: successPulse 0.6s ease-in-out;
+}
+
+@keyframes successPulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+/* Badges inside modal */
+.badge {
+  border-radius: 20px;
+  padding: 8px 16px;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+/* Reasoning & Data Sources cards */
+.reasoning-section,
+.data-sources-section {
+  margin-top: 1rem;
+}
+
+.reasoning-section .card,
+.data-sources-section .card {
+  background-color: #f8f9fc;
+  border-radius: 10px;
+  padding: 1rem;
+}
+
+/* Recommended Courses */
+#recommendedCourses .card {
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+}
+
+#recommendedCourses .card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* =======================
+   Utilities
+   ======================= */
+/* .custom-card-shadow {
+  box-shadow: 0 20px 60px -12px rgba(50,50,93,0.2),
+              0 18px 36px -18px rgba(0,0,0,0.3);
+              border-radius: 10px !important;
+} */
+
+.toolWorkCard > p {
+  color: #646464;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 156.25% */
+  text-transform: capitalize;
+}
+
+.toolWorkCard {
+  border-radius: 10px;
+  border: 2px solid #dcdcdc;
+  background: #fff;
+  box-shadow: 0 12px 42px -4px rgba(24, 39, 75, 0.1);
+}
+
+.sallaryPredictTool {
+  border-radius: 10px;
+  border: 2px solid #57cc99;
+  background-color: #074568 !important;
+  box-shadow: 0 12px 42px -4px rgba(24, 39, 75, 0.1);
+}
+.sallaryPredictTool > p {
+  color: #fff;
+  font-size: 15px;
+  line-height: 25px; /* 156.25% */
+  text-transform: capitalize;
+}
+
+.bg-green-custom {
+  background-color: #57cc99;
+}
+.bg-dark-custom {
+  background-color: #074568;
+}
+
+/* Spinner loader while form submitting */
+/* 🔹 Fullscreen Overlay */
+#loaderOverlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5); /* semi-transparent dark */
+  display: none; /* hidden by default */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  z-index: 9999; /* stays on top */
+}
+
+/* 🔹 Spinner */
+.loader {
+  width: 200px;
+  aspect-ratio: 1;
+  display: grid;
+  border: 10px solid #0000; /* fully transparent for the non-colored side */
+  border-radius: 50%;
+  border-color: #074568 #0000; /* outer ring: orange */
+  animation: l16 1s infinite linear;
+}
+
+.loader::before,
+.loader::after {
+  content: "";
+  grid-area: 1/1;
+  margin: 30px;
+  border: inherit;
+  border-radius: 50%;
+}
+
+.loader::before {
+  border-color: #57cc99 #0000; /* middle ring: pink */
+  animation: inherit;
+  animation-duration: 0.5s;
+  animation-direction: reverse;
+}
+
+.loader::after {
+  margin: 10px;
+  border-color: #a7bc8a #0000; /* inner ring: purple */
+}
+/* 🔹 Optional Text */
+.loader-text {
+  margin-top: 15px;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+/* Spinner Animation */
+@keyframes l16 {
+  100% {
+    transform: rotate(1turn);
+  }
+}
+
+/* Current CTC Currency symbol CSS  */
+
+/* =======================
+   📱 Responsive Styles
+   ======================= */
+
+/* Tablets & small laptops */
+@media (max-width: 1024px) {
+  .sec1 {
+    padding-block: 60px;
+  }
+  .bannerContent {
+    width: 420px;
+    height: 200px;
+    margin-inline: auto;
+  }
+  .headings {
+    width: 300px;
+    margin-left: 30px;
+  }
+  .headings h1 {
+    font-size: 20px;
+    margin-bottom: 0;
+  }
+  .headings p {
+    font-size: 14px;
+    margin-block: 10px;
+  }
+  .bannerContent2 {
+    width: 380px;
+    height: 86px;
+  }
+  .banner-upper-coin {
+    width: 80px;
+    top: 0;
+    right: 0;
+  }
+  .banner-middle-coin {
+    width: 80px;
+    top: 60%;
+    left: -13%;
+  }
+  .banner-lower-coin {
+    width: 80px;
+    bottom: 12%;
+    right: -36%;
+  }
+  .banner-businessWomen {
+    width: 150px;
+    bottom: 0%;
+    right: -20%;
+  }
+
+  .bannerContent2 > p {
+    line-height: 15px;
+    font-size: 14px;
+  }
+
+  .pdfInput > label {
+    margin-right: 10px;
+  }
+
+  .pdfInput > p {
+    margin-right: 100px;
+  }
+  .pdfInput {
+    padding-inline: 0 !important;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 500px) {
+  .sec1 {
+    padding-top: 30px;
+    padding-bottom: 100px;
+    background-size: cover;
+  }
+
+  .sec2 {
+    padding-top: 20px !important;
+    padding-bottom: 48px !important;
+  }
+  .sec2 > div > h2 {
+    margin-bottom: 20px !important;
+  }
+  .sec3 {
+    padding-top: 10px !important;
+    padding-bottom: 48px !important;
+  }
+  .sec3 > div > h2 {
+    margin-bottom: 20px !important;
+  }
+  .bannerContent {
+    width: 220px;
+    height: 120px;
+    margin-inline: auto;
+  }
+  .headings {
+    width: 180px;
+    padding-top: 15px;
+    margin-left: 20px;
+  }
+  .headings h1 {
+    font-size: 14px;
+    line-height: 18px;
+  }
+  .headings p {
+    font-size: 12px;
+    line-height: 15px;
+    margin-block: 5px;
+  }
+  .bannerContent2 {
+    width: 284px;
+    height: 100px;
+    bottom: -70%;
+    left: -15%;
+    line-height: 14px;
+  }
+  .bannerContent2 p {
+    font-size: 12px;
+  }
+  .banner-businessWomen {
+    width: 70px;
+    right: -18%;
+    bottom: 2px;
+  }
+  .banner-upper-coin {
+    width: 50px;
+    top: 0;
+    right: 0;
+  }
+  .banner-middle-coin {
+    width: 50px;
+    top: 80%;
+    left: -16%;
+  }
+  .banner-lower-coin {
+    display: none;
+  }
+
+  .formBackground {
+    background-size: cover;
+  }
+  .formOr {
+    width: 35px;
+    height: 35px;
+  }
+  .formOr > h4 {
+    font-size: 16px;
+  }
+
+  .pdfInput > label {
+    margin-right: 0px;
+  }
+
+  .pdfInput > p {
+    margin-right: 0px;
+  }
+
+  /* Upload row stacking on mobile */
+  .upload-row {
+    margin-top: 3rem;
+  }
+
+  .sallaryFormBtn {
+    height: 60px;
+  }
+
+  .lastSectionBackground {
+    background-size: cover;
+  }
+}
+.dropdown-item {
+  cursor: pointer;
+}
+
+.lastSectionBackground {
+  /* background-image: url("./assets/lastSectionBackground.png"); */
+  background-image: url("https://www.theiotacademy.co/assets/images/salary-predictor/lastSectionBackground.png");
+  background-position: center;
+  background-repeat: no-repeat;
+  padding-block: 100px;
+}
+.lastSectionDiv > p {
+  color: #000;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 400;
+  line-height: 25px; /* 156.25% */
+}

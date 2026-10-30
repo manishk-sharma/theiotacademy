@@ -1,0 +1,124 @@
+# # Enable the Rewrite Engine (mod_rewrite module)
+# RewriteEngine On
+
+
+
+# # Remove trailing slash from any URL except the root URL
+# RewriteCond %{REQUEST_URI} ^(.+)/$
+# RewriteCond %{REQUEST_URI} !^/$
+# RewriteRule ^ %1 [R=301,L]
+
+# # (Existing rules for CodeIgniter)
+
+# # Force HTTPS and WWW redirection
+# RewriteCond %{HTTPS} off [OR]
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^ https://www.theiotacademy.co%{REQUEST_URI} [R=301,L]
+
+# # Handle clean URLs without index.php
+# RewriteCond %{REQUEST_FILENAME} !-f
+# RewriteCond %{REQUEST_FILENAME} !-d
+# RewriteRule ^(.*)$ index.php/$1 [L]
+
+# # Pass HTTP Authorization headers (for API authentication)
+# RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# # Set the base directory
+# RewriteBase /
+
+# # Ensure 'index.php' is never rewritten
+# RewriteRule ^index\.php$ - [L]
+
+# #Redirect
+
+
+# RewriteRule /advanced-certification-program-in-full-stack-java-development-by-eict-academy-iit-guwahati https://www.theiotacademy.co/java-certification-course-in-noida
+# RewriteRule /machine-learning-with-python-training-in-noida https://www.theiotacademy.co/advanced-certification-in-data-science-machine-learning-and-ai-by-eict-iitg
+# RewriteRule /online-certification-in-iot-cloud-computing-and-edge-ai-by-eict-academy-iit-guwahati https://www.theiotacademy.co/iot-training
+# RewriteRule /our-courses https://www.theiotacademy.co/all-courses
+# RewriteRule /advanced-certification-in-embedded-systems-and-iot-by-eict-iitg https://www.theiotacademy.co/embedded-systems-training
+# RewriteRule /java-web-development-training https://www.theiotacademy.co/java-certification-course-in-noida
+# RewriteRule /data-science-with-python-training https://www.theiotacademy.co/python-training
+# RewriteRule /machine-learning-with-python-training https://www.theiotacademy.co/python-training
+# # RewriteRule /applied-data-science-with-python-certification-program https://www.theiotacademy.co/python-training
+
+# RewriteRule /certification-in-data-science-and-machine-learning-with-python-in-middle-east https://www.theiotacademy.co/advanced-certification-in-data-science-machine-learning-and-ai-by-eict-iitg
+# RewriteRule /online-certification-in-basic-embedded-system-and-iot-by-eict-academy-iit-guwahati https://www.theiotacademy.co/embedded-systems-training
+# RewriteRule /summer-training https://www.theiotacademy.co/summer-training-program-in-noida
+
+
+# #permission
+# <FilesMatch "\.ipynb$">
+#   Require all granted
+# </FilesMatch>
+
+# <IfModule mod_security.c>
+#   SecFilterEngine Off
+#   SecFilterScanPOST Off
+# </IfModule>
+
+
+# Enable the Rewrite Engine (mod_rewrite module)
+RewriteEngine On
+
+# Remove trailing slash from any URL except the root URL
+RewriteCond %{REQUEST_URI} ^(.+)/$
+RewriteCond %{REQUEST_URI} !^/$
+RewriteCond %{REQUEST_URI} !^/theiotacademy/?$
+RewriteRule ^ %1 [R=301,L]
+
+# Force HTTPS and WWW redirection (Disabled for local localhost development)
+# RewriteCond %{HTTPS} off [OR]
+# RewriteCond %{HTTP_HOST} !^www\. [NC]
+# RewriteRule ^ https://www.theiotacademy.co%{REQUEST_URI} [R=301,L]
+
+# ------------------ REDIRECTS (ALWAYS BEFORE CI RULE) ------------------
+
+RewriteRule ^iot-training/?$ https://www.theiotacademy.co/embedded-systems-training-with-ai [R=301,L]
+
+RewriteRule ^advanced-certification-program-in-full-stack-java-development-by-eict-academy-iit-guwahati/?$ https://www.theiotacademy.co/java-certification-course-in-noida [R=301,L]
+
+RewriteRule ^machine-learning-with-python-training-in-noida/?$ https://www.theiotacademy.co/advanced-certification-in-data-science-machine-learning-and-ai-by-eict-iitg [R=301,L]
+
+RewriteRule ^online-certification-in-iot-cloud-computing-and-edge-ai-by-eict-academy-iit-guwahati/?$ https://www.theiotacademy.co/iot-training [R=301,L]
+
+RewriteRule ^our-courses/?$ https://www.theiotacademy.co/all-courses [R=301,L]
+
+RewriteRule ^advanced-certification-in-embedded-systems-and-iot-by-eict-iitg/?$ https://www.theiotacademy.co/embedded-systems-training [R=301,L]
+
+RewriteRule ^java-web-development-training/?$ https://www.theiotacademy.co/java-certification-course-in-noida [R=301,L]
+
+RewriteRule ^data-science-with-python-training/?$ https://www.theiotacademy.co/python-training [R=301,L]
+
+RewriteRule ^machine-learning-with-python-training/?$ https://www.theiotacademy.co/python-training [R=301,L]
+
+RewriteRule ^certification-in-data-science-and-machine-learning-with-python-in-middle-east/?$ https://www.theiotacademy.co/advanced-certification-in-data-science-machine-learning-and-ai-by-eict-iitg [R=301,L]
+
+RewriteRule ^online-certification-in-basic-embedded-system-and-iot-by-eict-academy-iit-guwahati/?$ https://www.theiotacademy.co/embedded-systems-training [R=301,L]
+
+RewriteRule ^summer-training/?$ https://www.theiotacademy.co/summer-training-program-in-noida [R=301,L]
+
+# ------------------ CODEIGNITER RULES ------------------
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+# Pass HTTP Authorization headers (for API authentication)
+RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+
+# Set the base directory
+RewriteBase /theiotacademy/
+
+# Ensure 'index.php' is never rewritten
+RewriteRule ^index\.php$ - [L]
+
+# permission
+<FilesMatch "\.ipynb$">
+    Require all granted
+</FilesMatch>
+
+<IfModule mod_security.c>
+    SecFilterEngine Off
+    SecFilterScanPOST Off
+</IfModule>

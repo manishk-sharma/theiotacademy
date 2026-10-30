@@ -1,0 +1,157 @@
+.ml-main-dv{
+            /*background: #c4d2d1;*/
+            background: url('https://www.theiotacademy.co/assets/images/banners/ml-iot-bg-registration-form-image.jpg');
+            background-size: cover;
+       }
+       .overegshow{
+         display: block;
+       }
+       .overeghide{
+          display: none;
+       }
+       .loaderofform{
+          position:absolute;
+          top:0px;
+          right:0px;
+          width:100%;
+          height:100%;
+          background-color:#666;
+          background-image:url('https://www.theiotacademy.co/assets/images/master-course-image/form-ajax-loader.gif');
+          background-repeat:no-repeat;
+          background-position:center;
+          z-index:10000000;
+          opacity: 0.4;
+          filter: alpha(opacity=40); /* For IE8 and earlier */
+        }
+        
+       .ajaxloaderimage{
+          z-index: 1000000000;
+          text-align: center;
+          position: fixed;
+          top: 20%;
+       }
+      .logo-image-dv{
+        padding: 5px 20px 8px 41px;
+        border-bottom: 3px solid #196ae5;
+        background: #f6f6e9;
+        box-shadow: 0 0 6px #2d2626;
+      }
+      
+      .logo-image-size{
+         height: 67px;
+      }
+      .ml-appli-form-heading{
+          margin: 35px 0 0 0;
+          padding: 30px 0 0 0;
+          text-align: center;
+          font-size: 25px;
+          color: #196ae5;
+          font-weight: 700;
+      }
+
+      .ml-application-start-dv{
+          box-shadow: 0 0 13px #8699c4;
+      }
+      
+      .app-form-start-dv{
+          width: 100%;
+          margin-top: 40px;
+          overflow-y: scroll;
+          height: 600px;
+          padding: 0px 30px 30px 30px;
+      }
+      .statement-start-dv{
+         padding: 7px 0 0 0;
+      }
+      .statement-start-dv p{
+         font-size: 13px;
+      }
+      .write-statement-para{
+         font-size: 13px;
+      }
+      .application-btn-dv{
+         padding: 15px 0 100px 0;
+      }
+      .form-control{
+         border-radius: 10px !important;
+      }
+      .dispshow{
+          display: block;
+      }
+      .disphide{
+          display: none;
+      }
+
+     .application-detail-dv{
+       margin: 119px 0 0 0;
+     }
+
+    .fact-card {
+        display: block;
+        margin: 30px 0 30px 20px;
+        width: 80%;
+        padding: 30px;
+        border-radius: 4px;
+        background-color: #ffffff;
+        box-shadow: 0 3px 5px 0 rgb(171 171 171 / 58%);
+     }
+     .fact-card_new_of_gen{
+      display: block;
+      margin: 140px 0 30px 20px;
+      width: 80%;
+      border-radius: 4px;
+      background-color: #ffffff;
+      box-shadow: 0 3px 5px 0 rgb(171 171 171 / 58%);
+     }
+     .fact-card_new_of_gen_app_cnt{
+      padding: 15px 30px 30px 30px;
+     }
+     .title-of-course{
+          font-size: 20px;
+          font-weight: 700;
+          line-height: normal;
+          color: #196ae5;
+          margin-bottom: 14px;
+     }
+
+     @media only screen and (max-width: 600px) {
+
+        .application-detail-dv{
+            margin: 10px 0 0 0;
+     }
+     .ml-appli-form-heading{
+          margin: 0;
+          padding: 30px 0 0 0;
+          text-align: center;
+          font-size: 25px;
+          color: #196ae5;
+          font-weight: 700;
+      }
+     .fact-card {
+        display: block;
+        margin: 0 0 0 3%;
+        width: 94%;
+        padding: 16px;
+        border-radius: 4px;
+        background-color: #ffffff;
+        box-shadow: 0 3px 5px 0 rgb(171 171 171 / 58%);
+     }
+     .fact-card_new_of_gen{
+      display: block;
+      margin: 0 0 0 3%;
+      width: 94%;
+      border-radius: 4px;
+      background-color: #ffffff;
+      box-shadow: 0 3px 5px 0 rgb(171 171 171 / 58%);
+     }
+     .fact-card_new_of_gen_app_cnt{
+      padding: 15px 10px 10px 10px;
+     }
+}
+
+.seats_of_booking_cls{
+   color: red;
+}
+.logo_image_of_eict_iitgg{
+
+}

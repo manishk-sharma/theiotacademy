@@ -1,0 +1,120 @@
+<?php include 'assets/template/header.php';?>
+
+<h1 class="title">Batch Assigned</h1>
+
+<div style="display: inline-block; float: right;margin-bottom: 10px;">
+    <button type='button' class='btn-danger' onclick="delRecord();">Unassign</button>
+        <a href="<?php echo base_url(); ?>Testcnt">
+            <button type='button' class='btn-primary'>New Assign</button>
+        </a>
+</div>
+
+
+<table class="table table-hover table-condensed">
+   <thead>
+       <tr>
+        <th>Batch Name</th>
+        <th>Test Name</th>
+        <th style="width:150px; text-align: center">Action <input style="float: right;"  type='checkbox' id="checkAll" onchange="checkAll(this);"></th>
+      </tr>
+    </thead>
+     <tbody id="assignment-rows"></tbody>
+</table>
+
+<?php include 'assets/template/footer.php';?>
+
+<script>
+$(document).ready(function(){
+    navActive();
+    getbatchAssignList(); 
+    init_form();
+
+});
+
+function getbatchAssignList(){
+    var appendme;
+    $("#errMsg").html("");
+    $("#assignment-rows").html("");
+   
+    $.ajax({
+        url: "<?php echo base_url();?>Testcnt/batchAssignList",
+        type: "post",
+        async: false,
+        success: function(feedback){
+           
+            try{
+                var arr = JSON.parse(feedback);
+                for(var i in arr){  
+                  appendme="<tr test_id='" + arr[i]['test_id'] + "' batch_id='" + arr[i]['batch_id'] + "'>";
+                  appendme+="<td>"+arr[i]['batch_name']+"</td>";
+                  appendme+="<td>"+arr[i]['test_name']+"</td>";
+                  appendme+="<td style='text-align: center;'>";
+                  appendme+="&nbsp;<button type='button' class='btn btn-primary disabled'>Assigned</button>";
+                  appendme+="&nbsp;<input type='checkbox' class='check' style='float: right;'></td>";
+                  appendme+="</tr>";
+                  $("#assignment-rows").append(appendme);
+                }
+                
+                if(arr.length===0){
+                    $("#errMsg").html("No data found");
+                }
+            }catch(err){
+            alert("No data Found");
+            }
+        }      
+    });
+}
+
+
+function delRecord(){
+   
+   var count=0;
+   $("#assignment-rows").find(".check").each(function(){
+       if($(this).prop("checked")){
+            count++;
+        }
+    });
+   
+    if(count===0){
+        $("#errMsg").html("Select Atleast one to be Unassigned");
+        return false;
+    }
+    
+    if(confirm("Do you want to unassign?")){
+        var par,test_id,batch_id;
+        
+        $("#assignment-rows").find(".check").each(function(){
+            if($(this).prop("checked")){
+                  par=$(this).closest("tr");
+                  test_id=par.attr("test_id");
+                  batch_id=par.attr("batch_id");
+                  
+                  $.ajax({
+                        url: "<?php echo base_url();?>Testcnt/batchAssignDelete?test_id="+test_id+"&batch_id="+batch_id,
+                        type: "post",
+                        async: false,
+                        success: function(feedback){
+                        
+                          if(feedback.indexOf("true")>=0){
+                               par.remove();
+                            }
+                            else{
+                                $("#errMsg").html("Can't UnAssign");
+                            }
+                          }
+                    });
+            }
+        });
+    }
+}
+
+
+function checkAll(el){
+    $("input.check").prop("checked",$(el).prop("checked"));
+}
+
+function navActive(){
+    $("#assignment-nav").addClass("activenav");
+}
+    
+</script>

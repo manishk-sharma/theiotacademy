@@ -1,0 +1,161 @@
+/*event Admin pannel addevent,updateevent*/
+.cust_color{
+      background: rgb(246,133,27);
+  }
+.schdcardstyle{ 
+      border:2px solid grey ;
+      padding:10px;
+      border-radius:25px;
+}
+.schdcardstyle-danger{ 
+      border:2px solid #ab0000 ;
+      padding:10px;
+      border-radius:25px;
+}
+.cross-btn{
+      border-radius:25px!important;
+}
+.switch {
+      position: relative;
+      display: inline-block; 
+      width: 90px;
+      height: 34px;
+}
+.date-card-header{
+      border: none;
+      color: #ffff;
+      padding:10px 0px;
+      background: #fff;
+      overflow: hidden;
+      font-weight: bolder;
+      border-radius: 5px;
+      border-color: #f4511e;
+      font-family: "Roboto", sans-serif;
+      /*background-color: rgb(244, 81, 30,0.8)!important;*/
+  }
+
+.header-grad{
+  background-color: #00bfb2;
+  background-image: linear-gradient(315deg, #00bfb2 0%, #028090 74%);
+}
+.header-danger{
+  background-color: #f64b3c;
+  opacity: 1;
+}
+.card-inner{
+  border-width: 1px;
+border-style: solid;
+border-image: 
+  linear-gradient(to left, #4facfe 0%, #00f2fe 100%)1 100%;
+}
+.card-inner-danger{
+border:1px solid #f64b3c;
+}
+
+.switch input {display:none;}
+ 
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ca2222;
+  -webkit-transition: .4s;
+  transition: .4s;
+   border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #2ab934;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(55px);
+}
+
+/*------ ADDED CSS ---------*/
+.slider:after
+{
+ content:'NO';
+ color: white;
+ display: block;
+ position: absolute;
+ transform: translate(-50%,-50%);
+ top: 50%;
+ left: 50%;
+ font-size: 10px;
+ font-family: Verdana, sans-serif;
+}
+
+input:checked + .slider:after
+{  
+  content:'YES';
+}
+/*--------- END --------*/
+/*-----------Multi Part Form Styling-----*/
+/* Mark input boxes that gets an error on validation: */
+input.invalid {
+  background-color: #ffdddd;
+}
+textarea.invalid {
+  background-color: #ffdddd;
+}
+
+/* Hide all steps by default: */
+.tab {
+  display: none;
+}
+
+
+button:hover {
+  opacity: 0.8;
+}
+
+#prevBtn {
+  background-color:;
+}
+#nextBtn {
+  background-color: #fe9801;
+}
+/* Make circles that indicate the steps of the form: */
+.step {
+  height: 15px;
+  width: 15px;
+  margin: 0 2px;
+  background-color: #bbbbbb;
+  border: none;  
+  border-radius: 50%;
+  display: inline-block;
+  opacity: 0.5;
+}
+
+.step.active {
+  background-color: #fe9801;
+  opacity: 1;
+}
+
+/* Mark the steps that are finished and valid: */
+.step.finish {
+  background-color: #01d28e;
+}

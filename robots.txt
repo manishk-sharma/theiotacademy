@@ -1,0 +1,23 @@
+#  FULL access (All Spiders)
+
+Sitemap: https://www.theiotacademy.co/sitemap.xml
+Sitemap: https://www.theiotacademy.co/blog/post-sitemap.xml
+Sitemap: https://www.theiotacademy.co/blog/post-sitemap2.xml
+
+User-agent: *
+
+Allow: /
+
+Disallow: /blog/2019/
+Disallow: /blog/2020/
+Disallow: /blog/2021/
+Disallow: /blog/2022/
+Disallow: /blog/2023/
+Disallow: /blog/2024/
+Disallow: /blog/2025/
+Disallow: /search/
+Disallow: /blog/page/
+Disallow: /blog/wp-json/
+Disallow: /blog/wp-content/
+Disallow: /blog/?cat=-1/
+Disallow: /blog/?cat=*

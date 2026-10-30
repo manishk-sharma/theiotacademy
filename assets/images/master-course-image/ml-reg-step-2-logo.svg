@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>professional-details-off-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.3">
+        <g id="professional-details-off-icon" fill="#000000" fill-rule="nonzero">
+            <path d="M17.5,19 C17.5,19.5522847 17.1082492,20 16.625,20 L11.375,20 C10.8917508,20 10.5,19.5522847 10.5,19 L10.5,16 L0,16 L0,25 C0.035037617,26.6399816 1.19001612,27.959957 2.625,28 L25.375,28 C26.8099839,27.959957 27.9649624,26.6399816 28,25 L28,16 L17.5,16 L17.5,19 Z M25.375,6 L21,6 L21,3 C20.9649624,1.36001842 19.8099839,0.0400429908 18.375,-3.55271368e-15 L9.625,-3.55271368e-15 C8.19001612,0.0400429908 7.03503762,1.36001842 7,3 L7,6 L2.625,6 C1.19001612,6.04004299 0.035037617,7.36001842 0,9 L0,14 L28,14 L28,9 C27.9649624,7.36001842 26.8099839,6.04004299 25.375,6 L25.375,6 Z M17.5,6 L10.5,6 L10.5,4 L17.5,4 L17.5,6 Z" id="briefcase"></path>
+        </g>
+    </g>
+</svg>

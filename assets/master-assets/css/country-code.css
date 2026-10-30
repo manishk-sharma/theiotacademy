@@ -1,0 +1,203 @@
+.select-box {
+  position: relative;
+}
+
+.select-box input {
+  width: 100%;
+  padding: 8px 14px;
+  border-radius: 6px;
+  border: 1px solid #8e8e8e;
+}
+
+input[type='number'] {
+  border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.select-box input:focus {
+  border: 0.1rem solid var(--primary);
+}
+
+.selected-option {
+  overflow: hidden;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.selected-option div {
+  position: relative;
+  width: 110px;
+  padding: 7px 2rem 7px 0.2rem;
+  border: 1px solid #8e8e8e;
+  margin-right: 8px;
+  border-radius: 5px;
+  text-align: center;
+  cursor: pointer;
+}
+
+.selected-option div::after {
+  position: absolute;
+  content: '';
+  right: 0.8rem;
+  top: 45%;
+  transform: translateY(-50%) rotate(45deg);
+
+  width: 0.6rem;
+  height: 0.6rem;
+  border-right: 0.12rem solid #000;
+  border-bottom: 0.12rem solid #000;
+  transition: 0.2s;
+}
+
+.selected-option div.active::after {
+  transform: translateY(-50%) rotate(225deg);
+}
+
+.select-box .options {
+  position: absolute;
+  top: 4rem;
+  width: 100%;
+  background-color: #fff;
+  border-radius: 0.5rem;
+  z-index: 3;
+  display: none;
+}
+
+.select-box .options.active {
+  display: block;
+}
+
+.select-box .options::before {
+  position: absolute;
+  content: '';
+  left: 1rem;
+  top: -1.2rem;
+
+  width: 0;
+  height: 0;
+  border: 0.6rem solid transparent;
+  border-bottom-color: #eee;
+}
+
+input.search-box {
+  background-color: #eee;
+  color: #000;
+  border-radius: 0.5rem 0.5rem 0 0;
+  padding: 10px 1rem;
+}
+
+.select-box ol {
+  list-style: none;
+  max-height: 23rem;
+  overflow: overlay;
+}
+
+.select-box ol::-webkit-scrollbar {
+  width: 0.6rem;
+}
+
+.select-box ol::-webkit-scrollbar-thumb {
+  width: 0.4rem;
+  height: 3rem;
+  background-color: #ccc;
+  border-radius: 0.4rem;
+}
+
+.select-box ol li {
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+  cursor: pointer;
+}
+
+.select-box ol li.hide {
+  display: none;
+}
+
+.select-box ol li:not(:last-child) {
+  border-bottom: 0.1rem solid #eee;
+}
+
+.select-box ol li:hover {
+  background-color: lightcyan;
+}
+
+.select-box ol li .country-name {
+  margin-left: 0.4rem;
+}
+
+/* 23 aug */
+#flagItemCode1,
+#flagItemCode2,
+#flagItemCode3,
+#flagItemCode4 {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  padding: 6px;
+  display: none;
+  position: absolute;
+  background-color: white;
+  padding: 0 25px;
+  z-index: 99;
+  width: 240px;
+  max-height: 300px;
+  overflow-y: auto;
+  box-shadow: 0px 4px 5px gray;
+  border-radius: 5px;
+  padding-top: 10px;
+}
+
+.country-selector {
+  position: relative;
+}
+
+#selector3 .newSelectedOptions .iconAndflagPrnt .iconify {
+  display: none;
+}
+
+#selector3 .newSelectedOptions {
+  border: none;
+}
+
+.newSelectedOptions {
+  padding: 8px;
+  border: 1px solid gray;
+  text-align: center;
+  margin: 0 auto;
+  border-radius: 6px;
+  position: relative;
+}
+
+.addcntryselect {
+  position: absolute;
+  z-index: 9;
+  top: 21px;
+  width: 57px;
+  height: 57px;
+  border-radius: 50% !important;
+  background: #d1cbcb;
+  left: 1px;
+  display: flex;
+  align-items: center;
+}
+
+.flagListItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0;
+  cursor: pointer;
+}
+
+.inputDehundrde {
+  width: 100%;
+}
+
+.iconAndflagPrnt {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+}
+/* 23 aug */

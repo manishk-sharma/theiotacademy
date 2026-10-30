@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="1920" height="1080" viewBox="0 0 1920 1080">
+  <defs>
+    <style>
+      .cls-1 {
+        stroke: #fff;
+        stroke-width: 8px;
+        fill-rule: evenodd;
+        fill: url(#linear-gradient);
+      }
+
+      .cls-2 {
+        opacity: 0.91;
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-3 {
+        fill: #9dc9f9;
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="2001" y1="120.329" x2="-9" y2="1100.671" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#98c0f8"/>
+      <stop offset="1" stop-color="#b7fafe"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="880.281" y1="33.203" x2="-230.281" y2="648.797" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#99c1f8"/>
+      <stop offset="1" stop-color="#bef9fd"/>
+    </linearGradient>
+  </defs>
+  <g id="Artboard_1" data-name="Artboard 1">
+    <g id="Background">
+      <path class="cls-1" d="M1-3H1991a10,10,0,0,1,10,10V1214a10,10,0,0,1-10,10H1a10,10,0,0,1-10-10V7A10,10,0,0,1,1-3Z"/>
+      <circle class="cls-2" cx="325" cy="341" r="555.281"/>
+      <circle class="cls-3" cx="1715.405" cy="1057.794" r="708.815"/>
+    </g>
+  </g>
+</svg>

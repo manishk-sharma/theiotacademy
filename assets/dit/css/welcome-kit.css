@@ -1,0 +1,589 @@
+:root {
+    --heading-font: "Inter", sans-serif;
+    --default-font: "Nunito", sans-serif;
+
+    --bg-white: #ffffff;
+    --bg-light: #F5F5FF;
+    --bg-blue: #010273;
+    --bg-orange: #FF8C02;
+    --bg-yellow: #FF9D00;
+    --bg-banner-gradient: linear-gradient(-90deg, #D9F9FF, #EAECFF);
+    --bg-blue-gradient: linear-gradient(-90deg, #02C4EB, #010273);
+    --bg-angular-gradient: conic-gradient(from 90deg, #010273, #BFBFE7);
+    --bg-accent: #30C5D2;
+    --bg-gray: #E8E8E8;
+    --bg-part2: #E8EEFF; 
+    --bg-green: #008E17; 
+
+    --default-color: #010273;
+    --accent-color: #30C5D2;
+    --text-white: #fff;
+    --text-black: #000;
+    --text-green: #008E17;
+    --text-orange: #FF8C02;
+    --text-yellow: #FF9D00;
+
+    scroll-behavior: smooth;
+}
+.sec-padding{
+    padding: 0 7%;
+}
+.heading{
+    text-align: left;
+    color: var(--default-color);
+    font-family: var(--heading-font);
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 120%;
+    margin-bottom: 20px;
+}
+.heading span{
+    color: var(--accent-color);
+}
+.blue-btn {
+    color: var(--text-white);
+    text-align: center;
+    font-family: var(--heading-font);
+    font-size: 15px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    min-height: 45px;
+    min-width: 205px;
+    text-decoration: none;
+    padding: 10px 25px;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    display: inline-flex!important;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    border-radius: 10px;
+    text-transform: capitalize;
+    -webkit-transition: all 0.3s ease-out 0s;
+    -moz-transition: all 0.3s ease-out 0s;
+    -ms-transition: all 0.3s ease-out 0s;
+    -o-transition: all 0.3s ease-out 0s;
+    transition: all 0.3s ease-out 0s;
+    border: 1px solid #010273;
+    color: var(--text-white);
+    background: var(--bg-blue)
+}
+
+.blue-btn:hover {
+    background: var(--bg-blue)
+}
+
+/*--banner--*/
+.banner{
+    padding: 60px 0;
+    min-height: 604px;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 0.71) 0%, rgba(0, 119, 183, 0.30) 100%), url(../images/welcome-kit/banner-image.webp) center center no-repeat;
+    background-size: cover;
+    width: 100%;
+    height: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.banner .eict-logo{
+    border-radius: 5px;
+    border: 2px solid rgba(255, 255, 255, 0.50);
+    background: rgba(0, 0, 0, 0.50);
+    padding: 17px 29px;
+}
+.banner .heading{
+    color: #FFF;
+    text-align: center;
+    text-shadow: 9px 12px 10px rgba(0, 0, 0, 0.20);
+    font-family: Inter;
+    font-size: 60px;
+    font-style: italic;
+    font-weight: 900;
+    line-height: 135%; /* 81px */
+    text-transform: uppercase;
+    margin-top: 10px;
+    margin-bottom: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+.banner .heading span{
+    display: block;
+    color: #FFF;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%; /* 40.5px */
+}
+
+.journey{
+    padding: 60px 0;
+    background: linear-gradient(180deg, #010273 9.67%, #0077B7 83.96%);
+    margin-top: 80px;
+}
+.journey .heading{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%; /* 54px */
+    margin-bottom: 20px;
+}
+.journey .heading span{
+    color: #FF9D00;
+}
+.journey .tagline{
+    color: #fff;
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%; /* 27px */
+    margin-bottom: 20px;
+}
+.journey .head-part{
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+.journey .head-part .head{
+    color: #FFF;
+    text-align: justify;
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%; /* 24.3px */
+    margin-bottom: 0;
+}
+.journey p{
+    color: #fff;
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 135%;
+    margin-bottom: 10px;
+}
+.journey .text-justify{
+    text-align: justify;
+}
+
+.success{
+    padding: 60px 0;
+}
+.success .center-part{
+    border-radius: 30px;
+    background: linear-gradient(180deg, #010273 9.67%, #0077B7 83.96%);
+    padding: 0 40px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 50px;
+}
+.success .heading{
+    color: #FFF;
+    margin: 60px 0;
+}
+.success .points{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 30px;
+}
+.success .points .point{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 23px;
+    padding: 30px;
+    border-radius: 0px 0px 20px 20px;
+    background: rgba(255, 255, 255, 0.20);
+    min-width: 175px;
+    min-height: 193px;
+    position: relative;
+    z-index: 1;
+    transition: ease 0.5s;
+    overflow: hidden;
+    cursor: pointer;
+}
+.success .points .point:after{
+    content: "";
+    position: absolute;
+    left: 0;
+    top: -100%;
+    height: 100%;
+    width: 100%;
+    border-radius: 0px 0px 20px 20px;
+    background: #30C5D2;
+    z-index: -1;
+    transition: ease 0.5s;
+}
+.success .points .point:hover:after{
+    top: 0;
+}
+.success .points .point .icon{
+    width: 70px;
+    height: 70px;
+    min-width: 70px;
+    min-height: 70px;
+    border-radius: 10px;
+    background: #FFF;
+    box-shadow: 0px 6px 15px 0px rgba(1, 2, 115, 0.15);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.success .points .point .head{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 25px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%; /* 33.75px */
+    margin-bottom: 0;
+}
+
+.kit{
+    padding: 60px 0;
+    background: linear-gradient(180deg, rgba(245, 245, 255, 0.20) 0%, rgba(48, 197, 210, 0.20) 100%);
+}
+.kit .heading{
+    text-align: center;
+    margin-bottom: 20px;
+}
+.kit .tagline{
+    color: #000;
+    text-align: center;
+    font-family: Nunito;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 500;
+    line-height: normal;
+    margin-bottom: 40px;
+}
+.kit .row{
+    row-gap: 25px;
+}
+.kit .part{
+    text-align: center;
+}
+.kit .part img{
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px 0px rgba(160, 196, 255, 0.37);
+}
+
+.orderkit{
+    background: var(--bg-light);
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+.orderkit .left-side{
+    background: url(../images/welcome-kit/order-kit-bg.webp) no-repeat left top, linear-gradient(45deg, #010273, #010273);
+    background-size: cover;
+    box-shadow: 0px 4px 15px 0px #F5F5FF;
+    width: 40%;
+    text-align: center;
+    padding-bottom: 60px;
+}
+.orderkit .left-side .heading{
+    color: #FFF;
+    text-align: center;
+    text-shadow: 0px 4px 10px #30C5D2;
+    font-family: Inter;
+    font-size: 50px;
+    font-style: italic;
+    font-weight: 900;
+    line-height: normal;
+    padding-top: 30px;
+    margin-bottom: 20px;
+}
+.orderkit .left-side .tagline{
+    color: #FFF;
+    text-align: center;
+    font-family: Inter;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 30px;
+}
+.orderkit .right-side{
+    width: 60%;
+    padding: 60px;
+}
+.orderkit .right-side .heading{
+    color: #010273;
+    text-align: center;
+    font-family: Inter;
+    font-size: 30px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+}
+.orderkit .right-side .form-control, .orderkit .right-side .form-select{
+    border-radius: 5px;
+    border: 1px solid rgba(1, 2, 115, 0.20);
+    box-shadow: 2px 2px 3.7px 0px rgba(1, 2, 115, 0.18);
+    background-color: #FFF;
+    min-height: 51px;
+    outline: none;
+    margin-bottom: 20px;
+}
+.orderkit .right-side .form-control::placeholder, .orderkit .right-side .form-select{
+    color: #ADABAB;
+    font-family: Nunito;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: capitalize;
+}
+.orderkit .right-side .form-select option:checked, .orderkit .right-side .form-select option:focus, .orderkit .right-side .form-select option[selected]{
+    color: #000;
+}
+.orderkit .right-side .btn-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.program{
+    padding: 60px 0;
+}
+.program .points{
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: nowrap;
+}
+.program .points .point{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    min-width: 190px;
+    max-width: 190px;
+}
+.program .points .point .icon{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 120px;
+    background: #FFF;
+    box-shadow:0px 7px 10.7px rgba(0, 0, 0, 0.11);
+    border-radius: 50%;
+    position: relative;
+    margin-bottom: 85px;
+}
+.program .points .point:nth-child(even) .icon{
+    margin-bottom: 165px;
+}
+.program .points .point .icon:after{
+    content: "";
+    height: 85px;
+    border: 3px dashed #30C5D2;
+    position: absolute;
+    top: 120px;
+    left: calc(50% - 3px);
+}
+.program .points .point:nth-child(even) .icon:after{
+    border-color: #010273;
+    height: 165px;
+}
+.program .points .point p{
+    color: #000;
+    text-align: center;
+    font-family: Inter;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: 135%; /* 21.6px */
+    margin-bottom: 0;
+    position: relative;
+    padding-top: 20px;
+}
+.program .points .point p:after{
+    content: "";
+    width: 28px;
+    height: 28px;
+    background: #30C5D2;
+    border-radius: 50%;
+    position: absolute;
+    left: calc(50% - 14px);
+    top: -28px;
+}
+.program .btn-group{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 40px;
+}
+
+.enroll{
+    padding: 60px 0;
+}
+.enroll .center-part{
+    padding: 60px;
+    padding-bottom: 0;
+    background: url(../images/welcome-kit/enroll-bg.webp) no-repeat center right;
+    background-size: cover;
+    border-radius: 30px;
+}
+.enroll .center-part .row{
+    align-items: flex-end;
+}
+.enroll .center-part .image-part{
+    position: relative;
+}
+.enroll .center-part .image-part img{
+    position: absolute;
+    bottom: 0;
+}
+.enroll .center-part .heading{
+    color: #FFF;
+    font-family: Inter;
+    font-size: 40px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-bottom: 20px;
+}
+.enroll .center-part .tagline{
+    color: #FFF;
+    font-family: Nunito;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 600;
+    line-height: normal;
+    text-transform: capitalize;
+    margin-bottom: 30px;
+    width: 70%;
+}
+.enroll .center-part .btn-group{
+    margin-bottom: 60px;
+}
+.enroll .center-part .blue-btn{
+    border-radius: 10px;
+    background: #30C5D2;
+    border-color: #30C5D2;
+}
+
+/* Extra large devices (large laptops and desktops, 1200px and down) */
+@media only screen and (max-width: 1200px) {
+    .success .center-part{
+        flex-wrap: wrap;
+        text-align: center;
+        gap: 0;
+    }
+    .success .points {
+        flex-wrap: wrap;
+        padding-bottom: 60px;
+        justify-content: center;
+        width: 100%;
+    }
+    .success .points .point{
+        border-radius: 20px;
+    }
+    .enroll .center-part .tagline{
+        width: 100%;
+    }
+}
+/* Large devices (laptops/desktops, 992px and down) */
+@media only screen and (max-width: 992px) {
+    .journey{
+        text-align: center;
+    }
+    .journey .text-justify{
+        text-align: center;
+    }
+    .journey .head-part{
+        flex-direction: column;
+    }
+    .success .points{
+        gap: 10px;
+    }
+    .success .points .point {
+        gap: 10px;
+        padding: 0px;
+        min-width: 150px;
+        min-height: 150px;
+    }
+    .program .points{
+        overflow: auto;
+        white-space: nowrap;
+        display: flex;
+        width: 100%;
+        flex-wrap: nowrap
+    }
+    .program .points::-webkit-scrollbar{
+        height: 0;
+    }
+    .program .points .point{
+        min-width: 45%;
+    }
+}
+@media only screen and (max-width: 768px) {
+   .banner .heading{
+        font-size: 40px;
+   }
+   .success .points .point {
+        min-width: calc(50% - 10px);
+   }
+   .orderkit{
+    flex-direction: column;
+   }
+   .orderkit .left-side, .orderkit .right-side{
+        width: 100%;
+        padding: 40px;
+   }
+   .enroll{
+    text-align: center;
+   }
+   .enroll .center-part .image-part{
+    text-align: center;
+    border-bottom: 2px solid #fff;
+    margin-bottom: 20px;
+   }
+   .enroll .center-part .image-part img{
+    position: relative;
+   }
+}
+/* Small devices (portrait tablets and large phones, 600px and down) */
+@media only screen and (max-width: 600px) {
+    .banner .heading{
+        font-size: 30px;
+    }
+    .banner .heading span{
+        font-size: 25px;
+    }
+    .journey .row{
+        row-gap: 30px;
+    }
+    .success .points .point .head{
+        font-size: 20px;
+    }
+    .orderkit .left-side .heading{
+        font-size: 30px;
+    }
+    .program .points .point{
+        min-width: 75%;
+    }
+}
+/*---other css--*/

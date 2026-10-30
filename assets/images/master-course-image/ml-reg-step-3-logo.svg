@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="28px" height="28px" viewBox="0 0 28 28" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 55.1 (78136) - https://sketchapp.com -->
+    <title>demo-access-off-icon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" opacity="0.3">
+        <g id="demo-access-off-icon" fill="#000000" fill-rule="nonzero">
+            <path d="M13.986,-1.57832505e-05 C6.25584066,0.0077301632 -0.00514904469,6.27916252 -6.79325375e-08,14.009324 C0.00515526381,21.7394855 6.27449923,28.0025664 14.004662,27.9999842 C21.7348248,27.9974181 27.9999999,21.7301632 27.9999999,14 C28.0018631,10.2839715 26.525543,6.71981126 23.8966009,4.09349549 C21.2676588,1.46717972 17.7020247,-0.00557729887 13.986,-1.57832505e-05 Z M19.922,22.4 L14,18.83 L8.078,22.4 L9.646,15.666 L4.424,11.144 L11.3073333,10.5606667 L14,4.2 L16.6833333,10.542 L23.5666667,11.1253333 L18.3446667,15.6473333 L19.922,22.4 Z" id="ic_stars_24px"></path>
+        </g>
+    </g>
+</svg>

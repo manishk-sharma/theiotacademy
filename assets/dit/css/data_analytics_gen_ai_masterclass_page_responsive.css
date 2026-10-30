@@ -1,0 +1,576 @@
+/* =========================================
+   Responsive â€” full page fix
+========================================= */
+body {
+  overflow-x: clip;
+}
+
+/* =========================================
+   Laptop  â‰¤ 1200px
+========================================= */
+@media (max-width: 1200px) {
+  .hero-title {
+    font-size: clamp(32px, 5vw, 56px);
+  }
+
+  .countdown-bar {
+    gap: 16px;
+    padding: 16px 18px;
+  }
+
+  .body-grid {
+    grid-template-columns: 1fr 340px;
+    gap: 30px;
+  }
+}
+
+/* =========================================
+   Tablet  â‰¤ 992px
+========================================= */
+@media (max-width: 992px) {
+  /* Navbar */
+  .forbes {
+    display: none;
+  }
+
+  .forbes-divider {
+    display: none;
+  }
+
+  /* Hero */
+  .hero-title {
+    font-size: clamp(28px, 5vw, 48px);
+  }
+
+  /* Countdown */
+  .countdown-bar {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+
+  .countdown-left {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .countdown-text {
+    text-align: center;
+  }
+
+  /* Body grid â€” single column */
+  .body-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .body-side {
+    order: -1;
+  }
+
+  .body-main {
+    order: 1;
+  }
+
+  .register-card {
+    position: static;
+    margin-bottom: 40px;
+  }
+
+  /* For-banner cards */
+  .for-grid {
+    gap: 14px;
+  }
+
+  .for-card {
+    flex: 1 1 160px;
+  }
+
+  /* Why stats */
+  .why-stats-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  /* Final CTA */
+  .final-cta-compare {
+    flex-direction: column;
+  }
+
+  .cta-compare-arrow {
+    transform: rotate(90deg);
+    align-self: center;
+  }
+
+  /* Footer */
+  .footer {
+    padding: 32px 0;
+  }
+
+  .footer-heading {
+    font-size: 22px;
+  }
+
+  .socials {
+    gap: 14px;
+  }
+
+  .socials a {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}
+
+/* =========================================
+   Mobile  â‰¤ 700px
+========================================= */
+@media (max-width: 700px) {
+  /* --- Navbar --- */
+  .header-inner {
+    padding: 10px 16px;
+    gap: 12px;
+  }
+
+  .logo img {
+    height: 44px !important;
+  }
+
+  .login-btn {
+    padding: 8px 14px;
+    font-size: 13px;
+  }
+
+  /* --- Hero --- */
+  .hero {
+    padding: 32px 16px 40px;
+    min-height: auto;
+  }
+
+  .hero-title {
+    font-size: clamp(24px, 7vw, 36px);
+    word-break: break-word;
+  }
+
+  .badge {
+    font-size: 12px;
+    padding: 8px 14px;
+    margin-bottom: 20px;
+  }
+
+  .separator {
+    gap: 10px;
+    margin-top: 18px;
+  }
+
+  .separator-line {
+    max-width: 120px;
+  }
+
+  .hero-sub {
+    font-size: 14px;
+    margin-top: 18px;
+  }
+
+  .hero-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-top: 24px;
+  }
+
+  .stat-pill {
+    width: 100%;
+    max-width: 280px;
+    padding: 8px 16px 8px 8px;
+  }
+
+  .hero-urgency {
+    font-size: 14px;
+    margin-top: 18px;
+  }
+
+  /* --- Countdown --- */
+  .countdown-bar {
+    padding: 16px;
+    border-radius: 16px;
+    gap: 14px;
+    margin-top: 18px;
+  }
+
+  .countdown-icon {
+    width: 40px;
+    height: 40px;
+  }
+
+  .countdown-text h3 {
+    font-size: 14px;
+  }
+
+  .countdown-text p {
+    font-size: 12px;
+  }
+
+  .countdown-timer {
+    gap: 6px;
+  }
+
+  .time-unit {
+    min-width: 56px;
+    padding: 8px 6px;
+  }
+
+  .time-unit .value {
+    font-size: 20px;
+  }
+
+  .time-unit .label {
+    font-size: 9px;
+  }
+
+  .colon {
+    font-size: 16px;
+  }
+
+  .cta-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 14px 16px;
+  }
+
+  /* --- For Banner --- */
+  .for-banner {
+    padding: 40px 0;
+  }
+
+  .for-title {
+    font-size: 22px;
+  }
+
+  .for-sub {
+    font-size: 14px;
+  }
+
+  .for-grid {
+    gap: 12px;
+    padding: 0 4px;
+  }
+
+  .for-card {
+    flex: 1 1 calc(50% - 12px);
+    max-width: calc(50% - 12px);
+    padding: 20px 14px;
+  }
+
+  .for-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 17px;
+  }
+
+  .for-label {
+    font-size: 13px;
+  }
+
+  .for-desc {
+    font-size: 12px;
+  }
+
+  .for-cta {
+    margin-top: 28px;
+  }
+
+  .btn-yellow {
+    width: 100%;
+    justify-content: center;
+    font-size: 14px;
+    padding: 13px 20px;
+  }
+
+  /* --- Body grid --- */
+  .body-grid {
+    padding: 0 12px;
+    margin-top: 24px;
+  }
+
+  .block {
+    margin-bottom: 28px;
+  }
+
+  .block-title {
+    font-size: 17px;
+  }
+
+  .block p {
+    font-size: 14px;
+  }
+
+  .check-list li {
+    font-size: 13px;
+  }
+
+  /* --- Speaker --- */
+  .speaker {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .speaker-photo {
+    width: 130px;
+    height: 130px;
+  }
+
+  /* --- Learn scroll --- */
+  .learn-scroll-track {
+    max-height: 340px;
+    padding-right: 4px;
+  }
+
+  .learn-num {
+    font-size: 17px;
+    min-width: 30px;
+  }
+
+  .learn-item strong {
+    font-size: 14px;
+  }
+
+  .learn-item p {
+    font-size: 13px;
+  }
+
+  .learn-stack {
+    font-size: 12px !important;
+    word-break: break-word;
+  }
+
+  /* --- Why stats --- */
+  .why-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  .why-value {
+    font-size: 22px;
+  }
+
+  .why-label {
+    font-size: 12px;
+  }
+
+  /* --- Modern Analytics Section --- */
+  .modern-analytics-section {
+    padding: 28px 20px;
+  }
+
+  .section-subtitle {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .modern-cards-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .modern-card {
+    padding: 24px 20px;
+  }
+
+  .modern-card-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 24px;
+  }
+
+  .modern-card-title {
+    font-size: 16px;
+  }
+
+  .modern-card-desc {
+    font-size: 13px;
+  }
+
+  .modern-footer-text {
+    font-size: 15px;
+  }
+
+  .modern-cta .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* --- Bonus cards --- */
+  .bonus-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .bonus-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* --- Value stack --- */
+  .value-stack {
+    padding: 18px 16px;
+  }
+
+  /* --- Final CTA --- */
+  .final-cta-block {
+    padding: 28px 20px;
+  }
+
+  .final-cta-title {
+    font-size: 20px;
+  }
+
+  .final-cta-description {
+    font-size: 15px;
+    margin-bottom: 24px;
+  }
+
+  .final-cta-btn {
+    width: 100%;
+    font-size: 14px;
+    padding: 14px 20px;
+    white-space: normal;
+  }
+
+  .final-cta-badges {
+    gap: 8px;
+  }
+
+  .cta-badge {
+    font-size: 12px;
+    padding: 6px 12px;
+  }
+
+  .cta-badge-separator {
+    display: none;
+  }
+
+  /* --- Register card --- */
+  .register-card {
+    padding: 20px 16px;
+  }
+
+  /* --- FAQ --- */
+  .faq {
+    margin-bottom: 40px;
+  }
+
+  .acc-head {
+    font-size: 14px;
+    padding: 14px 14px;
+    gap: 10px;
+  }
+
+  .acc-item.open .acc-body {
+    max-height: 300px;
+  }
+
+  /* --- Footer --- */
+  .footer {
+    padding: 28px 0;
+  }
+
+  .footer-heading {
+    font-size: 20px;
+  }
+
+  .socials {
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+
+  .socials a {
+    width: 38px;
+    height: 38px;
+    font-size: 15px;
+  }
+
+  .back-to-top {
+    right: 12px;
+    bottom: 14px;
+    width: 38px;
+    height: 38px;
+  }
+
+  /* --- Popup --- */
+  .popup-content {
+    padding: 28px 20px 20px;
+  }
+
+  .popup-title {
+    font-size: 16px;
+  }
+
+  .popup-subtitle {
+    font-size: 12px;
+  }
+}
+
+/* =========================================
+   Small mobile  â‰¤ 420px
+========================================= */
+@media (max-width: 420px) {
+  .hero-title {
+    font-size: 22px;
+  }
+
+  .countdown-timer {
+    gap: 4px;
+  }
+
+  .time-unit {
+    min-width: 46px;
+    padding: 7px 5px;
+  }
+
+  .time-unit .value {
+    font-size: 17px;
+  }
+
+  .for-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .why-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .why-stat {
+    padding: 16px 10px;
+  }
+
+  .why-value {
+    font-size: 19px;
+  }
+
+  .final-cta-title {
+    font-size: 18px;
+  }
+
+  .final-cta-description {
+    font-size: 14px;
+  }
+
+  .cta-badge {
+    font-size: 11px;
+    padding: 5px 10px;
+  }
+
+  .learn-scroll-track {
+    max-height: 300px;
+  }
+
+  .acc-head {
+    font-size: 13px;
+  }
+}

@@ -1,0 +1,57 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+
+```
+# Force HTTPS
+RewriteCond %{HTTPS} off
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect www to non-www
+RewriteCond %{HTTP_HOST} ^www\.prephq\.theiotacademy\.co$ [NC]
+RewriteRule ^ https://prephq.theiotacademy.co%{REQUEST_URI} [L,R=301]
+
+# --------------------------------------------------
+# Selected 301 Redirects
+# --------------------------------------------------
+
+# Blog -> Blogs
+RewriteRule ^blog/learn-embedded-programming/?$ /blogs/learn-embedded-programming/ [R=301,L]
+RewriteRule ^blog/how-to-become-an-ai-engineer/?$ /blogs/how-to-become-an-ai-engineer/ [R=301,L]
+RewriteRule ^blog/prompt-engineer/?$ /blogs/prompt-engineer/ [R=301,L]
+RewriteRule ^blog/high-level-and-low-level-design/?$ /blogs/high-level-and-low-level-design/ [R=301,L]
+RewriteRule ^blog/how-to-learn-edge-computing/?$ /blogs/how-to-learn-edge-computing/ [R=301,L]
+RewriteRule ^blog/embedded-hardware-engineer/?$ /blogs/embedded-hardware-engineer/ [R=301,L]
+
+# Tutorials -> Tutorials
+RewriteRule ^tutorial/embedded-systems-tutorial/?$ /tutorials/embedded-systems-tutorial/ [R=301,L]
+RewriteRule ^tutorial/augmented-reality-tutorial/?$ /tutorials/augmented-reality-tutorial/ [R=301,L]
+
+# Project -> Projects
+RewriteRule ^project/embedded-systems-projects-for-ece/?$ /projects/embedded-systems-projects-for-ece/ [R=301,L]
+RewriteRule ^project/sql-projects-for-data-analysis/?$ /projects/sql-projects-for-data-analysis/ [R=301,L]
+RewriteRule ^project/ai-project-ideas/?$ /projects/ai-project-ideas/ [R=301,L]
+RewriteRule ^project/blockchain-projects/?$ /projects/blockchain-projects/ [R=301,L]
+
+# Interview -> Interviews
+RewriteRule ^interview/machine-learning-interview-questions/?$ /interviews/machine-learning-interview-questions/ [R=301,L]
+RewriteRule ^interview/database-management-system-interview-questions/?$ /interviews/database-management-system-interview-questions/ [R=301,L]
+RewriteRule ^interview/bigquery-interview-questions/?$ /interviews/bigquery-interview-questions/ [R=301,L]
+RewriteRule ^interview/embedded-hardware-engineer-interview-questions/?$ /interviews/embedded-hardware-engineer-interview-questions/ [R=301,L]
+RewriteRule ^interview/i2c-protocol-interview-questions/?$ /interviews/i2c-protocol-interview-questions/ [R=301,L]
+RewriteRule ^interview/blockchain-interview-questions/?$ /interviews/blockchain-interview-questions/ [R=301,L]
+
+# --------------------------------------------------
+# Exclude API folder
+# --------------------------------------------------
+RewriteCond %{REQUEST_URI} ^/api/ [NC]
+RewriteRule .* - [L]
+
+# --------------------------------------------------
+# SPA Fallback
+# --------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ index.html [L]
+```
+
+</IfModule>

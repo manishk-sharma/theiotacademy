@@ -1,0 +1,62 @@
+  .tcolstyle{
+    padding:5px !important;
+  }
+  .buttoncol{
+    width:30px;
+  }
+  .idcol{
+    width:60px;
+  }
+  .cbtablecol{
+    width:100px;
+  }
+  .edatecol{
+    width:130px;
+    font-size:10px !important;
+  }
+  .tablestyle{
+    font-size:12px;
+    color:black;
+    width:100%;
+    font-family:Calibri;
+  }
+  .cardstyle{
+    background-color:#f4f4f4;
+  }
+  .btn-link{
+    padding:0;
+    text-decoration:none !important;
+    color:black;
+    text-align:left;
+  }
+
+  .cardbodystyle{
+    font-size:16px;
+  }
+
+  .tableuserimage{
+    height:100px;
+    width:80px;
+  }
+
+  @media only screen and (max-width: 768px) {
+    .tablestyle{
+      font-size:12px;
+    }
+    .idcol{
+      width:50px;
+    }
+    .edatecol{
+      width:100px;
+    }
+    .cardbodystyle{
+      font-size:12px;
+    }
+    .cbtablecol{
+      width:80px;
+    }
+    .tableuserimage{
+      height:120px;
+      width:100px;
+    }
+  }

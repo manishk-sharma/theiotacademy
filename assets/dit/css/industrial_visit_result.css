@@ -1,0 +1,139 @@
+        .top-strip{
+            display: none !important;
+        }
+        .industry_student_card img {
+            width: 130px;
+            height: 130px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+        .top_banner_img_hd_fgd{
+        
+        min-height:180px;
+}
+        .industry_student_card {
+            transition: transform 0.3s ease-in-out;
+        }
+        .industry_student_card:hover {
+            transform: scale(1.05);
+        }
+        .industrial_visit_heading{
+            font-size: 37px;
+            text-align: center;
+            margin-top: 0;
+            margin-bottom: 8px;
+            line-height: normal;
+        }
+        .industry_content2{
+            font-size: 30px;
+            text-align: center;
+            margin-top:50px;
+        }
+        .industry_content2_desc{
+            color: #000;
+            font-size: 20px;
+            text-align: center;
+            line-height: normal;
+            margin-bottom: 65px;
+        }
+        .free_internship_desc{
+            color:#000;
+            text-align: center;
+            font-size: 18px;
+        }
+       .empowering_heading_cls{
+             text-align: center;
+             font-size: 30px;
+             line-height: normal;
+
+         }
+         .industry_content {
+            margin-top: 30px;
+        }
+        .industry_iot_card {
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            height:100% !important;
+        }
+        .para_of_list_iot_crd{
+           color:#000;
+           line-height:normal;
+        }
+         .visit_points_dv {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+ .visit_points_dv .visitprt1 {
+    width: calc(19% - 10px);
+    border-radius: 10px;
+    border:1px solid #a29292;
+    padding:6px;
+    text-align: center;
+    min-width:180px;
+}
+
+.visit_points_dv .visitprt1 img {
+    height: 200px;
+    width: auto;
+    border-radius: 4%;
+}
+  
+.fst_div_of_inds_rsult{
+
+  background:#F5F5FF;
+ padding:50px 0;
+}     
+
+ @media screen and (max-width: 768px) {
+
+   .visit_points_dv .visitprt1 {
+    width: calc(19% - 10px);
+    border-radius: 10px;
+    border:none;
+    padding:6px;
+    text-align: center;
+    min-width:180px;
+}
+
+.visit_points_dv .visitprt1 img {
+    height: auto;
+    width: auto;
+    border-radius: 4%;
+}
+
+            
+ .visit_points_dv {
+      gap: 0.4rem;
+}
+
+      .industrial_visit_heading{
+            font-size: 25px;
+            text-align: center;
+            margin-top: 0px;
+            line-height: normal;
+        }
+        .industry_content2{
+            font-size: 20px;
+            text-align: center;
+        }
+        .industry_content2_desc{
+            color: #000;
+            font-size: 18px;
+            text-align: center;
+            line-height: normal;
+            margin-bottom: 65px;
+        }
+        .free_internship_desc{
+            color:#000;
+            text-align: center;
+            font-size: 18px;
+        }
+.empowering_heading_cls {
+    text-align: center;
+    font-size: 20px;
+    line-height: normal;
+}
+            }

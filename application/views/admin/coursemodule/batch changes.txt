@@ -1,0 +1,28 @@
+in course =>
+1)course:description ::Done
+
+
+
+in batch=>
+
+1)course dropdown according to user login
+
+for admin all the courses
+for trainers the  only the course created by them.  
+
+2) Trainer dropdown
+for admin all the trainers
+For trainers their name in a non editable dropdown (Fixed)	
+
+3) Duration 
+remove (online )	
+calculated sum of duration of all modules
+wile submitting the duration can't be less than the sum calculated  above
+
+
+4)remove following fields
+
+Hours Per Day (For Professionals):
+No. of Days (For Professionals):
+Duration Offline For Students:
+Duration Offline For Professionals:
