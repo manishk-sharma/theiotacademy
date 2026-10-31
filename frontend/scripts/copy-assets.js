@@ -6,11 +6,11 @@ const dest = path.resolve(process.cwd(), 'public/assets');
 
 if (fs.existsSync(src)) {
   if (!fs.existsSync(dest)) {
-    console.log('[Build] Copying static assets from root to client/public/assets for cloud deployment...');
+    console.log('[Build] Copying static assets from root to frontend/public/assets for cloud deployment...');
     fs.cpSync(src, dest, { recursive: true });
     console.log('[Build] Assets copied successfully.');
   } else {
-    console.log('[Build] Static assets junction/directory present in client/public/assets.');
+    console.log('[Build] Static assets junction/directory present in frontend/public/assets.');
   }
 } else {
   console.warn('[Build] Warning: root ../assets directory not found.');

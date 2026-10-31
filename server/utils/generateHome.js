@@ -127,5 +127,5 @@ const Home = () => {
 export default Home;
 `;
 
-fs.writeFileSync('c:/xampp/htdocs/theiotacademy/client/src/pages/Home.jsx', homeComponent, 'utf-8');
-console.log('Successfully written client/src/pages/Home.jsx with DOM parser!');
+fs.writeFileSync('c:/xampp/htdocs/theiotacademy/frontend/src/pages/Home.jsx', homeComponent, 'utf-8');
+console.log('Successfully written frontend/src/pages/Home.jsx with DOM parser!');

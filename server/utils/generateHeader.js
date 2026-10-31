@@ -26,5 +26,5 @@ const Header = () => {
 export default Header;
 `;
 
-fs.writeFileSync('c:/xampp/htdocs/theiotacademy/client/src/components/includes/Header.jsx', headerComponent, 'utf-8');
-console.log('Successfully written client/src/components/includes/Header.jsx with DOM parser!');
+fs.writeFileSync('c:/xampp/htdocs/theiotacademy/frontend/src/components/includes/Header.jsx', headerComponent, 'utf-8');
+console.log('Successfully written frontend/src/components/includes/Header.jsx with DOM parser!');
