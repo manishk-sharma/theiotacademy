@@ -3,6 +3,49 @@ import Header from '../components/includes/Header';
 import Footer from '../components/includes/Footer';
 import { submitEnquiry } from '../services/api';
 
+const FREE_COURSES = [
+  {
+    title: "Python For Absolute Beginners",
+    image: "https://d502jbuhuh9wk.cloudfront.net/courses/69baade015e92586359e29dd/69baade015e92586359e29dd_scaled_cover.jpg?v=1",
+    logos: [
+      "https://www.upskillcampus.com/assets/dit/img/logo.svg"
+    ],
+    enrollment: "3700+",
+    type: "Self Paced",
+    link: "https://learn.upskillcampus.com/courses/Python-for-Absolute-Beginners-Copy-69baade015e92586359e29dd"
+  },
+  {
+    title: "Data Analytics for Beginners",
+    image: "https://d502jbuhuh9wk.cloudfront.net/courses/69b797913e555a239e375d8c/69b797913e555a239e375d8c_scaled_cover.jpg?v=1",
+    logos: [
+      "https://www.upskillcampus.com/assets/dit/img/logo.svg"
+    ],
+    enrollment: "3000+",
+    type: "Self Paced",
+    link: "https://learn.upskillcampus.com/courses/Data-Analytics-69b797913e555a239e375d8c"
+  },
+  {
+    title: "Embedded Systems & IoT with ESP32",
+    image: "https://d502jbuhuh9wk.cloudfront.net/courses/69982f62c23dbd2aeda80471/69982f62c23dbd2aeda80471_scaled_cover.jpg?v=1",
+    logos: [
+      "https://www.upskillcampus.com/assets/dit/img/logo.svg"
+    ],
+    enrollment: "1500+",
+    type: "Self Paced",
+    link: "https://learn.upskillcampus.com/courses/Embedded-Systems--IoT-with-ESP32-69982f62c23dbd2aeda80471"
+  },
+  {
+    title: "Prompt Engineering & AI Agents – For Beginner",
+    image: "https://d502jbuhuh9wk.cloudfront.net/courses/69941472bc51bf43b9c3e79f/69941472bc51bf43b9c3e79f_scaled_cover.jpg?v=1",
+    logos: [
+      "https://www.upskillcampus.com/assets/dit/img/logo.svg"
+    ],
+    enrollment: "2000+",
+    type: "Self Paced",
+    link: "https://learn.upskillcampus.com/courses/Prompt-Engineering--AI-Agents--For-Beginner-69941472bc51bf43b9c3e79f"
+  }
+];
+
 const Home = () => {
   const [enqLoading, setEnqLoading] = useState(false);
   const [enqSuccess, setEnqSuccess] = useState('');
@@ -4033,7 +4076,55 @@ const Home = () => {
                         </svg>
                     </div>
                 </div>  */}
-            <div className="courses-grid" id="coursesContainer"></div>
+            <div className="courses-grid" id="coursesContainer">
+              {FREE_COURSES.map((course, index) => (
+                <div className="course-card position-relative" key={index}>
+                  <div className="d-flex flex-column justify-content-between h-100">
+                    <div>
+                      <div className="image">
+                        <img className="img-fluid" src={course.image} alt={course.title} />
+                      </div>
+
+                      <div className="logos d-flex align-items-center justify-content-start gap-2">
+                        Learning Partner{" "}
+                        {course.logos.map((logo, lIdx) => (
+                          <img key={lIdx} className="img-fluid" src={logo} style={{ maxHeight: "31px" }} alt="Partner Logo" />
+                        ))}
+                      </div>
+
+                      <div className="card-heading">
+                        {course.title}
+                      </div>
+
+                      <div className="duration d-flex align-items-center justify-content-start gap-3">
+                        <div className="d-flex align-items-center gap-1">
+                          <strong>Enrollment:</strong>
+                          <span>{course.enrollment}</span>
+                        </div>
+
+                        <div className="d-flex align-items-center gap-1">
+                          <strong>Type:</strong>
+                          <span>{course.type}</span>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="btn-group all-courses">
+                      <a href={course.link} target="_blank" rel="noopener noreferrer" className="custom-btn ">
+                        Explore Course
+                      </a>
+                    </div>
+                  </div>
+
+                  <svg className="position-absolute bottom-0 end-0" xmlns="http://www.w3.org/2000/svg" width="57" height="58" viewBox="0 0 57 58" fill="none">
+                    <g opacity="0.2">
+                      <path d="M56.6075 0.999756C37.1075 1.33309 -1.29255 12.6998 1.10745 57.4998" stroke="#2F3E87" strokeWidth="2" />
+                      <path d="M56.1074 13.9998C41.3792 14.2534 12.3759 22.9042 14.1886 56.9998" stroke="#FDA31B" strokeWidth="2" />
+                    </g>
+                  </svg>
+                </div>
+              ))}
+            </div>
 
             <div className="btn-group all-courses">
                 <a href="https://learn.upskillcampus.com/s/store/courses/Free%20Courses" target="_blank" className="custom-btn ">
